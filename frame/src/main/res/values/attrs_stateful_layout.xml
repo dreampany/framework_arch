@@ -1,0 +1,14 @@
+<resources>
+    <declare-styleable name="SflStatefulLayout">
+        <attr format="string" name="state"/>
+        <attr format="reference" name="stateTextAppearance"/>
+        <attr format="reference" name="offlineLayout"/>
+        <attr format="reference" name="emptyLayout"/>
+        <attr format="reference" name="progressLayout"/>
+        <attr format="reference" name="offlineImageDrawable"/>
+        <attr format="reference" name="emptyImageDrawable"/>
+        <attr format="string" name="emptyText"/>
+        <attr format="string" name="offlineText"/>
+        <attr format="string" name="offlineRetryText"/>
+    </declare-styleable>
+</resources>

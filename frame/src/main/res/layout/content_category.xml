@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:auto="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="${relativePackage}.${activityClass}">
+
+    <data>
+
+        <import type="android.view.View" />
+<!--
+        <import baseType="com.ringbyte.framekit.util.Util" />
+
+        <import baseType="com.ringbyte.english.data.util.TimeUtil" />
+
+        <import baseType="com.ringbyte.english.data.util.NumberUtil" />
+
+        <variable
+            name="recyclerClickListener"
+            baseType="com.ringbyte.framekit.listener.RecyclerClickListener" />
+
+        <variable
+            name="category"
+            baseType="com.ringbyte.english.data.model.base.Category" />-->
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        auto:cardCornerRadius="3dp"
+        auto:cardUseCompatPadding="true">
+
+<!--        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:minHeight="70dp">
+
+            <com.ringbyte.framekit.ui.widget.FontTextView
+                android:id="@+id/viewType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:text="@{category.title}"
+                android:textColor="@color/colorDarkGray"
+                android:textSize="18sp" />
+
+            <com.ringbyte.framekit.ui.widget.FontTextView
+                android:id="@+id/viewViewCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:padding="5dp"
+                android:text="@{NumberUtil.formatCount(category.count)}"
+                android:textColor="@color/colorDarkGray"
+                android:textSize="20sp" />
+
+        </RelativeLayout>-->
+
+    </android.support.v7.widget.CardView>
+</layout>

@@ -1,0 +1,7 @@
+<resources>
+
+	<style name="AppTheme.Frame" parent="AppTheme">
+		<item name="android:windowTranslucentStatus">false</item>
+	</style>
+
+</resources>

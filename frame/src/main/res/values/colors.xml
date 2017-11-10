@@ -1,0 +1,1673 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#1976D2</color>
+    <color name="colorPrimaryDark">#1565C0</color>
+    <color name="colorPrimaryLight">#1E88E5</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccentDark">#F50057</color>
+    <color name="colorAccentLight">#FF80AB</color>
+
+    <color name="black_overlay">#66000000</color>
+<!--    <color name="colorPrimary">@color/colorTeal500</color>
+    <color name="colorPrimaryDark">@color/colorTeal700</color>
+    <color name="colorAccent">@color/colorGreen900</color>-->
+
+
+    <!-- Light Theme -->
+    <color name="colorPrimary_light">#673ab7</color><!-- Deep Purple 500 -->
+    <color name="colorPrimaryDark_light">#512da8</color><!-- Deep Purple 700 -->
+    <color name="colorAccent_light">#ff4081</color><!-- Pink A200 -->
+    <color name="colorAccentDark_light">#c51162</color><!-- Pink A700: for statusBar in actionMode -->
+    <color name="colorPrimaryText_light">#de000000</color>
+
+    <!-- Common colors -->
+    <color name="list_choice_normal_bg_light">#fffafafa</color>
+    <color name="list_choice_pressed_bg_light">#fddd</color>
+
+    <color name="colorRedDark">#aa0707</color>
+
+
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorWhite1">#fafafa</color>
+    <color name="colorWhite2">#f4f4f4</color>
+    <color name="colorLightWhite">#e9e6e6</color>
+    <color name="colorLightWhite1">#f7f6f6</color>
+    <color name="colorLightDark">#ececec</color>
+    <color name="colorLightDark1">#bab7b7</color>
+
+    <color name="colorBlack">#000000</color>
+    <color name="colorBlack1">#232323</color>
+    <color name="colorBlack2">#5b5b5b</color>
+    <color name="colorBlack3">#dedede</color>
+    <color name="colorBlack4">#eaeaea</color>
+
+    <color name="colorDarkGray">#696666</color>
+
+
+    <!--android color-palette-->
+    <color name="colorRed500">#fff44336</color>
+    <color name="colorRed700">#ffd32f2f</color>
+    <color name="colorRed900">#ffb71c1c</color>
+
+    <color name="colorPink500">#ffe91e63</color>
+    <color name="colorPink700">#ffc2185b</color>
+    <color name="colorPink900">#ff880e4f</color>
+
+    <color name="colorPurple500">#ff9c27b0</color>
+    <color name="colorPurple700">#ff7b1fa2</color>
+    <color name="colorPurple900">#ff4a148c</color>
+
+    <color name="colorDeepPurple500">#ff673ab7</color>
+    <color name="colorDeepPurple700">#ff512da8</color>
+    <color name="colorDeepPurple900">#ff311b92</color>
+
+    <color name="colorIndigo500">#ff3f51b5</color>
+    <color name="colorIndigo700">#ff3949ab</color>
+    <color name="colorIndigo900">#ff1a237e</color>
+
+    <color name="colorBlue500">#ff2196f3</color>
+    <color name="colorBlue700">#ff1976d2</color>
+    <color name="colorBlue900">#ff0d47a1</color>
+
+    <color name="colorLightBlue600">#ff039be5</color>
+    <color name="colorLightBlue700">#ff0288d1</color>
+    <color name="colorLightBlue900">#ff01579b</color>
+
+    <color name="colorCyan600">#ff00acc1</color>
+    <color name="colorCyan700">#ff0097a7</color>
+    <color name="colorCyan900">#ff006064</color>
+
+    <color name="colorTeal500">#ff009688</color>
+    <color name="colorTeal700">#ff00796b</color>
+    <color name="colorTeal900">#ff004d40</color>
+
+    <color name="colorGreen600">#ff43a047</color>
+    <color name="colorGreen700">#ff388e3c</color>
+    <color name="colorGreen900">#ff1b5e20</color>
+
+    <color name="colorLightGreen600">#ff7cb342</color>
+    <color name="colorLightGreen700">#ff689f38</color>
+    <color name="colorLightGreen900">#ff33691e</color>
+
+    <color name="colorLime600">#ffc0ca33</color>
+    <color name="colorLime800">#ff9e9d24</color>
+    <color name="colorLime900">#ff827717</color>
+
+    <color name="colorYellow600">#fffdd835</color>
+    <color name="colorYellow800">#fff9a825</color>
+    <color name="colorYellow900">#fff57f17</color>
+
+    <color name="colorAmber600">#ffb300</color>
+    <color name="colorAmber800">#ffff8f00</color>
+    <color name="colorAmber900">#ffff6f00</color>
+
+    <color name="colorOrange600">#fffb8c00</color>
+    <color name="colorOrange800">#ffef6c00</color>
+    <color name="colorOrange900">#ffe65100</color>
+
+    <color name="colorDeepOrange600">#fff4511e</color>
+    <color name="colorDeepOrange800">#ffd84315</color>
+    <color name="colorDeepOrange900">#ffbf360c</color>
+
+    <color name="colorBrown600">#ff6d4c41</color>
+    <color name="colorBrown800">#ff4e342e</color>
+    <color name="colorBrown900">#ff3e2723</color>
+
+    <color name="colorGrey600">#ff757575</color>
+    <color name="colorGrey800">#ff424242</color>
+    <color name="colorGrey900">#ff212121</color>
+
+    <color name="colorBlueGrey600">#ff546e7a</color>
+    <color name="colorBlueGrey800">#ff37474f</color>
+    <color name="colorBlueGrey900">#ff263238</color>
+    <!--android color-palette-->
+
+    <!-- Material Sheet Fab-->
+    <color name="theme_primary">#00BCD4</color>
+    <color name="theme_primary_dark">#0097A7</color>
+    <color name="theme_primary_dark2">#006064</color>
+    <color name="theme_accent">#FFEB3B</color>
+
+    <color name="background_card">#fff</color>
+    <color name="background_snackbar">#323232</color>
+
+    <color name="text_black_87">#de000000</color>
+    <color name="text_white_87">#deFFFFFF</color>
+
+    <!--  stateful -->
+    <color name="sfl_placeholder">#8a000000</color>
+
+    <!-- confetti -->
+    <color name="gold_dark">#946335</color>
+    <color name="gold_med">#ab804b</color>
+    <color name="gold">#cea774</color>
+    <color name="gold_light">#edd3b2</color>
+
+    <array name="note_neutral_colors">
+        <item>#9E9E9E</item>
+        <item>#455A64</item>
+        <item>#607D8B</item>
+    </array>
+
+    <array name="note_accent_colors">
+        <item>#039BE5</item>
+        <item>#3D51B3</item>
+        <item>#689f38</item>
+        <item>#FD7044</item>
+    </array>
+
+    <color name="overlay_dark_10">#1A000000</color>
+    <color name="overlay_dark_20">#33000000</color>
+    <color name="overlay_dark_30">#4D000000</color>
+    <color name="overlay_dark_40">#66000000</color>
+    <color name="overlay_dark_50">#80000000</color>
+    <color name="overlay_dark_60">#99000000</color>
+    <color name="overlay_dark_70">#B3000000</color>
+    <color name="overlay_dark_80">#CC000000</color>
+    <color name="overlay_dark_90">#E6000000</color>
+
+    <color name="overlay_light_10">#1AFFFFFF</color>
+    <color name="overlay_light_20">#33FFFFFF</color>
+    <color name="overlay_light_30">#4DFFFFFF</color>
+    <color name="overlay_light_40">#66FFFFFF</color>
+    <color name="overlay_light_50">#8FFFFFF0</color>
+    <color name="overlay_light_60">#99FFFFFF</color>
+    <color name="overlay_light_70">#B3FFFFFF</color>
+    <color name="overlay_light_80">#CCFFFFFF</color>
+    <color name="overlay_light_90">#E6FFFFFF</color>
+
+    <color name="grey_3">#f7f7f7</color>
+    <color name="grey_5">#f2f2f2</color>
+    <color name="grey_10">#e6e6e6</color>
+    <color name="grey_20">#cccccc</color>
+    <color name="grey_40">#999999</color>
+    <color name="grey_60">#666666</color>
+    <color name="grey_80">#37474F</color>
+    <color name="grey_90">#263238</color>
+
+
+    <!--Material color list from https://material.io/guidelines/style/color.html-->
+    <color name="red_50">#FFEBEE</color>
+    <color name="red_100">#FFCDD2</color>
+    <color name="red_200">#EF9A9A</color>
+    <color name="red_300">#E57373</color>
+    <color name="red_400">#EF5350</color>
+    <color name="red_500">#F44336</color>
+    <color name="red_600">#E53935</color>
+    <color name="red_700">#D32F2F</color>
+    <color name="red_800">#C62828</color>
+    <color name="red_900">#B71C1C</color>
+    <color name="red_A100">#FF8A80</color>
+    <color name="red_A200">#FF5252</color>
+    <color name="red_A400">#FF1744</color>
+    <color name="red_A700">#D50000</color>
+
+    <color name="deep_purple_50">#EDE7F6</color>
+    <color name="deep_purple_100">#D1C4E9</color>
+    <color name="deep_purple_200">#B39DDB</color>
+    <color name="deep_purple_300">#9575CD</color>
+    <color name="deep_purple_400">#7E57C2</color>
+    <color name="deep_purple_500">#673AB7</color>
+    <color name="deep_purple_600">#5E35B1</color>
+    <color name="deep_purple_700">#512DA8</color>
+    <color name="deep_purple_800">#4527A0</color>
+    <color name="deep_purple_900">#311B92</color>
+    <color name="deep_purple_A100">#B388FF</color>
+    <color name="deep_purple_A200">#7C4DFF</color>
+    <color name="deep_purple_A400">#651FFF</color>
+    <color name="deep_purple_A700">#6200EA</color>
+
+    <color name="light_blue_50">#E1F5FE</color>
+    <color name="light_blue_100">#B3E5FC</color>
+    <color name="light_blue_200">#81D4FA</color>
+    <color name="light_blue_300">#4FC3F7</color>
+    <color name="light_blue_400">#29B6F6</color>
+    <color name="light_blue_500">#03A9F4</color>
+    <color name="light_blue_600">#039BE5</color>
+    <color name="light_blue_700">#0288D1</color>
+    <color name="light_blue_800">#0277BD</color>
+    <color name="light_blue_900">#01579B</color>
+    <color name="light_blue_A100">#80D8FF</color>
+    <color name="light_blue_A200">#40C4FF</color>
+    <color name="light_blue_A400">#00B0FF</color>
+    <color name="light_blue_A700">#0091EA</color>
+
+    <color name="green_50">#E8F5E9</color>
+    <color name="green_100">#C8E6C9</color>
+    <color name="green_200">#A5D6A7</color>
+    <color name="green_300">#81C784</color>
+    <color name="green_400">#66BB6A</color>
+    <color name="green_500">#4CAF50</color>
+    <color name="green_600">#43A047</color>
+    <color name="green_700">#388E3C</color>
+    <color name="green_800">#2E7D32</color>
+    <color name="green_900">#1B5E20</color>
+    <color name="green_A100">#B9F6CA</color>
+    <color name="green_A200">#69F0AE</color>
+    <color name="green_A400">#00E676</color>
+    <color name="green_A700">#00C853</color>
+
+    <color name="yellow_50">#FFFDE7</color>
+    <color name="yellow_100">#FFF9C4</color>
+    <color name="yellow_200">#FFF59D</color>
+    <color name="yellow_300">#FFF176</color>
+    <color name="yellow_400">#FFEE58</color>
+    <color name="yellow_500">#FFEB3B</color>
+    <color name="yellow_600">#FDD835</color>
+    <color name="yellow_700">#FBC02D</color>
+    <color name="yellow_800">#F9A825</color>
+    <color name="yellow_900">#F57F17</color>
+    <color name="yellow_A100">#FFFF8D</color>
+    <color name="yellow_A200">#FFFF00</color>
+    <color name="yellow_A400">#FFEA00</color>
+    <color name="yellow_A700">#FFD600</color>
+
+    <color name="deep_orange_50">#FBE9E7</color>
+    <color name="deep_orange_100">#FFCCBC</color>
+    <color name="deep_orange_200">#FFAB91</color>
+    <color name="deep_orange_300">#FF8A65</color>
+    <color name="deep_orange_400">#FF7043</color>
+    <color name="deep_orange_500">#FF5722</color>
+    <color name="deep_orange_600">#F4511E</color>
+    <color name="deep_orange_700">#E64A19</color>
+    <color name="deep_orange_800">#D84315</color>
+    <color name="deep_orange_900">#BF360C</color>
+    <color name="deep_orange_A100">#FF9E80</color>
+    <color name="deep_orange_A200">#FF6E40</color>
+    <color name="deep_orange_A400">#FF3D00</color>
+    <color name="deep_orange_A700">#DD2C00</color>
+
+    <color name="blue_grey_50">#ECEFF1</color>
+    <color name="blue_grey_100">#CFD8DC</color>
+    <color name="blue_grey_200">#B0BEC5</color>
+    <color name="blue_grey_300">#90A4AE</color>
+    <color name="blue_grey_400">#78909C</color>
+    <color name="blue_grey_500">#607D8B</color>
+    <color name="blue_grey_600">#546E7A</color>
+    <color name="blue_grey_700">#455A64</color>
+    <color name="blue_grey_800">#37474F</color>
+    <color name="blue_grey_900">#263238</color>
+
+    <color name="pink_50">#FCE4EC</color>
+    <color name="pink_100">#F8BBD0</color>
+    <color name="pink_200">#F48FB1</color>
+    <color name="pink_300">#F06292</color>
+    <color name="pink_400">#EC407A</color>
+    <color name="pink_500">#E91E63</color>
+    <color name="pink_600">#D81B60</color>
+    <color name="pink_700">#C2185B</color>
+    <color name="pink_800">#AD1457</color>
+    <color name="pink_900">#880E4F</color>
+    <color name="pink_A100">#FF80AB</color>
+    <color name="pink_A200">#FF4081</color>
+    <color name="pink_A400">#F50057</color>
+    <color name="pink_A700">#C51162</color>
+
+    <color name="indigo_50">#E8EAF6</color>
+    <color name="indigo_100">#C5CAE9</color>
+    <color name="indigo_200">#9FA8DA</color>
+    <color name="indigo_300">#7986CB</color>
+    <color name="indigo_400">#5C6BC0</color>
+    <color name="indigo_500">#3F51B5</color>
+    <color name="indigo_600">#3949AB</color>
+    <color name="indigo_700">#303F9F</color>
+    <color name="indigo_800">#283593</color>
+    <color name="indigo_900">#1A237E</color>
+    <color name="indigo_A100">#8C9EFF</color>
+    <color name="indigo_A200">#536DFE</color>
+    <color name="indigo_A400">#3D5AFE</color>
+    <color name="indigo_A700">#304FFE</color>
+
+    <color name="cyan_50">#E0F7FA</color>
+    <color name="cyan_100">#B2EBF2</color>
+    <color name="cyan_200">#80DEEA</color>
+    <color name="cyan_300">#4DD0E1</color>
+    <color name="cyan_400">#26C6DA</color>
+    <color name="cyan_500">#00BCD4</color>
+    <color name="cyan_600">#00ACC1</color>
+    <color name="cyan_700">#0097A7</color>
+    <color name="cyan_800">#00838F</color>
+    <color name="cyan_900">#006064</color>
+    <color name="cyan_A100">#84FFFF</color>
+    <color name="cyan_A200">#18FFFF</color>
+    <color name="cyan_A400">#00E5FF</color>
+    <color name="cyan_A700">#00B8D4</color>
+
+    <color name="light_green_50">#F1F8E9</color>
+    <color name="light_green_100">#DCEDC8</color>
+    <color name="light_green_200">#C5E1A5</color>
+    <color name="light_green_300">#AED581</color>
+    <color name="light_green_400">#9CCC65</color>
+    <color name="light_green_500">#8BC34A</color>
+    <color name="light_green_600">#7CB342</color>
+    <color name="light_green_700">#689F38</color>
+    <color name="light_green_800">#558B2F</color>
+    <color name="light_green_900">#33691E</color>
+    <color name="light_green_A100">#CCFF90</color>
+    <color name="light_green_A200">#B2FF59</color>
+    <color name="light_green_A400">#76FF03</color>
+    <color name="light_green_A700">#64DD17</color>
+
+    <color name="amber_50">#FFF8E1</color>
+    <color name="amber_100">#FFECB3</color>
+    <color name="amber_200">#FFE082</color>
+    <color name="amber_300">#FFD54F</color>
+    <color name="amber_400">#FFCA28</color>
+    <color name="amber_500">#FFC107</color>
+    <color name="amber_600">#FFB300</color>
+    <color name="amber_700">#FFA000</color>
+    <color name="amber_800">#FF8F00</color>
+    <color name="amber_900">#FF6F00</color>
+    <color name="amber_A100">#FFE57F</color>
+    <color name="amber_A200">#FFD740</color>
+    <color name="amber_A400">#FFC400</color>
+    <color name="amber_A700">#FFAB00</color>
+
+    <color name="brown_50">#EFEBE9</color>
+    <color name="brown_100">#D7CCC8</color>
+    <color name="brown_200">#BCAAA4</color>
+    <color name="brown_300">#A1887F</color>
+    <color name="brown_400">#8D6E63</color>
+    <color name="brown_500">#795548</color>
+    <color name="brown_600">#6D4C41</color>
+    <color name="brown_700">#5D4037</color>
+    <color name="brown_800">#4E342E</color>
+    <color name="brown_900">#3E2723</color>
+
+    <color name="purple_50">#F3E5F5</color>
+    <color name="purple_100">#E1BEE7</color>
+    <color name="purple_200">#CE93D8</color>
+    <color name="purple_300">#BA68C8</color>
+    <color name="purple_400">#AB47BC</color>
+    <color name="purple_500">#9C27B0</color>
+    <color name="purple_600">#8E24AA</color>
+    <color name="purple_700">#7B1FA2</color>
+    <color name="purple_800">#6A1B9A</color>
+    <color name="purple_900">#4A148C</color>
+    <color name="purple_A100">#EA80FC</color>
+    <color name="purple_A200">#E040FB</color>
+    <color name="purple_A400">#D500F9</color>
+    <color name="purple_A700">#AA00FF</color>
+
+    <color name="blue_50">#E3F2FD</color>
+    <color name="blue_100">#BBDEFB</color>
+    <color name="blue_200">#90CAF9</color>
+    <color name="blue_300">#64B5F6</color>
+    <color name="blue_400">#42A5F5</color>
+    <color name="blue_500">#2196F3</color>
+    <color name="blue_600">#1E88E5</color>
+    <color name="blue_700">#1976D2</color>
+    <color name="blue_800">#1565C0</color>
+    <color name="blue_900">#0D47A1</color>
+    <color name="blue_A100">#82B1FF</color>
+    <color name="blue_A200">#448AFF</color>
+    <color name="blue_A400">#2979FF</color>
+    <color name="blue_A700">#2962FF</color>
+
+    <color name="teal_50">#E0F2F1</color>
+    <color name="teal_100">#B2DFDB</color>
+    <color name="teal_200">#80CBC4</color>
+    <color name="teal_300">#4DB6AC</color>
+    <color name="teal_400">#26A69A</color>
+    <color name="teal_500">#009688</color>
+    <color name="teal_600">#00897B</color>
+    <color name="teal_700">#00796B</color>
+    <color name="teal_800">#00695C</color>
+    <color name="teal_900">#004D40</color>
+    <color name="teal_A100">#A7FFEB</color>
+    <color name="teal_A200">#64FFDA</color>
+    <color name="teal_A400">#1DE9B6</color>
+    <color name="teal_A700">#00BFA5</color>
+
+    <color name="lime_50">#F9FBE7</color>
+    <color name="lime_100">#F0F4C3</color>
+    <color name="lime_200">#E6EE9C</color>
+    <color name="lime_300">#DCE775</color>
+    <color name="lime_400">#D4E157</color>
+    <color name="lime_500">#CDDC39</color>
+    <color name="lime_600">#C0CA33</color>
+    <color name="lime_700">#AFB42B</color>
+    <color name="lime_800">#9E9D24</color>
+    <color name="lime_900">#827717</color>
+    <color name="lime_A100">#F4FF81</color>
+    <color name="lime_A200">#EEFF41</color>
+    <color name="lime_A400">#C6FF00</color>
+    <color name="lime_A700">#AEEA00</color>
+
+    <color name="orange_50">#FFF3E0</color>
+    <color name="orange_100">#FFE0B2</color>
+    <color name="orange_200">#FFCC80</color>
+    <color name="orange_300">#FFB74D</color>
+    <color name="orange_400">#FFA726</color>
+    <color name="orange_500">#FF9800</color>
+    <color name="orange_600">#FB8C00</color>
+    <color name="orange_700">#F57C00</color>
+    <color name="orange_800">#EF6C00</color>
+    <color name="orange_900">#E65100</color>
+    <color name="orange_A100">#FFD180</color>
+    <color name="orange_A200">#FFAB40</color>
+    <color name="orange_A400">#FF9100</color>
+    <color name="orange_A700">#FF6D00</color>
+
+    <color name="grey_50">#FAFAFA</color>
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_200">#EEEEEE</color>
+    <color name="grey_300">#E0E0E0</color>
+    <color name="grey_400">#BDBDBD</color>
+    <color name="grey_500">#9E9E9E</color>
+    <color name="grey_600">#757575</color>
+    <color name="grey_700">#616161</color>
+    <color name="grey_800">#424242</color>
+    <color name="grey_900">#212121</color>
+    <color name="grey_1000">#1a1a1a</color>
+
+
+    <!--for random color generator -->
+    <array name="mdcolor_random">
+        <item type="color">#e91e63</item>
+        <item type="color">#9c27b0</item>
+        <item type="color">#673ab7</item>
+        <item type="color">#E53935</item>
+        <item type="color">#5677fc</item>
+        <item type="color">#689F38</item>
+        <item type="color">#03a9f4</item>
+        <item type="color">#00bcd4</item>
+        <item type="color">#009688</item>
+        <item type="color">#259b24</item>
+        <item type="color">#ff5722</item>
+        <item type="color">#795548</item>
+        <item type="color">#607d8b</item>
+        <item type="color">#ff9800</item>
+    </array>
+
+
+
+    <color name="material_text_color_black_divider">#1f000000</color>
+    <color name="material_text_color_black_hint">#42000000</color>
+    <color name="material_text_color_black_secondary_text">#8a000000</color>
+    <color name="material_text_color_black_text">#de000000</color>
+
+    <color name="material_text_color_white_divider">#1fffffff</color>
+    <color name="material_text_color_white_hint">#42ffffff</color>
+    <color name="material_text_color_white_secondary_text">#8affffff</color>
+    <color name="material_text_color_white_text">#deffffff</color>
+
+    <!-- Colors suggested as Material themes via the Design Guidelines -->
+    <!-- http://www.google.com/design/spec/style/color.html#color-ui-color-palette -->
+    <color name="material_color_red_50">#fde0dc</color>
+    <color name="material_color_red_100">#f9bdbb</color>
+    <color name="material_color_red_200">#f69988</color>
+    <color name="material_color_red_300">#f36c60</color>
+    <color name="material_color_red_400">#e84e40</color>
+    <color name="material_color_red_500">#e51c23</color>
+    <color name="material_color_red_600">#dd191d</color>
+    <color name="material_color_red_700">#d01716</color>
+    <color name="material_color_red_800">#c41411</color>
+    <color name="material_color_red_900">#b0120a</color>
+    <color name="material_color_red_A100">#ff7997</color>
+    <color name="material_color_red_A200">#ff5177</color>
+    <color name="material_color_red_A400">#ff2d6f</color>
+    <color name="material_color_red_A700">#e00032</color>
+
+    <color name="material_color_pink_50">#fce4ec</color>
+    <color name="material_color_pink_100">#f8bbd0</color>
+    <color name="material_color_pink_200">#f48fb1</color>
+    <color name="material_color_pink_300">#f06292</color>
+    <color name="material_color_pink_400">#ec407a</color>
+    <color name="material_color_pink_500">#e91e63</color>
+    <color name="material_color_pink_600">#d81b60</color>
+    <color name="material_color_pink_700">#c2185b</color>
+    <color name="material_color_pink_800">#ad1457</color>
+    <color name="material_color_pink_900">#880e4f</color>
+    <color name="material_color_pink_A100">#ff80ab</color>
+    <color name="material_color_pink_A200">#ff4081</color>
+    <color name="material_color_pink_A400">#f50057</color>
+    <color name="material_color_pink_A700">#c51162</color>
+
+    <color name="material_color_purple_50">#f3e5f5</color>
+    <color name="material_color_purple_100">#e1bee7</color>
+    <color name="material_color_purple_200">#ce93d8</color>
+    <color name="material_color_purple_300">#ba68c8</color>
+    <color name="material_color_purple_400">#ab47bc</color>
+    <color name="material_color_purple_500">#9c27b0</color>
+    <color name="material_color_purple_600">#8e24aa</color>
+    <color name="material_color_purple_700">#7b1fa2</color>
+    <color name="material_color_purple_800">#6a1b9a</color>
+    <color name="material_color_purple_900">#4a148c</color>
+    <color name="material_color_purple_A100">#ea80fc</color>
+    <color name="material_color_purple_A200">#e040fb</color>
+    <color name="material_color_purple_A400">#d500f9</color>
+    <color name="material_color_purple_A700">#aa00ff</color>
+
+    <color name="material_color_deep_purple_50">#ede7f6</color>
+    <color name="material_color_deep_purple_100">#d1c4e9</color>
+    <color name="material_color_deep_purple_200">#b39ddb</color>
+    <color name="material_color_deep_purple_300">#9575cd</color>
+    <color name="material_color_deep_purple_400">#7e57c2</color>
+    <color name="material_color_deep_purple_500">#673ab7</color>
+    <color name="material_color_deep_purple_600">#5e35b1</color>
+    <color name="material_color_deep_purple_700">#512da8</color>
+    <color name="material_color_deep_purple_800">#4527a0</color>
+    <color name="material_color_deep_purple_900">#311b92</color>
+    <color name="material_color_deep_purple_A100">#b388ff</color>
+    <color name="material_color_deep_purple_A200">#7c4dff</color>
+    <color name="material_color_deep_purple_A400">#651fff</color>
+    <color name="material_color_deep_purple_A700">#6200ea</color>
+
+    <color name="material_color_indigo_50">#e8eaf6</color>
+    <color name="material_color_indigo_100">#c5cae9</color>
+    <color name="material_color_indigo_200">#9fa8da</color>
+    <color name="material_color_indigo_300">#7986cb</color>
+    <color name="material_color_indigo_400">#5c6bc0</color>
+    <color name="material_color_indigo_500">#3f51b5</color>
+    <color name="material_color_indigo_600">#3949ab</color>
+    <color name="material_color_indigo_700">#303f9f</color>
+    <color name="material_color_indigo_800">#283593</color>
+    <color name="material_color_indigo_900">#1a237e</color>
+    <color name="material_color_indigo_A100">#8c9eff</color>
+    <color name="material_color_indigo_A200">#536dfe</color>
+    <color name="material_color_indigo_A400">#3d5afe</color>
+    <color name="material_color_indigo_A700">#304ffe</color>
+
+    <color name="material_color_blue_50">#e7e9fd</color>
+    <color name="material_color_blue_100">#d0d9ff</color>
+    <color name="material_color_blue_200">#afbfff</color>
+    <color name="material_color_blue_300">#91a7ff</color>
+    <color name="material_color_blue_400">#738ffe</color>
+    <color name="material_color_blue_500">#5677fc</color>
+    <color name="material_color_blue_600">#4e6cef</color>
+    <color name="material_color_blue_700">#455ede</color>
+    <color name="material_color_blue_800">#3b50ce</color>
+    <color name="material_color_blue_900">#2a36b1</color>
+    <color name="material_color_blue_A100">#a6baff</color>
+    <color name="material_color_blue_A200">#6889ff</color>
+    <color name="material_color_blue_A400">#4d73ff</color>
+    <color name="material_color_blue_A700">#4d69ff</color>
+
+    <color name="material_color_light_blue_50">#e1f5fe</color>
+    <color name="material_color_light_blue_100">#b3e5fc</color>
+    <color name="material_color_light_blue_200">#81d4fa</color>
+    <color name="material_color_light_blue_300">#4fc3f7</color>
+    <color name="material_color_light_blue_400">#29b6f6</color>
+    <color name="material_color_light_blue_500">#03a9f4</color>
+    <color name="material_color_light_blue_600">#039be5</color>
+    <color name="material_color_light_blue_700">#0288d1</color>
+    <color name="material_color_light_blue_800">#0277bd</color>
+    <color name="material_color_light_blue_900">#01579b</color>
+    <color name="material_color_light_blue_A100">#80d8ff</color>
+    <color name="material_color_light_blue_A200">#40c4ff</color>
+    <color name="material_color_light_blue_A400">#00b0ff</color>
+    <color name="material_color_light_blue_A700">#0091ea</color>
+
+    <color name="material_color_cyan_50">#e0f7fa</color>
+    <color name="material_color_cyan_100">#b2ebf2</color>
+    <color name="material_color_cyan_200">#80deea</color>
+    <color name="material_color_cyan_300">#4dd0e1</color>
+    <color name="material_color_cyan_400">#26c6da</color>
+    <color name="material_color_cyan_500">#00bcd4</color>
+    <color name="material_color_cyan_600">#00acc1</color>
+    <color name="material_color_cyan_700">#0097a7</color>
+    <color name="material_color_cyan_800">#00838f</color>
+    <color name="material_color_cyan_900">#006064</color>
+    <color name="material_color_cyan_A100">#84ffff</color>
+    <color name="material_color_cyan_A200">#18ffff</color>
+    <color name="material_color_cyan_A400">#00e5ff</color>
+    <color name="material_color_cyan_A700">#00b8d4</color>
+
+    <color name="material_color_teal_50">#e0f2f1</color>
+    <color name="material_color_teal_100">#b2dfdb</color>
+    <color name="material_color_teal_200">#80cbc4</color>
+    <color name="material_color_teal_300">#4db6ac</color>
+    <color name="material_color_teal_400">#26a69a</color>
+    <color name="material_color_teal_500">#009688</color>
+    <color name="material_color_teal_600">#00897b</color>
+    <color name="material_color_teal_700">#00796b</color>
+    <color name="material_color_teal_800">#00695c</color>
+    <color name="material_color_teal_900">#004d40</color>
+    <color name="material_color_teal_A100">#a7ffeb</color>
+    <color name="material_color_teal_A200">#64ffda</color>
+    <color name="material_color_teal_A400">#1de9b6</color>
+    <color name="material_color_teal_A700">#00bfa5</color>
+
+    <color name="material_color_green_50">#d0f8ce</color>
+    <color name="material_color_green_100">#a3e9a4</color>
+    <color name="material_color_green_200">#72d572</color>
+    <color name="material_color_green_300">#42bd41</color>
+    <color name="material_color_green_400">#2baf2b</color>
+    <color name="material_color_green_500">#259b24</color>
+    <color name="material_color_green_600">#0a8f08</color>
+    <color name="material_color_green_700">#0a7e07</color>
+    <color name="material_color_green_800">#056f00</color>
+    <color name="material_color_green_900">#0d5302</color>
+    <color name="material_color_green_A100">#a2f78d</color>
+    <color name="material_color_green_A200">#5af158</color>
+    <color name="material_color_green_A400">#14e715</color>
+    <color name="material_color_green_A700">#12c700</color>
+
+    <color name="material_color_light_green_50">#f1f8e9</color>
+    <color name="material_color_light_green_100">#dcedc8</color>
+    <color name="material_color_light_green_200">#c5e1a5</color>
+    <color name="material_color_light_green_300">#aed581</color>
+    <color name="material_color_light_green_400">#9ccc65</color>
+    <color name="material_color_light_green_500">#8bc34a</color>
+    <color name="material_color_light_green_600">#7cb342</color>
+    <color name="material_color_light_green_700">#689f38</color>
+    <color name="material_color_light_green_800">#558b2f</color>
+    <color name="material_color_light_green_900">#33691e</color>
+    <color name="material_color_light_green_A100">#ccff90</color>
+    <color name="material_color_light_green_A200">#b2ff59</color>
+    <color name="material_color_light_green_A400">#76ff03</color>
+    <color name="material_color_light_green_A700">#64dd17</color>
+
+    <color name="material_color_lime_50">#f9fbe7</color>
+    <color name="material_color_lime_100">#f0f4c3</color>
+    <color name="material_color_lime_200">#e6ee9c</color>
+    <color name="material_color_lime_300">#dce775</color>
+    <color name="material_color_lime_400">#d4e157</color>
+    <color name="material_color_lime_500">#cddc39</color>
+    <color name="material_color_lime_600">#c0ca33</color>
+    <color name="material_color_lime_700">#afb42b</color>
+    <color name="material_color_lime_800">#9e9d24</color>
+    <color name="material_color_lime_900">#827717</color>
+    <color name="material_color_lime_A100">#f4ff81</color>
+    <color name="material_color_lime_A200">#eeff41</color>
+    <color name="material_color_lime_A400">#c6ff00</color>
+    <color name="material_color_lime_A700">#aeea00</color>
+
+    <color name="material_color_yellow_50">#fffde7</color>
+    <color name="material_color_yellow_100">#fff9c4</color>
+    <color name="material_color_yellow_200">#fff59d</color>
+    <color name="material_color_yellow_300">#fff176</color>
+    <color name="material_color_yellow_400">#ffee58</color>
+    <color name="material_color_yellow_500">#ffeb3b</color>
+    <color name="material_color_yellow_600">#fdd835</color>
+    <color name="material_color_yellow_700">#fbc02d</color>
+    <color name="material_color_yellow_800">#f9a825</color>
+    <color name="material_color_yellow_900">#f57f17</color>
+    <color name="material_color_yellow_A100">#ffff8d</color>
+    <color name="material_color_yellow_A200">#ffff00</color>
+    <color name="material_color_yellow_A400">#ffea00</color>
+    <color name="material_color_yellow_A700">#ffd600</color>
+
+    <color name="material_color_amber_50">#fff8e1</color>
+    <color name="material_color_amber_100">#ffecb3</color>
+    <color name="material_color_amber_200">#ffe082</color>
+    <color name="material_color_amber_300">#ffd54f</color>
+    <color name="material_color_amber_400">#ffca28</color>
+    <color name="material_color_amber_500">#ffc107</color>
+    <color name="material_color_amber_600">#ffb300</color>
+    <color name="material_color_amber_700">#ffa000</color>
+    <color name="material_color_amber_800">#ff8f00</color>
+    <color name="material_color_amber_900">#ff6f00</color>
+    <color name="material_color_amber_A100">#ffe57f</color>
+    <color name="material_color_amber_A200">#ffd740</color>
+    <color name="material_color_amber_A400">#ffc400</color>
+    <color name="material_color_amber_A700">#ffab00</color>
+
+    <color name="material_color_orange_50">#fff3e0</color>
+    <color name="material_color_orange_100">#ffe0b2</color>
+    <color name="material_color_orange_200">#ffcc80</color>
+    <color name="material_color_orange_300">#ffb74d</color>
+    <color name="material_color_orange_400">#ffa726</color>
+    <color name="material_color_orange_500">#ff9800</color>
+    <color name="material_color_orange_600">#fb8c00</color>
+    <color name="material_color_orange_700">#f57c00</color>
+    <color name="material_color_orange_800">#ef6c00</color>
+    <color name="material_color_orange_900">#e65100</color>
+    <color name="material_color_orange_A100">#ffd180</color>
+    <color name="material_color_orange_A200">#ffab40</color>
+    <color name="material_color_orange_A400">#ff9100</color>
+    <color name="material_color_orange_A700">#ff6d00</color>
+
+    <color name="material_color_deep_orange_50">#fbe9e7</color>
+    <color name="material_color_deep_orange_100">#ffccbc</color>
+    <color name="material_color_deep_orange_200">#ffab91</color>
+    <color name="material_color_deep_orange_300">#ff8a65</color>
+    <color name="material_color_deep_orange_400">#ff7043</color>
+    <color name="material_color_deep_orange_500">#ff5722</color>
+    <color name="material_color_deep_orange_600">#f4511e</color>
+    <color name="material_color_deep_orange_700">#e64a19</color>
+    <color name="material_color_deep_orange_800">#d84315</color>
+    <color name="material_color_deep_orange_900">#bf360c</color>
+    <color name="material_color_deep_orange_A100">#ff9e80</color>
+    <color name="material_color_deep_orange_A200">#ff6e40</color>
+    <color name="material_color_deep_orange_A400">#ff3d00</color>
+    <color name="material_color_deep_orange_A700">#dd2c00</color>
+
+    <color name="material_color_brown_50">#efebe9</color>
+    <color name="material_color_brown_100">#d7ccc8</color>
+    <color name="material_color_brown_200">#bcaaa4</color>
+    <color name="material_color_brown_300">#a1887f</color>
+    <color name="material_color_brown_400">#8d6e63</color>
+    <color name="material_color_brown_500">#795548</color>
+    <color name="material_color_brown_600">#6d4c41</color>
+    <color name="material_color_brown_700">#5d4037</color>
+    <color name="material_color_brown_800">#4e342e</color>
+    <color name="material_color_brown_900">#3e2723</color>
+    <color name="material_color_brown_A100">#ffd180</color>
+    <color name="material_color_brown_A200">#ffab40</color>
+    <color name="material_color_brown_A400">#ff9100</color>
+    <color name="material_color_brown_A700">#ff6d00</color>
+
+    <color name="material_color_grey_50">#fafafa</color>
+    <color name="material_color_grey_100">#f5f5f5</color>
+    <color name="material_color_grey_200">#eeeeee</color>
+    <color name="material_color_grey_300">#e0e0e0</color>
+    <color name="material_color_grey_400">#bdbdbd</color>
+    <color name="material_color_grey_500">#9e9e9e</color>
+    <color name="material_color_grey_600">#757575</color>
+    <color name="material_color_grey_700">#616161</color>
+    <color name="material_color_grey_800">#424242</color>
+    <color name="material_color_grey_900">#212121</color>
+    <color name="material_color_grey_1000">#000000</color>
+    <color name="material_color_grey_1001">#ffffff</color>
+
+    <color name="material_color_blue_grey_50">#eceff1</color>
+    <color name="material_color_blue_grey_100">#cfd8dc</color>
+    <color name="material_color_blue_grey_200">#b0bec5</color>
+    <color name="material_color_blue_grey_300">#90a4ae</color>
+    <color name="material_color_blue_grey_400">#78909c</color>
+    <color name="material_color_blue_grey_500">#607d8b</color>
+    <color name="material_color_blue_grey_600">#546e7a</color>
+    <color name="material_color_blue_grey_700">#455a64</color>
+    <color name="material_color_blue_grey_800">#37474f</color>
+    <color name="material_color_blue_grey_900">#263238</color>
+
+    <color name="material_text_color_red_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_red_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_red_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_red_300">@color/material_text_color_black_text</color>
+    <color name="material_text_color_red_400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_red_500">@color/material_text_color_white_text</color>
+    <color name="material_text_color_red_600">@color/material_text_color_white_text</color>
+    <color name="material_text_color_red_700">@color/material_text_color_white_text</color>
+    <color name="material_text_color_red_800">@color/material_text_color_white_text</color>
+    <color name="material_text_color_red_900">@color/material_text_color_white_text</color>
+    <color name="material_text_color_red_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_red_A200">@color/material_text_color_white_text</color>
+    <color name="material_text_color_red_A400">@color/material_text_color_white_text</color>
+    <color name="material_text_color_red_A700">@color/material_text_color_white_text</color>
+
+    <color name="material_text_color_pink_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_pink_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_pink_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_pink_300">@color/material_text_color_black_text</color>
+    <color name="material_text_color_pink_400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_pink_500">@color/material_text_color_white_text</color>
+    <color name="material_text_color_pink_600">@color/material_text_color_white_text</color>
+    <color name="material_text_color_pink_700">@color/material_text_color_white_text</color>
+    <color name="material_text_color_pink_800">@color/material_text_color_white_text</color>
+    <color name="material_text_color_pink_900">@color/material_text_color_white_text</color>
+    <color name="material_text_color_pink_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_pink_A200">@color/material_text_color_white_text</color>
+    <color name="material_text_color_pink_A400">@color/material_text_color_white_text</color>
+    <color name="material_text_color_pink_A700">@color/material_text_color_white_text</color>
+
+    <color name="material_text_color_purple_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_purple_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_purple_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_purple_300">@color/material_text_color_white_text</color>
+    <color name="material_text_color_purple_400">@color/material_text_color_white_text</color>
+    <color name="material_text_color_purple_500">@color/material_text_color_white_text</color>
+    <color name="material_text_color_purple_600">@color/material_text_color_white_text</color>
+    <color name="material_text_color_purple_700">@color/material_text_color_white_text</color>
+    <color name="material_text_color_purple_800">@color/material_text_color_white_text</color>
+    <color name="material_text_color_purple_900">@color/material_text_color_white_text</color>
+    <color name="material_text_color_purple_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_purple_A200">@color/material_text_color_white_text</color>
+    <color name="material_text_color_purple_A400">@color/material_text_color_white_text</color>
+    <color name="material_text_color_purple_A700">@color/material_text_color_white_text</color>
+
+    <color name="material_text_color_deep_purple_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_deep_purple_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_deep_purple_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_deep_purple_300">@color/material_text_color_white_text</color>
+    <color name="material_text_color_deep_purple_400">@color/material_text_color_white_text</color>
+    <color name="material_text_color_deep_purple_500">@color/material_text_color_white_text</color>
+    <color name="material_text_color_deep_purple_600">@color/material_text_color_white_text</color>
+    <color name="material_text_color_deep_purple_700">@color/material_text_color_white_text</color>
+    <color name="material_text_color_deep_purple_800">@color/material_text_color_white_text</color>
+    <color name="material_text_color_deep_purple_900">@color/material_text_color_white_text</color>
+    <color name="material_text_color_deep_purple_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_deep_purple_A200">@color/material_text_color_white_text</color>
+    <color name="material_text_color_deep_purple_A400">@color/material_text_color_white_text</color>
+    <color name="material_text_color_deep_purple_A700">@color/material_text_color_white_text</color>
+
+    <color name="material_text_color_indigo_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_indigo_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_indigo_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_indigo_300">@color/material_text_color_white_text</color>
+    <color name="material_text_color_indigo_400">@color/material_text_color_white_text</color>
+    <color name="material_text_color_indigo_500">@color/material_text_color_white_text</color>
+    <color name="material_text_color_indigo_600">@color/material_text_color_white_text</color>
+    <color name="material_text_color_indigo_700">@color/material_text_color_white_text</color>
+    <color name="material_text_color_indigo_800">@color/material_text_color_white_text</color>
+    <color name="material_text_color_indigo_900">@color/material_text_color_white_text</color>
+    <color name="material_text_color_indigo_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_indigo_A200">@color/material_text_color_white_text</color>
+    <color name="material_text_color_indigo_A400">@color/material_text_color_white_text</color>
+    <color name="material_text_color_indigo_A700">@color/material_text_color_white_text</color>
+
+    <color name="material_text_color_blue_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_blue_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_blue_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_blue_300">@color/material_text_color_black_text</color>
+    <color name="material_text_color_blue_400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_blue_500">@color/material_text_color_white_text</color>
+    <color name="material_text_color_blue_600">@color/material_text_color_white_text</color>
+    <color name="material_text_color_blue_700">@color/material_text_color_white_text</color>
+    <color name="material_text_color_blue_800">@color/material_text_color_white_text</color>
+    <color name="material_text_color_blue_900">@color/material_text_color_white_text</color>
+    <color name="material_text_color_blue_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_blue_A200">@color/material_text_color_white_text</color>
+    <color name="material_text_color_blue_A400">@color/material_text_color_white_text</color>
+    <color name="material_text_color_blue_A700">@color/material_text_color_white_text</color>
+
+    <color name="material_text_color_light_blue_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_blue_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_blue_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_blue_300">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_blue_400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_blue_500">@color/material_text_color_white_text</color>
+    <color name="material_text_color_light_blue_600">@color/material_text_color_white_text</color>
+    <color name="material_text_color_light_blue_700">@color/material_text_color_white_text</color>
+    <color name="material_text_color_light_blue_800">@color/material_text_color_white_text</color>
+    <color name="material_text_color_light_blue_900">@color/material_text_color_white_text</color>
+    <color name="material_text_color_light_blue_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_blue_A200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_blue_A400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_blue_A700">@color/material_text_color_white_text</color>
+
+    <color name="material_text_color_cyan_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_cyan_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_cyan_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_cyan_300">@color/material_text_color_black_text</color>
+    <color name="material_text_color_cyan_400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_cyan_500">@color/material_text_color_white_text</color>
+    <color name="material_text_color_cyan_600">@color/material_text_color_white_text</color>
+    <color name="material_text_color_cyan_700">@color/material_text_color_white_text</color>
+    <color name="material_text_color_cyan_800">@color/material_text_color_white_text</color>
+    <color name="material_text_color_cyan_900">@color/material_text_color_white_text</color>
+    <color name="material_text_color_cyan_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_cyan_A200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_cyan_A400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_cyan_A700">@color/material_text_color_black_text</color>
+
+    <color name="material_text_color_teal_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_teal_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_teal_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_teal_300">@color/material_text_color_black_text</color>
+    <color name="material_text_color_teal_400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_teal_500">@color/material_text_color_white_text</color>
+    <color name="material_text_color_teal_600">@color/material_text_color_white_text</color>
+    <color name="material_text_color_teal_700">@color/material_text_color_white_text</color>
+    <color name="material_text_color_teal_800">@color/material_text_color_white_text</color>
+    <color name="material_text_color_teal_900">@color/material_text_color_white_text</color>
+    <color name="material_text_color_teal_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_teal_A200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_teal_A400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_teal_A700">@color/material_text_color_black_text</color>
+
+    <color name="material_text_color_green_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_green_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_green_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_green_300">@color/material_text_color_black_text</color>
+    <color name="material_text_color_green_400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_green_500">@color/material_text_color_white_text</color>
+    <color name="material_text_color_green_600">@color/material_text_color_white_text</color>
+    <color name="material_text_color_green_700">@color/material_text_color_white_text</color>
+    <color name="material_text_color_green_800">@color/material_text_color_white_text</color>
+    <color name="material_text_color_green_900">@color/material_text_color_white_text</color>
+    <color name="material_text_color_green_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_green_A200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_green_A400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_green_A700">@color/material_text_color_black_text</color>
+
+    <color name="material_text_color_light_green_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_green_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_green_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_green_300">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_green_400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_green_500">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_green_600">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_green_700">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_green_800">@color/material_text_color_white_text</color>
+    <color name="material_text_color_light_green_900">@color/material_text_color_white_text</color>
+    <color name="material_text_color_light_green_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_green_A200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_green_A400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_light_green_A700">@color/material_text_color_black_text</color>
+
+    <color name="material_text_color_lime_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_lime_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_lime_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_lime_300">@color/material_text_color_black_text</color>
+    <color name="material_text_color_lime_400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_lime_500">@color/material_text_color_black_text</color>
+    <color name="material_text_color_lime_600">@color/material_text_color_black_text</color>
+    <color name="material_text_color_lime_700">@color/material_text_color_black_text</color>
+    <color name="material_text_color_lime_800">@color/material_text_color_black_text</color>
+    <color name="material_text_color_lime_900">@color/material_text_color_white_text</color>
+    <color name="material_text_color_lime_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_lime_A200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_lime_A400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_lime_A700">@color/material_text_color_black_text</color>
+
+    <color name="material_text_color_yellow_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_yellow_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_yellow_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_yellow_300">@color/material_text_color_black_text</color>
+    <color name="material_text_color_yellow_400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_yellow_500">@color/material_text_color_black_text</color>
+    <color name="material_text_color_yellow_600">@color/material_text_color_black_text</color>
+    <color name="material_text_color_yellow_700">@color/material_text_color_black_text</color>
+    <color name="material_text_color_yellow_800">@color/material_text_color_black_text</color>
+    <color name="material_text_color_yellow_900">@color/material_text_color_black_text</color>
+    <color name="material_text_color_yellow_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_yellow_A200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_yellow_A400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_yellow_A700">@color/material_text_color_black_text</color>
+
+    <color name="material_text_color_amber_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_amber_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_amber_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_amber_300">@color/material_text_color_black_text</color>
+    <color name="material_text_color_amber_400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_amber_500">@color/material_text_color_black_text</color>
+    <color name="material_text_color_amber_600">@color/material_text_color_black_text</color>
+    <color name="material_text_color_amber_700">@color/material_text_color_black_text</color>
+    <color name="material_text_color_amber_800">@color/material_text_color_black_text</color>
+    <color name="material_text_color_amber_900">@color/material_text_color_black_text</color>
+    <color name="material_text_color_amber_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_amber_A200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_amber_A400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_amber_A700">@color/material_text_color_black_text</color>
+
+    <color name="material_text_color_orange_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_orange_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_orange_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_orange_300">@color/material_text_color_black_text</color>
+    <color name="material_text_color_orange_400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_orange_500">@color/material_text_color_black_text</color>
+    <color name="material_text_color_orange_600">@color/material_text_color_black_text</color>
+    <color name="material_text_color_orange_700">@color/material_text_color_black_text</color>
+    <color name="material_text_color_orange_800">@color/material_text_color_white_text</color>
+    <color name="material_text_color_orange_900">@color/material_text_color_white_text</color>
+    <color name="material_text_color_orange_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_orange_A200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_orange_A400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_orange_A700">@color/material_text_color_black_text</color>
+
+    <color name="material_text_color_deep_orange_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_deep_orange_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_deep_orange_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_deep_orange_300">@color/material_text_color_black_text</color>
+    <color name="material_text_color_deep_orange_400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_deep_orange_500">@color/material_text_color_white_text</color>
+    <color name="material_text_color_deep_orange_600">@color/material_text_color_white_text</color>
+    <color name="material_text_color_deep_orange_700">@color/material_text_color_white_text</color>
+    <color name="material_text_color_deep_orange_800">@color/material_text_color_white_text</color>
+    <color name="material_text_color_deep_orange_900">@color/material_text_color_white_text</color>
+    <color name="material_text_color_deep_orange_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_deep_orange_A200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_deep_orange_A400">@color/material_text_color_white_text</color>
+    <color name="material_text_color_deep_orange_A700">@color/material_text_color_white_text</color>
+
+    <color name="material_text_color_brown_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_brown_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_brown_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_brown_300">@color/material_text_color_white_text</color>
+    <color name="material_text_color_brown_400">@color/material_text_color_white_text</color>
+    <color name="material_text_color_brown_500">@color/material_text_color_white_text</color>
+    <color name="material_text_color_brown_600">@color/material_text_color_white_text</color>
+    <color name="material_text_color_brown_700">@color/material_text_color_white_text</color>
+    <color name="material_text_color_brown_800">@color/material_text_color_white_text</color>
+    <color name="material_text_color_brown_900">@color/material_text_color_white_text</color>
+    <color name="material_text_color_brown_A100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_brown_A200">@color/material_text_color_white_text</color>
+    <color name="material_text_color_brown_A400">@color/material_text_color_white_text</color>
+    <color name="material_text_color_brown_A700">@color/material_text_color_white_text</color>
+
+    <color name="material_text_color_grey_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_grey_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_grey_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_grey_300">@color/material_text_color_black_text</color>
+    <color name="material_text_color_grey_400">@color/material_text_color_black_text</color>
+    <color name="material_text_color_grey_500">@color/material_text_color_black_text</color>
+    <color name="material_text_color_grey_600">@color/material_text_color_white_text</color>
+    <color name="material_text_color_grey_700">@color/material_text_color_white_text</color>
+    <color name="material_text_color_grey_800">@color/material_text_color_white_text</color>
+    <color name="material_text_color_grey_900">@color/material_text_color_white_text</color>
+    <color name="material_text_color_grey_1000">@color/material_text_color_white_text</color>
+    <color name="material_text_color_grey_1001">@color/material_text_color_black_text</color>
+
+    <color name="material_text_color_blue_grey_50">@color/material_text_color_black_text</color>
+    <color name="material_text_color_blue_grey_100">@color/material_text_color_black_text</color>
+    <color name="material_text_color_blue_grey_200">@color/material_text_color_black_text</color>
+    <color name="material_text_color_blue_grey_300">@color/material_text_color_black_text</color>
+    <color name="material_text_color_blue_grey_400">@color/material_text_color_white_text</color>
+    <color name="material_text_color_blue_grey_500">@color/material_text_color_white_text</color>
+    <color name="material_text_color_blue_grey_600">@color/material_text_color_white_text</color>
+    <color name="material_text_color_blue_grey_700">@color/material_text_color_white_text</color>
+    <color name="material_text_color_blue_grey_800">@color/material_text_color_white_text</color>
+    <color name="material_text_color_blue_grey_900">@color/material_text_color_white_text</color>
+
+    <array name="material_colors">
+
+        <item>@color/material_color_red_50</item>
+        <item>@color/material_color_red_100</item>
+        <item>@color/material_color_red_200</item>
+        <item>@color/material_color_red_300</item>
+        <item>@color/material_color_red_400</item>
+        <item>@color/material_color_red_500</item>
+        <item>@color/material_color_red_600</item>
+        <item>@color/material_color_red_700</item>
+        <item>@color/material_color_red_800</item>
+        <item>@color/material_color_red_900</item>
+        <item>@color/material_color_red_A100</item>
+        <item>@color/material_color_red_A200</item>
+        <item>@color/material_color_red_A400</item>
+        <item>@color/material_color_red_A700</item>
+
+        <item>@color/material_color_pink_50</item>
+        <item>@color/material_color_pink_100</item>
+        <item>@color/material_color_pink_200</item>
+        <item>@color/material_color_pink_300</item>
+        <item>@color/material_color_pink_400</item>
+        <item>@color/material_color_pink_500</item>
+        <item>@color/material_color_pink_600</item>
+        <item>@color/material_color_pink_700</item>
+        <item>@color/material_color_pink_800</item>
+        <item>@color/material_color_pink_900</item>
+        <item>@color/material_color_pink_A100</item>
+        <item>@color/material_color_pink_A200</item>
+        <item>@color/material_color_pink_A400</item>
+        <item>@color/material_color_pink_A700</item>
+
+        <item>@color/material_color_purple_50</item>
+        <item>@color/material_color_purple_100</item>
+        <item>@color/material_color_purple_200</item>
+        <item>@color/material_color_purple_300</item>
+        <item>@color/material_color_purple_400</item>
+        <item>@color/material_color_purple_500</item>
+        <item>@color/material_color_purple_600</item>
+        <item>@color/material_color_purple_700</item>
+        <item>@color/material_color_purple_800</item>
+        <item>@color/material_color_purple_900</item>
+        <item>@color/material_color_purple_A100</item>
+        <item>@color/material_color_purple_A200</item>
+        <item>@color/material_color_purple_A400</item>
+        <item>@color/material_color_purple_A700</item>
+
+        <item>@color/material_color_deep_purple_50</item>
+        <item>@color/material_color_deep_purple_100</item>
+        <item>@color/material_color_deep_purple_200</item>
+        <item>@color/material_color_deep_purple_300</item>
+        <item>@color/material_color_deep_purple_400</item>
+        <item>@color/material_color_deep_purple_500</item>
+        <item>@color/material_color_deep_purple_600</item>
+        <item>@color/material_color_deep_purple_700</item>
+        <item>@color/material_color_deep_purple_800</item>
+        <item>@color/material_color_deep_purple_900</item>
+        <item>@color/material_color_deep_purple_A100</item>
+        <item>@color/material_color_deep_purple_A200</item>
+        <item>@color/material_color_deep_purple_A400</item>
+        <item>@color/material_color_deep_purple_A700</item>
+
+        <item>@color/material_color_indigo_50</item>
+        <item>@color/material_color_indigo_100</item>
+        <item>@color/material_color_indigo_200</item>
+        <item>@color/material_color_indigo_300</item>
+        <item>@color/material_color_indigo_400</item>
+        <item>@color/material_color_indigo_500</item>
+        <item>@color/material_color_indigo_600</item>
+        <item>@color/material_color_indigo_700</item>
+        <item>@color/material_color_indigo_800</item>
+        <item>@color/material_color_indigo_900</item>
+        <item>@color/material_color_indigo_A100</item>
+        <item>@color/material_color_indigo_A200</item>
+        <item>@color/material_color_indigo_A400</item>
+        <item>@color/material_color_indigo_A700</item>
+
+        <item>@color/material_color_blue_50</item>
+        <item>@color/material_color_blue_100</item>
+        <item>@color/material_color_blue_200</item>
+        <item>@color/material_color_blue_300</item>
+        <item>@color/material_color_blue_400</item>
+        <item>@color/material_color_blue_500</item>
+        <item>@color/material_color_blue_600</item>
+        <item>@color/material_color_blue_700</item>
+        <item>@color/material_color_blue_800</item>
+        <item>@color/material_color_blue_900</item>
+        <item>@color/material_color_blue_A100</item>
+        <item>@color/material_color_blue_A200</item>
+        <item>@color/material_color_blue_A400</item>
+        <item>@color/material_color_blue_A700</item>
+
+        <item>@color/material_color_light_blue_50</item>
+        <item>@color/material_color_light_blue_100</item>
+        <item>@color/material_color_light_blue_200</item>
+        <item>@color/material_color_light_blue_300</item>
+        <item>@color/material_color_light_blue_400</item>
+        <item>@color/material_color_light_blue_500</item>
+        <item>@color/material_color_light_blue_600</item>
+        <item>@color/material_color_light_blue_700</item>
+        <item>@color/material_color_light_blue_800</item>
+        <item>@color/material_color_light_blue_900</item>
+        <item>@color/material_color_light_blue_A100</item>
+        <item>@color/material_color_light_blue_A200</item>
+        <item>@color/material_color_light_blue_A400</item>
+        <item>@color/material_color_light_blue_A700</item>
+
+        <item>@color/material_color_cyan_50</item>
+        <item>@color/material_color_cyan_100</item>
+        <item>@color/material_color_cyan_200</item>
+        <item>@color/material_color_cyan_300</item>
+        <item>@color/material_color_cyan_400</item>
+        <item>@color/material_color_cyan_500</item>
+        <item>@color/material_color_cyan_600</item>
+        <item>@color/material_color_cyan_700</item>
+        <item>@color/material_color_cyan_800</item>
+        <item>@color/material_color_cyan_900</item>
+        <item>@color/material_color_cyan_A100</item>
+        <item>@color/material_color_cyan_A200</item>
+        <item>@color/material_color_cyan_A400</item>
+        <item>@color/material_color_cyan_A700</item>
+
+        <item>@color/material_color_teal_50</item>
+        <item>@color/material_color_teal_100</item>
+        <item>@color/material_color_teal_200</item>
+        <item>@color/material_color_teal_300</item>
+        <item>@color/material_color_teal_400</item>
+        <item>@color/material_color_teal_500</item>
+        <item>@color/material_color_teal_600</item>
+        <item>@color/material_color_teal_700</item>
+        <item>@color/material_color_teal_800</item>
+        <item>@color/material_color_teal_900</item>
+        <item>@color/material_color_teal_A100</item>
+        <item>@color/material_color_teal_A200</item>
+        <item>@color/material_color_teal_A400</item>
+        <item>@color/material_color_teal_A700</item>
+
+        <item>@color/material_color_green_50</item>
+        <item>@color/material_color_green_100</item>
+        <item>@color/material_color_green_200</item>
+        <item>@color/material_color_green_300</item>
+        <item>@color/material_color_green_400</item>
+        <item>@color/material_color_green_500</item>
+        <item>@color/material_color_green_600</item>
+        <item>@color/material_color_green_700</item>
+        <item>@color/material_color_green_800</item>
+        <item>@color/material_color_green_900</item>
+        <item>@color/material_color_green_A100</item>
+        <item>@color/material_color_green_A200</item>
+        <item>@color/material_color_green_A400</item>
+        <item>@color/material_color_green_A700</item>
+
+        <item>@color/material_color_light_green_50</item>
+        <item>@color/material_color_light_green_100</item>
+        <item>@color/material_color_light_green_200</item>
+        <item>@color/material_color_light_green_300</item>
+        <item>@color/material_color_light_green_400</item>
+        <item>@color/material_color_light_green_500</item>
+        <item>@color/material_color_light_green_600</item>
+        <item>@color/material_color_light_green_700</item>
+        <item>@color/material_color_light_green_800</item>
+        <item>@color/material_color_light_green_900</item>
+        <item>@color/material_color_light_green_A100</item>
+        <item>@color/material_color_light_green_A200</item>
+        <item>@color/material_color_light_green_A400</item>
+        <item>@color/material_color_light_green_A700</item>
+
+        <item>@color/material_color_lime_50</item>
+        <item>@color/material_color_lime_100</item>
+        <item>@color/material_color_lime_200</item>
+        <item>@color/material_color_lime_300</item>
+        <item>@color/material_color_lime_400</item>
+        <item>@color/material_color_lime_500</item>
+        <item>@color/material_color_lime_600</item>
+        <item>@color/material_color_lime_700</item>
+        <item>@color/material_color_lime_800</item>
+        <item>@color/material_color_lime_900</item>
+        <item>@color/material_color_lime_A100</item>
+        <item>@color/material_color_lime_A200</item>
+        <item>@color/material_color_lime_A400</item>
+        <item>@color/material_color_lime_A700</item>
+
+        <item>@color/material_color_yellow_50</item>
+        <item>@color/material_color_yellow_100</item>
+        <item>@color/material_color_yellow_200</item>
+        <item>@color/material_color_yellow_300</item>
+        <item>@color/material_color_yellow_400</item>
+        <item>@color/material_color_yellow_500</item>
+        <item>@color/material_color_yellow_600</item>
+        <item>@color/material_color_yellow_700</item>
+        <item>@color/material_color_yellow_800</item>
+        <item>@color/material_color_yellow_900</item>
+        <item>@color/material_color_yellow_A100</item>
+        <item>@color/material_color_yellow_A200</item>
+        <item>@color/material_color_yellow_A400</item>
+        <item>@color/material_color_yellow_A700</item>
+
+        <item>@color/material_color_amber_50</item>
+        <item>@color/material_color_amber_100</item>
+        <item>@color/material_color_amber_200</item>
+        <item>@color/material_color_amber_300</item>
+        <item>@color/material_color_amber_400</item>
+        <item>@color/material_color_amber_500</item>
+        <item>@color/material_color_amber_600</item>
+        <item>@color/material_color_amber_700</item>
+        <item>@color/material_color_amber_800</item>
+        <item>@color/material_color_amber_900</item>
+        <item>@color/material_color_amber_A100</item>
+        <item>@color/material_color_amber_A200</item>
+        <item>@color/material_color_amber_A400</item>
+        <item>@color/material_color_amber_A700</item>
+
+        <item>@color/material_color_orange_50</item>
+        <item>@color/material_color_orange_100</item>
+        <item>@color/material_color_orange_200</item>
+        <item>@color/material_color_orange_300</item>
+        <item>@color/material_color_orange_400</item>
+        <item>@color/material_color_orange_500</item>
+        <item>@color/material_color_orange_600</item>
+        <item>@color/material_color_orange_700</item>
+        <item>@color/material_color_orange_800</item>
+        <item>@color/material_color_orange_900</item>
+        <item>@color/material_color_orange_A100</item>
+        <item>@color/material_color_orange_A200</item>
+        <item>@color/material_color_orange_A400</item>
+        <item>@color/material_color_orange_A700</item>
+
+        <item>@color/material_color_deep_orange_50</item>
+        <item>@color/material_color_deep_orange_100</item>
+        <item>@color/material_color_deep_orange_200</item>
+        <item>@color/material_color_deep_orange_300</item>
+        <item>@color/material_color_deep_orange_400</item>
+        <item>@color/material_color_deep_orange_500</item>
+        <item>@color/material_color_deep_orange_600</item>
+        <item>@color/material_color_deep_orange_700</item>
+        <item>@color/material_color_deep_orange_800</item>
+        <item>@color/material_color_deep_orange_900</item>
+        <item>@color/material_color_deep_orange_A100</item>
+        <item>@color/material_color_deep_orange_A200</item>
+        <item>@color/material_color_deep_orange_A400</item>
+        <item>@color/material_color_deep_orange_A700</item>
+
+        <item>@color/material_color_brown_50</item>
+        <item>@color/material_color_brown_100</item>
+        <item>@color/material_color_brown_200</item>
+        <item>@color/material_color_brown_300</item>
+        <item>@color/material_color_brown_400</item>
+        <item>@color/material_color_brown_500</item>
+        <item>@color/material_color_brown_600</item>
+        <item>@color/material_color_brown_700</item>
+        <item>@color/material_color_brown_800</item>
+        <item>@color/material_color_brown_900</item>
+        <item>@color/material_color_brown_A100</item>
+        <item>@color/material_color_brown_A200</item>
+        <item>@color/material_color_brown_A400</item>
+        <item>@color/material_color_brown_A700</item>
+
+        <item>@color/material_color_grey_50</item>
+        <item>@color/material_color_grey_100</item>
+        <item>@color/material_color_grey_200</item>
+        <item>@color/material_color_grey_300</item>
+        <item>@color/material_color_grey_400</item>
+        <item>@color/material_color_grey_500</item>
+        <item>@color/material_color_grey_600</item>
+        <item>@color/material_color_grey_700</item>
+        <item>@color/material_color_grey_800</item>
+        <item>@color/material_color_grey_900</item>
+        <item>@color/material_color_grey_1000</item>
+        <item>@color/material_color_grey_1001</item>
+
+        <item>@color/material_color_blue_grey_50</item>
+        <item>@color/material_color_blue_grey_100</item>
+        <item>@color/material_color_blue_grey_200</item>
+        <item>@color/material_color_blue_grey_300</item>
+        <item>@color/material_color_blue_grey_400</item>
+        <item>@color/material_color_blue_grey_500</item>
+        <item>@color/material_color_blue_grey_600</item>
+        <item>@color/material_color_blue_grey_700</item>
+        <item>@color/material_color_blue_grey_800</item>
+        <item>@color/material_color_blue_grey_900</item>
+
+    </array>
+
+    <color name="white">#FFFFFF</color>
+    <color name="green">#5BC382</color>
+    <color name="actionbar_text">#5BC382</color>
+    <color name="actionbar_background">#F4CC70</color>
+    <color name="state_activated">#F4CC70</color>
+    <color name="white_ninety_five_percent">#f2ffffff</color>
+    <color name="White">#ffffff</color>
+    <color name="gray_color">#bab9b9</color>
+    <color name="red">#E40C03</color>
+    <color name="appColor">#283B1F</color>
+    <color name="alertTextColor">#B1A26B</color>
+    <color name="pressed_dark_button">#877b4f</color>
+    <color name="dark_button">#B1A26B</color>
+    <color name="background_light">#75ffffff</color>
+    <color name="timeline_item_selector">#ccc</color>
+    <color name="app_background">#DCCAA4</color>
+    <color name="snow">#FFFAFA</color>
+    <color name="twenty_percent_opacity">#33000000</color>
+
+    <!-- CUSTOM -->
+    <color name="transparent">#00000000</color>
+    <color name="background_light_yo">#75ffffff</color>
+    <color name="timeline_text_color">#3b3b3b</color>
+    <color name="privacy_policy">#00FFFFFF</color>
+    <color name="off_white">#F5F5F5</color>
+    <color name="unread_message_violet">#7179cc</color>
+    <color name="app_btn_green">#46b486</color>
+    <color name="app_header_green">#27BF99</color>
+    <color name="app_btn_green_active">#9546b487</color>
+    <color name="app_btn_green_active_deep">#3d9140</color>
+    <color name="app_btn_green_active_new">#99000000</color>
+    <color name="new_darker_gray">#99000000</color>
+    <color name="app_background_transparent">#9533356C</color>
+    <color name="app_background_deep">#201f51</color>
+    <color name="app_transparent_background">#952e2e6e</color>
+    <color name="app_green_text">#46b486</color>
+    <color name="footer_color">#f6f6f6</color>
+    <color name="white_text_color">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="dE_black">#DE000000</color>
+    <color name="ash_color">#acacac</color>
+    <color name="ash_color_light">#e2e2e2</color>
+
+    <color name="transparent_white_light">#8CFFFFFF</color>
+
+    <color name="app_header">#353278</color>
+    <color name="app_black_transparent">#97000000</color>
+    <color name="app_red">#FF0000</color>
+    <color name="back_bg_hover">#901a1a1a</color>
+    <color name="darker_gray">#c5c5c5</color>
+    <color name="darker_gray_36off">#5C000000</color>
+    <color name="text_timeline_outgoing">#585858</color>
+    <color name="data_usage_text">#555555</color>
+    <color name="data_usage_data">#373737</color>
+    <color name="light_dark">#262623</color>
+    <color name="light_bg360_dark">#373735</color>
+    <color name="accent">#56BC97</color>
+    <color name="accent_pressed">#56BC97</color>
+
+    <!--Roman: 21-05-2015-->
+    <color name="status_bar">#21a181</color>
+    <color name="status_bar_violet">#2C2F66</color>
+    <color name="status_bar_violet_deep">#1d1f42</color>
+    <color name="gray_button_bg">#D4D4D4</color>
+    <color name="nav_seperator">#F8F8F8</color>
+
+    <color name="color_primary_green_dark">#388e3c</color>
+
+    <color name="color_primary_green_header">#27BF99</color>
+    <!--<color name="color_primary_green_header"> #338C6A</color>-->
+    <color name="fab_back">#9c2cea</color>
+
+    <color name="list_background">#FAFAFA</color>
+
+    <color name="list_background_pressed_1">#F2F2F2</color>
+
+    <color name="counter_text_bg">#9c2cea</color>
+    <color name="counter_text_color">#c5c4c4</color>
+
+    <!--Monir: 08-07-2015-->
+    <color name="toggle_on_color">#7EFDD3</color>
+
+    <!--Mimo: 10-07-2015-->
+    <color name="hotspot_close_button_color">#009688</color>
+    <color name="ripple_green">#27bf99</color>
+    <color name="fab_color_ripple">#9c2cea</color>
+    <color name="fab_color">#aa00ff</color>
+    <color name="fab_color_pressed">#4f1677</color>
+    <!-- wasim: 30.07.2015-->
+    <color name="undo_color">#69FBDE</color>
+    <color name="footer_button_bg">#ECEFF1</color>
+
+    <color name="action_bar_changed_color">#1A4C3F</color>
+    <color name="blue">#3b5998</color>
+    <color name="pressed_blue">#FF7294DF</color>
+    <color name="magenta_color">#EB54AA</color>
+
+    <color name="image_bd_gray">#EEEEEE</color>
+
+
+    <!-- Aziz: 20.08.15-->
+    <color name="message_title_text_color">#3b3b3b</color>
+    <color name="fab_color_pink">#fa4951</color>
+
+    <!-- monir: 27.08.15-->
+    <color name="gray_nav">#212121</color>
+    <color name="message_content_text_color">#757575</color>
+    <color name="light_gray">#D3D3D3</color>
+
+    <color name="invite_btn_color">#9c2cea</color>
+
+    <color name="default_profile_background">#EAEAEA</color>
+
+    <color name="light_grey">#D4D4D4</color>
+
+    <color name="decline_button_color">#BBBBBB</color>
+
+    <color name="deep_gray">#808080</color>
+
+    <color name="colorMagenta">#2CE9D9</color>
+    <color name="color_media_selected">#f4f4f4</color>
+
+    <color name="black_transparent">#25000000</color>
+
+    <color name="white_medium">#f7f7f7</color>
+
+    <color name="ass_color">#ececec</color>
+
+
+    <color name="violet">#805AE6</color>
+
+    <color name="deep_ash_color">#BEBEBE</color>
+
+    <color name="transparent_white">#E4E6E9</color>
+
+    <color name="light_black_color">#47424E</color>
+
+    <color name="light_green">#A6E9D8</color>
+    <color name="grey_text">#757575</color>
+
+
+    <!-- Anindya: 22.02.16-->
+    <color name="border_off_white">#9c9c9c</color>
+    <color name="wave_nav_header_bg">#fafafa</color>
+    <color name="wave_nav_header_text">#212121</color>
+    <color name="wave_nav_header_image_border">#EE961C</color>
+
+    <!-- monir: new navigation hover color 27.08.15-->
+    <color name="normal_menu_color">#212121</color>
+    <color name="selected_menu_color">#fff</color>
+    <color name="discover_bacground">#34d9df</color>
+    <color name="friends_bacground">#1f3682</color>
+    <color name="messages_bacground">#ffd948</color>
+    <color name="mysavings_bacground">#e66b2f</color>
+    <color name="media_tab_normal_text_color">#E0E0E0</color>
+
+    <color name="messages_fab_color">#33d9df</color>
+    <color name="messages_read_message">#8a8a8a</color>
+    <color name="messages_unread_message">#212121</color>
+
+
+    <color name="messages_status_bar_color">#29aeb2</color>
+    <color name="messages_counter_color">#fa4951</color>
+    <color name="hot_pink">#fa148a</color>
+    <color name="turquoise_color">#33d9df</color>
+    <color name="profile_status_color">#33000000</color>
+
+    <!--Faisal-yo-hotspot-activity-color-->
+    <color name="line_view">#ccc</color>
+
+    <color name="no_image_user_short_name">#FFFFFF</color>
+    <color name="light_white">#f3f3f3</color>
+
+
+    <color name="user_name_message">#d9000000</color>
+    <color name="date_message">#8c000000</color>
+
+    <!--Anindya  28.04.2016 -->
+    <color name="new_user_profile_border_color">#a7a9ab</color>
+    <color name="conversation_page_background">#FAFAFA</color>
+
+    <!--Anindya  10.05.2016 -->
+    <color name="internet_header_mysavings">#1b335e</color>
+    <color name="mysavings_item_count">#D9000000</color>
+    <color name="mysavings_item_text">#8C000000</color>
+
+
+    <color name="celebrate_friends_bg">#697FC8</color>
+    <color name="app_action_color">#FDD938</color>
+    <color name="app_action_color_transparent">#40FDD938</color>
+    <color name="deep_yellow">#FF9100</color>
+
+
+    <color name="colorFab">#FFD656</color>
+
+    <color name="ripple_color">#d8bb4e</color>
+
+    <color name="initial_color_name">#969696</color>
+
+    <color name="white_fourty_percent">#66ffffff</color>
+    <color name="white_seventy_percent">#B3ffffff</color>
+    <color name="black_fifty_five_percent">#8C000000</color>
+
+    <color name="deep_green">#218B86</color>
+
+
+    <color name="new_message_line_color">#95989A</color>
+
+    <color name="light_black">#B4B2AB</color>
+
+    <color name="data_connection">#352D8E</color>
+
+    <color name="green_hotspot">#29AEB2</color>
+
+    <color name="hotspot_bar_dark">#D32F2F</color>
+    <color name="hotspot_bar">#F44336</color>
+    <color name="hotspot_create_text_color">#504411</color>
+    <color name="hotspot_status_bg">#B4F4F4</color>
+    <color name="grey_light_deep">#909090</color>
+
+    <color name="eighty_seven_percent_opacity">#D9000000</color>
+
+
+    <color name="circular_progress_default_progress">#33D9DF</color>
+    <color name="circular_progress_default_background">#ffffff</color>
+    <color name="circular_progress_default_title">#ffffff</color>
+    <color name="circular_progress_default_subtitle">#ffffff</color>
+    <color name="colorLoginScreen">#00D8DD</color>
+    <color name="red_brand_color">#FA4951</color>
+
+    <color name="profile_blue">#27A6AB</color>
+    <color name="connect_offline_statusbar">#CBCBCB</color>
+    <color name="radio_button_color">#13C5C3</color>
+
+    <color name="yellow">#F9D93A</color>
+    <color name="blue_deep">#56C6D0</color>
+
+    <color name="deep_red">#de4149</color>
+
+
+    <color name="progress_10">#1dc156</color>
+    <color name="progress_20">#1bae4d</color>
+    <color name="progress_30">#19a348</color>
+    <color name="progress_40">#179843</color>
+    <color name="progress_50">#158e3e</color>
+    <color name="progress_60">#14833a</color>
+    <color name="progress_70">#127835</color>
+    <color name="progress_80">#106c30</color>
+    <color name="progress_90">#0e612b</color>
+    <color name="progress_100">#0c5626</color>
+
+    <color name="dark_gray">#c5c5c5</color>
+
+    <color name="purple_dep_900">#311B92</color>
+    <color name="purple_darker_900">#1A237E</color>
+    <color name="navy_blue_900">#880E4F</color>
+    <color name="ligt_green_900">#004D40</color>
+
+
+    <integer-array name="random_bg_color">
+        <item>@color/progress_10</item>
+        <item>@color/purple_900</item>
+        <item>@color/progress_20</item>
+        <item>@color/ligt_green_900</item>
+        <item>@color/progress_30</item>
+        <item>@color/navy_blue_900</item>
+        <item>@color/progress_40</item>
+        <item>@color/progress_50</item>
+        <item>@color/purple_darker_900</item>
+        <item>@color/progress_60</item>
+        <item>@color/progress_70</item>
+        <item>@color/purple_dep_900</item>
+        <item>@color/progress_80</item>
+        <item>@color/progress_90</item>
+
+    </integer-array>
+
+    <!-- Smooth Progress Bar -->
+    <integer-array name="colors">
+        <item>@color/holo_blue_dark</item>
+        <item>@color/holo_yellow_dark</item>
+        <item>@color/holo_green_dark</item>
+        <item>@color/holo_purple_dark</item>
+        <item>@color/holo_red_dark</item>
+    </integer-array>
+
+    <integer-array name="gplus_colors">
+        <item>@color/gplus_color_1</item>
+        <item>@color/gplus_color_2</item>
+        <item>@color/gplus_color_3</item>
+        <item>@color/gplus_color_4</item>
+    </integer-array>
+
+    <integer-array name="pocket_bar_colors">
+        <item>@color/pocket_color_1</item>
+        <item>@color/pocket_color_1</item>
+        <item>@color/pocket_color_1</item>
+        <item>@color/pocket_color_1</item>
+        <item>@color/pocket_color_2</item>
+        <item>@color/pocket_color_2</item>
+        <item>@color/pocket_color_2</item>
+        <item>@color/pocket_color_2</item>
+        <item>@color/pocket_color_3</item>
+        <item>@color/pocket_color_3</item>
+        <item>@color/pocket_color_3</item>
+        <item>@color/pocket_color_3</item>
+        <item>@color/pocket_color_4</item>
+        <item>@color/pocket_color_4</item>
+        <item>@color/pocket_color_4</item>
+        <item>@color/pocket_color_4</item>
+    </integer-array>
+
+    <integer-array name="pocket_background_colors">
+        <item>@color/pocket_color_1</item>
+        <item>@color/pocket_color_2</item>
+        <item>@color/pocket_color_3</item>
+        <item>@color/pocket_color_4</item>
+    </integer-array>
+
+    <color name="pocket_color_1">#85edb9</color>
+    <color name="pocket_color_2">#34bdb7</color>
+    <color name="pocket_color_3">#ee4458</color>
+    <color name="pocket_color_4">#fcb74d</color>
+
+    <color name="gplus_color_1">#3e802f</color>
+    <color name="gplus_color_2">#f4b400</color>
+    <color name="gplus_color_3">#427fed</color>
+    <color name="gplus_color_4">#b23424</color>
+
+    <color name="holo_blue_dark">#0099cc</color>
+    <color name="holo_yellow_dark">#ff8800</color>
+    <color name="holo_green_dark">#669900</color>
+    <color name="holo_purple_dark">#9933cc</color>
+    <color name="holo_red_dark">#cc0000</color>
+</resources>
