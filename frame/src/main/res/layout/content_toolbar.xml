@@ -7,4 +7,4 @@
     android:background="?attr/colorPrimary"
     auto:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <!--auto:layout_scrollFlags="scroll|enterAlways"-->
+    <!--auto:layouct_scrollFlags="scroll|enterAlways"-->

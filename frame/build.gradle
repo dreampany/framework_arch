@@ -233,6 +233,7 @@ dependencies {
     api 'com.joanzapata.iconify:android-iconify-weathericons:2.2.2' // (v2.0)
     api 'com.joanzapata.iconify:android-iconify-simplelineicons:2.2.2' // (v1.0.0)
     api 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2' // (v2.0.1)
+    //api 'net.steamcrafted:materialiconlib:1.1.4'
     //maven
     //compile 'com.github.linger1216:labelview:v1.1.1'
     //compile 'com.github.shts:TriangleLabelView:1.1.2'
@@ -251,7 +252,7 @@ idea {
     }
 }
 
-ext {
+/*ext {
     bintrayRepo = 'framework'
     bintrayName = 'frame'
     publishedGroupId = 'com.dreampany.framework'
@@ -263,7 +264,7 @@ ext {
     siteUrl = 'https://bintray.com/dreampanymail/framework'
     gitUrl = 'https://bintray.com/dreampanymail/framework.git'
 
-    libraryVersion = '0.0.6'
+    libraryVersion = '0.0.4'
 
     developerId = 'dreampanymail'
     developerName = 'dreampany'
@@ -283,3 +284,4 @@ tasks.withType(Javadoc).all {
 apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/installv.gradle'
 apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/bintrayv.gradle'
 
+*/
