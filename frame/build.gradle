@@ -378,7 +378,7 @@ ext {
     libraryName = 'frame'
     artifact = 'frame'
 
-    libraryDescription = 'A android framwork to work happily. Room Persistence database, RxJava, RxAndroid and Kotlin supported'
+    libraryDescription = 'A android framwork to work happily. Room Persistence database, RxJava, RxAndroid and Kotlin supported.'
 
     siteUrl = 'https://bintray.com/dreampanymail/framework'
     gitUrl = 'https://bintray.com/dreampanymail/framework.git'
