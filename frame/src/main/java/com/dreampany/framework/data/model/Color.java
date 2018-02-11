@@ -26,7 +26,7 @@ public class Color extends BaseParcel {
         super.writeToParcel(dest, flags);
     }
 
-    public static final Creator<Color> CREATOR = new Creator<Color>() {
+    public static final Parcelable.Creator<Color> CREATOR = new Parcelable.Creator<Color>() {
         @Override
         public Color createFromParcel(Parcel in) {
             return new Color(in);

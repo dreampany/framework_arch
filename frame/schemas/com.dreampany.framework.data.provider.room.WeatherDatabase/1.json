@@ -1,0 +1,324 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "2e15ad3708cbdd28c81c880deec0aed0",
+    "entities": [
+      {
+        "tableName": "Weather",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `city` TEXT, `country` TEXT, `region` TEXT, `stationId` TEXT, `station` TEXT, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `sunrise` INTEGER NOT NULL, `sunset` INTEGER NOT NULL, `population` INTEGER NOT NULL, `moonAge` TEXT, `percentIlluminated` TEXT, `moonPhaseDescription` TEXT, `hemisphere` TEXT, `code` TEXT, `condition` TEXT, `description` TEXT, `icon` TEXT, `pressure` REAL NOT NULL, `humidity` INTEGER NOT NULL, `visibility` REAL NOT NULL, `pressureTrend` INTEGER NOT NULL, `feelsLike` REAL NOT NULL, `UV` REAL NOT NULL, `dewPoint` REAL NOT NULL, `heatIndex` TEXT, `solarRadiation` TEXT, `pressureSeaLevel` REAL NOT NULL, `pressureGroundLevel` REAL NOT NULL, `temperature` REAL NOT NULL, `minTemperature` REAL NOT NULL, `maxTemperature` REAL NOT NULL, `speed` REAL NOT NULL, `degree` REAL NOT NULL, `chill` REAL NOT NULL, `gust` REAL NOT NULL, `rainTime` TEXT, `rainAmount` REAL NOT NULL, `rainChance` REAL NOT NULL, `snowTime` TEXT, `snowAmount` REAL NOT NULL, `cloudPercentage` INTEGER NOT NULL, `time` INTEGER NOT NULL, `speedUnit` TEXT, `tempUnit` TEXT, `pressureUnit` TEXT, `distanceUnit` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "city",
+            "columnName": "city",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "country",
+            "columnName": "country",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "region",
+            "columnName": "region",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "stationId",
+            "columnName": "stationId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "station",
+            "columnName": "station",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sunrise",
+            "columnName": "sunrise",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sunset",
+            "columnName": "sunset",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "population",
+            "columnName": "population",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "moonAge",
+            "columnName": "moonAge",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "percentIlluminated",
+            "columnName": "percentIlluminated",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "moonPhaseDescription",
+            "columnName": "moonPhaseDescription",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "hemisphere",
+            "columnName": "hemisphere",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "condition",
+            "columnName": "condition",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "icon",
+            "columnName": "icon",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "pressure",
+            "columnName": "pressure",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "humidity",
+            "columnName": "humidity",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "visibility",
+            "columnName": "visibility",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pressureTrend",
+            "columnName": "pressureTrend",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "feelsLike",
+            "columnName": "feelsLike",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "UV",
+            "columnName": "UV",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dewPoint",
+            "columnName": "dewPoint",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "heatIndex",
+            "columnName": "heatIndex",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "solarRadiation",
+            "columnName": "solarRadiation",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "pressureSeaLevel",
+            "columnName": "pressureSeaLevel",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pressureGroundLevel",
+            "columnName": "pressureGroundLevel",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "temperature",
+            "columnName": "temperature",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "minTemperature",
+            "columnName": "minTemperature",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maxTemperature",
+            "columnName": "maxTemperature",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "speed",
+            "columnName": "speed",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "degree",
+            "columnName": "degree",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "chill",
+            "columnName": "chill",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gust",
+            "columnName": "gust",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rainTime",
+            "columnName": "rainTime",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rainAmount",
+            "columnName": "rainAmount",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rainChance",
+            "columnName": "rainChance",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "snowTime",
+            "columnName": "snowTime",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "snowAmount",
+            "columnName": "snowAmount",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cloudPercentage",
+            "columnName": "cloudPercentage",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "time",
+            "columnName": "time",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unit.speedUnit",
+            "columnName": "speedUnit",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "unit.tempUnit",
+            "columnName": "tempUnit",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "unit.pressureUnit",
+            "columnName": "pressureUnit",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "unit.distanceUnit",
+            "columnName": "distanceUnit",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_Weather_id",
+            "unique": true,
+            "columnNames": [
+              "id"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_Weather_id` ON `${TABLE_NAME}` (`id`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"2e15ad3708cbdd28c81c880deec0aed0\")"
+    ]
+  }
+}

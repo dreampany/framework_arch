@@ -1,0 +1,64 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "0c453845aa0c9391d644b18f6dbe123d",
+    "entities": [
+      {
+        "tableName": "Quote",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`text` TEXT NOT NULL, `author` TEXT NOT NULL, `language` TEXT NOT NULL, `time` INTEGER NOT NULL, PRIMARY KEY(`text`, `author`, `language`))",
+        "fields": [
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "author",
+            "columnName": "author",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "language",
+            "columnName": "language",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "time",
+            "columnName": "time",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "text",
+            "author",
+            "language"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_Quote_text_author_language",
+            "unique": true,
+            "columnNames": [
+              "text",
+              "author",
+              "language"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_Quote_text_author_language` ON `${TABLE_NAME}` (`text`, `author`, `language`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"0c453845aa0c9391d644b18f6dbe123d\")"
+    ]
+  }
+}

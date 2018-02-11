@@ -1,0 +1,469 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 3,
+    "identityHash": "d76e36712e51fea0a3377d008d38ab87",
+    "entities": [
+      {
+        "tableName": "Session",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`beginTime` INTEGER NOT NULL, `endTime` INTEGER NOT NULL, `datetime` INTEGER NOT NULL, PRIMARY KEY(`beginTime`, `endTime`))",
+        "fields": [
+          {
+            "fieldPath": "beginTime",
+            "columnName": "beginTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "endTime",
+            "columnName": "endTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "datetime",
+            "columnName": "datetime",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "beginTime",
+            "endTime"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Point",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `type` TEXT NOT NULL, `subtype` TEXT NOT NULL, `points` INTEGER NOT NULL, `comment` TEXT, `time` INTEGER NOT NULL, PRIMARY KEY(`id`, `type`, `subtype`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subtype",
+            "columnName": "subtype",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "points",
+            "columnName": "points",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "comment",
+            "columnName": "comment",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "time",
+            "columnName": "time",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id",
+            "type",
+            "subtype"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_Point_id_type_subtype",
+            "unique": true,
+            "columnNames": [
+              "id",
+              "type",
+              "subtype"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_Point_id_type_subtype` ON `${TABLE_NAME}` (`id`, `type`, `subtype`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "State",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `type` TEXT NOT NULL, `subtype` TEXT NOT NULL, `state` TEXT NOT NULL, PRIMARY KEY(`id`, `type`, `subtype`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subtype",
+            "columnName": "subtype",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "state",
+            "columnName": "state",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id",
+            "type",
+            "subtype"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_State_id_type_subtype",
+            "unique": true,
+            "columnNames": [
+              "id",
+              "type",
+              "subtype"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_State_id_type_subtype` ON `${TABLE_NAME}` (`id`, `type`, `subtype`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Flag",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `type` TEXT NOT NULL, `subtype` TEXT NOT NULL, `orderBy` INTEGER NOT NULL, PRIMARY KEY(`id`, `type`, `subtype`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subtype",
+            "columnName": "subtype",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "orderBy",
+            "columnName": "orderBy",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id",
+            "type",
+            "subtype"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_Flag_id_type_subtype",
+            "unique": true,
+            "columnNames": [
+              "id",
+              "type",
+              "subtype"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_Flag_id_type_subtype` ON `${TABLE_NAME}` (`id`, `type`, `subtype`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Language",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `name` TEXT, PRIMARY KEY(`code`))",
+        "fields": [
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "code"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_Language_code",
+            "unique": true,
+            "columnNames": [
+              "code"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_Language_code` ON `${TABLE_NAME}` (`code`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Translate",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`source` TEXT NOT NULL, `target` TEXT NOT NULL, `sourceText` TEXT NOT NULL, `targetText` TEXT, PRIMARY KEY(`source`, `target`, `sourceText`))",
+        "fields": [
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "target",
+            "columnName": "target",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceText",
+            "columnName": "sourceText",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "targetText",
+            "columnName": "targetText",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "source",
+            "target",
+            "sourceText"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_Translate_source_target_sourceText",
+            "unique": true,
+            "columnNames": [
+              "source",
+              "target",
+              "sourceText"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_Translate_source_target_sourceText` ON `${TABLE_NAME}` (`source`, `target`, `sourceText`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "History",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`type` TEXT NOT NULL, `value` TEXT NOT NULL, PRIMARY KEY(`type`, `value`))",
+        "fields": [
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "value",
+            "columnName": "value",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "type",
+            "value"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_History_type_value",
+            "unique": true,
+            "columnNames": [
+              "type",
+              "value"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_History_type_value` ON `${TABLE_NAME}` (`type`, `value`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Category",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`category` TEXT NOT NULL, `type` TEXT NOT NULL, `subtype` TEXT NOT NULL, PRIMARY KEY(`category`, `type`, `subtype`))",
+        "fields": [
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subtype",
+            "columnName": "subtype",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "category",
+            "type",
+            "subtype"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_Category_category_type_subtype",
+            "unique": true,
+            "columnNames": [
+              "category",
+              "type",
+              "subtype"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_Category_category_type_subtype` ON `${TABLE_NAME}` (`category`, `type`, `subtype`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Tag",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`tag` TEXT NOT NULL, `type` TEXT NOT NULL, `subtype` TEXT NOT NULL, PRIMARY KEY(`tag`, `type`, `subtype`))",
+        "fields": [
+          {
+            "fieldPath": "tag",
+            "columnName": "tag",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subtype",
+            "columnName": "subtype",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "tag",
+            "type",
+            "subtype"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_Tag_tag_type_subtype",
+            "unique": true,
+            "columnNames": [
+              "tag",
+              "type",
+              "subtype"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_Tag_tag_type_subtype` ON `${TABLE_NAME}` (`tag`, `type`, `subtype`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Keyword",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`keyword` TEXT NOT NULL, `type` TEXT NOT NULL, `subtype` TEXT NOT NULL, PRIMARY KEY(`keyword`, `type`, `subtype`))",
+        "fields": [
+          {
+            "fieldPath": "keyword",
+            "columnName": "keyword",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subtype",
+            "columnName": "subtype",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "keyword",
+            "type",
+            "subtype"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_Keyword_keyword_type_subtype",
+            "unique": true,
+            "columnNames": [
+              "keyword",
+              "type",
+              "subtype"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_Keyword_keyword_type_subtype` ON `${TABLE_NAME}` (`keyword`, `type`, `subtype`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"d76e36712e51fea0a3377d008d38ab87\")"
+    ]
+  }
+}
