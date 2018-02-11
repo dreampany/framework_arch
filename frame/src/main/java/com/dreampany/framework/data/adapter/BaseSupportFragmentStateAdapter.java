@@ -1,3 +1,4 @@
+/*
 package com.dreampany.framework.data.adapter;
 
 import android.os.Bundle;
@@ -86,7 +87,7 @@ public abstract class BaseSupportFragmentStateAdapter<T extends Fragment> extend
 
         T fragment = FragmentUtil.newSupportFragment(pageClasses.get(position, null));
 
-        if (!AndroidUtil.isNull(fragment)) {
+        if (fragment != null) {
             Bundle bundle = new Bundle();
             bundle.putString("page_title", getPageTitle(position).toString());
             fragment.setArguments(bundle);
@@ -95,3 +96,4 @@ public abstract class BaseSupportFragmentStateAdapter<T extends Fragment> extend
         return fragment;
     }
 }
+*/

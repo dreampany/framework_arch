@@ -1,3 +1,4 @@
+/*
 package com.dreampany.framework.data.adapter;
 
 
@@ -19,3 +20,4 @@ public class SupportFragmentStateAdapter<T extends Fragment> extends BaseSupport
         return newFragment(position);
     }
 }
+*/
