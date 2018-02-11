@@ -17,6 +17,24 @@ public class ColorUtil {
     private ColorUtil() {
     }
 
+    public static Color createColor(int primary, int primaryDark, int accent) {
+        Color color = new Color(primary, primaryDark);
+        color.setColorAccentId(accent);
+        return color;
+    }
+
+    public static Color createRedColor() {
+        Color color = new Color(R.color.colorRed500, R.color.colorRed700);
+        color.setColorAccentId(R.color.colorRed900);
+        return color;
+    }
+
+    public static Color createGreenColor() {
+        Color color = new Color(R.color.colorGreen600, R.color.colorGreen700);
+        color.setColorAccentId(R.color.colorGreen900);
+        return color;
+    }
+
     public static int getColor(Context context, int colorId) {
         return ContextCompat.getColor(context, colorId);
     }
@@ -96,8 +114,7 @@ public class ColorUtil {
         }
 
         int size = colors.size();
-
-        Color color = colors.get(size % (position + 1));
+        Color color = colors.get((position % size));
 
         return color;
 

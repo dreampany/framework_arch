@@ -26,14 +26,17 @@ public interface StateDao {
     @Query("select count(*) from state where id = :id and type = :type")
     int count(String id, String type);
 
-    @Query("select count(*) from state where id = :id and type = :type and value = :value")
-    int count(String id, String type, String value);
+    @Query("select count(*) from state where type = :type and subtype = :subtype and state = :state")
+    int count(String type, String subtype, String state);
 
-    @Query("select count(*) from state where type = :type and value in (:values)")
-    int count(String type, String... values);
+    @Query("select count(*) from state where type = :type and subtype = :subtype and state in (:states)")
+    int count(String type, String subtype, String... states);
 
-    @Query("select count(*) from state where id = :id and type = :type and value in (:values)")
-    int count(String id, String type, String... values);
+    @Query("select count(*) from state where id = :id and type = :type and subtype = :subtype and state = :state")
+    int count(String id, String type, String subtype, String state);
+
+    @Query("select count(*) from state where id = :id and type = :type and subtype = :subtype and state in (:states)")
+    int count(String id, String type, String subtype, String... states);
 
     @Query("select * from state")
     List<State> getAll();
@@ -41,20 +44,32 @@ public interface StateDao {
     @Query("select * from state where id = :id and type = :type limit 1")
     State get(String id, String type);
 
-    @Query("select * from state where type = :type and value in (:values)")
-    List<State> gets(String type, String... values);
+    @Query("select * from state where type = :type and state in (:states)")
+    List<State> gets(String type, String... states);
 
-    @Query("select id from state where type = :type and value = :value limit 1")
-    String getId(String type, String value);
+    @Query("select id from state where type = :type and state = :state limit 1")
+    String getId(String type, String state);
 
-    @Query("select value from state where id = :id and type = :type limit 1")
+    @Query("select state from state where id = :id and type = :type limit 1")
     String getValue(String id, String type);
 
-    @Query("select id from state where type = :type and value in (:values)")
-    List<String> getIds(String type, String... values);
+    @Query("select id from state where type = :type and subtype = :subtype")
+    List<String> getIds(String type, String subtype);
 
-    @Query("select id from state where type = :yesType and type not in (:noTypes) and value in (:values) limit 1")
-    String getIdsNot(String yesType, String[] noTypes, String[] values);
+    @Query("select id from state where type = :type and subtype = :subtype and state in (:states)")
+    List<String> getIds(String type, String subtype, String... states);
+
+    @Query("select id from state where type = :type and subtype = :subtype and state = :state and state != :noState")
+    List<String> getIds(String type, String subtype, String state, String noState);
+
+    @Query("select id from state where type = :type and subtype = :subtype and state in (:states) limit 1")
+    String getId(String type, String subtype, String... states);
+
+    @Query("select id from state where type = :type and subtype = :subtype and state = :state and state != :noState limit 1")
+    String getIdWithNo(String type, String subtype, String state, String noState);
+
+    @Query("select id from state where type = :yesType and type not in (:noTypes) and state in (:states) limit 1")
+    String getIdsNot(String yesType, String[] noTypes, String[] states);
 
     @Update
     void update(State state);

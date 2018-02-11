@@ -87,7 +87,7 @@ public abstract class BaseSupportFragmentAdapter<T extends Fragment> extends Fra
 
         T fragment = FragmentUtil.newSupportFragment(pageClasses.get(position, null));
 
-        if (!AndroidUtil.isNull(fragment)) {
+        if (fragment != null) {
             Bundle bundle = new Bundle();
             bundle.putString("page_title", getPageTitle(position).toString());
             fragment.setArguments(bundle);

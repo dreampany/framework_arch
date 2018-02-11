@@ -48,7 +48,7 @@ public class ParticleManager extends Manager {
         return false;
     }
 
-    public void onShot(ViewGroup container, long points) {
+    public void onShot(ViewGroup container) {
         Context context = container.getContext();
         ConfettiManager confettiManager = CommonConfetti.rainingConfetti(container, ColorUtil.getParticleColors(context)).oneShot();
         activeConfettiManagers.add(confettiManager);

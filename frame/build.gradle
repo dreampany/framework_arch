@@ -5,13 +5,14 @@ apply plugin: 'idea'
 
 android {
     compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         minSdkVersion 18
         targetSdkVersion 27
-        versionCode 6
-        versionName "0.0.6"
+        versionCode 7
+        versionName "0.0.7"
 
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
@@ -23,8 +24,21 @@ android {
             }
         }
     }
-
     buildTypes {
+        debug {
+            minifyEnabled false
+            //zipAlignEnabled true
+            //shrinkResources true
+
+            //consumerProguardFiles getDefaultProguardFile('proguard-android.txt')
+            //consumerProguardFiles 'proguard-play-service.pro'
+            //consumerProguardFiles 'proguard-data-binding.pro'
+            //consumerProguardFiles 'proguard-joda-time.pro'
+            //consumerProguardFiles 'proguard-joda-time-android.pro'
+
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
         release {
             minifyEnabled false
             //zipAlignEnabled true
@@ -61,56 +75,67 @@ configurations.all {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     //android
     api 'com.android.support:multidex:1.0.2'
-    api 'com.android.support:design:27.0.0'
-    api 'com.android.support:support-v4:27.0.0'
-    api 'com.android.support:palette-v7:27.0.0'
-    api 'com.android.support:appcompat-v7:27.0.0'
-    api 'com.android.support:cardview-v7:27.0.0'
-    api 'com.android.support:recyclerview-v7:27.0.0'
-    api 'com.android.support:preference-v7:27.0.0'
-    api 'com.android.support:support-v13:27.0.0'
-    api 'com.android.support:preference-v14:27.0.0'
-    api 'com.android.support:support-vector-drawable:27.0.0'
-    api 'com.android.support:animated-vector-drawable:27.0.0'
+    api 'com.android.support:design:27.0.2'
+    api 'com.android.support:support-v4:27.0.2'
+    api 'com.android.support:palette-v7:27.0.2'
+    api 'com.android.support:appcompat-v7:27.0.2'
+    api 'com.android.support:cardview-v7:27.0.2'
+    api 'com.android.support:recyclerview-v7:27.0.2'
+    api 'com.android.support:preference-v7:27.0.2'
+    api 'com.android.support:support-v13:27.0.2'
+    api 'com.android.support:preference-v14:27.0.2'
+    api 'com.android.support:support-vector-drawable:27.0.2'
+    api 'com.android.support:animated-vector-drawable:27.0.2'
+    api 'com.android.support:support-dynamic-animation:27.0.2'
     api 'com.android.support.constraint:constraint-layout:1.0.2'
 
     //android + architecture
-    implementation "android.arch.persistence.room:runtime:1.0.0"
+    implementation 'android.arch.persistence.room:runtime:1.0.0'
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
-/*    implementation "android.arch.persistence.room:runtime:1.0.0-rc1"
-    implementation "android.arch.lifecycle:runtime:1.0.0"
-    implementation "android.arch.lifecycle:extensions:1.0.0-rc1"
-    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-rc1"*/
+
+    /*    implementation "android.arch.persistence.room:runtime:1.0.0-rc1"
+        implementation "android.arch.lifecycle:runtime:1.0.0"
+        implementation "android.arch.lifecycle:extensions:1.0.0-rc1"
+        annotationProcessor "android.arch.persistence.room:compiler:1.0.0-rc1"*/
 
     //google
-    api 'com.google.firebase:firebase-core:11.6.0'
-    api 'com.google.firebase:firebase-auth:11.6.0'
-    api 'com.google.firebase:firebase-ads:11.6.0'
-    api 'com.google.firebase:firebase-database:11.6.0'
-    api 'com.google.firebase:firebase-firestore:11.6.0'
-    api 'com.google.firebase:firebase-storage:11.6.0'
-    api 'com.google.firebase:firebase-crash:11.6.0'
-    api 'com.google.firebase:firebase-appindexing:11.6.0'
-    api 'com.google.firebase:firebase-perf:11.6.0'
-    api 'com.google.android.gms:play-services-location:11.6.0'
-    api 'com.google.android.gms:play-services-nearby:11.6.0'
-    api 'com.google.android.gms:play-services-vision:11.6.0'
-    //compile 'com.google.android.gms:play-services-ads:11.0.4'
-    api 'com.google.guava:guava:23.2-android'
+    //api 'com.google.firebase:firebase-admin:11.6.2'
+    api 'com.google.firebase:firebase-core:11.8.0'
+    api 'com.google.firebase:firebase-auth:11.8.0'
+    api 'com.google.firebase:firebase-ads:11.8.0'
+    api 'com.google.firebase:firebase-database:11.8.0'
+    api 'com.google.firebase:firebase-firestore:11.8.0'
+    api 'com.google.firebase:firebase-storage:11.8.0'
+    api 'com.google.firebase:firebase-crash:11.8.0'
+    api 'com.google.firebase:firebase-appindexing:11.8.0'
+    api 'com.google.firebase:firebase-perf:11.8.0'
+    api 'com.google.android.gms:play-services-auth:11.8.0'
+    api 'com.google.android.gms:play-services-location:11.8.0'
+    api 'com.google.android.gms:play-services-nearby:11.8.0'
+    api 'com.google.android.gms:play-services-vision:11.8.0'
+/*    api ('com.google.api-client:google-api-client-android:1.23.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+    compile('com.google.apis:google-api-services-youtube:v3-rev191-1.23.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }*/
+    api ('com.google.guava:guava:24.0-android') { force = true }
     api 'com.google.code.gson:gson:2.8.2'
-    api 'com.google.protobuf:protobuf-java:3.3.0'
+    api 'com.google.protobuf:protobuf-java:3.3.1'
     api 'com.google.android:flexbox:0.3.1'
 
     //firebase
+
     //compile 'com.firebaseui:firebase-ui:1.0.1'
+    api 'com.firebase:firebase-jobdispatcher:0.8.5'
 
     //branch - deep linking
     api 'io.branch.sdk.android:library:2.13.0'
@@ -120,28 +145,39 @@ dependencies {
     api 'com.facebook.fresco:fresco:1.5.0'
     api 'com.facebook.network.connectionclass:connectionclass:1.0.1'
     api 'com.facebook.shimmer:shimmer:0.1.0@aar'
+    api 'com.facebook.rebound:rebound:0.3.8'
 
     //twitter
+
     //compile 'com.twitter.sdk.android:twitter:2.2.0'
 
     //squareup
-    api 'com.squareup.okhttp3:okhttp:3.9.0'
+    api 'com.squareup.okhttp3:okhttp:3.9.1'
     api 'com.squareup.okio:okio:1.13.0'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    implementation 'com.squareup.sqlbrite3:sqlbrite:3.1.0'
+    implementation 'com.squareup.sqlbrite3:sqlbrite-kotlin:3.1.0'
 
     // apache
+
     //compile 'commons-codec:commons-codec:1.10'
+
     //compile 'org.apache.httpcomponents:httpclient:4.5.2'
+
     //compile 'org.apache.httpcomponents:httpmime:4.5.2'
-    api 'org.apache.commons:commons-lang3:3.6'
+    api 'org.apache.commons:commons-lang3:3.7'
+    api 'org.apache.commons:commons-collections4:4.1'
 
     //rx
-    api 'io.reactivex.rxjava2:rxjava:2.1.3'
+    api 'io.reactivex.rxjava2:rxjava:2.1.9'
     api 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
     //util
     api 'org.greenrobot:essentials:3.0.0-RC1'
-    api 'org.greenrobot:eventbus:3.0.0'
+    api 'org.greenrobot:eventbus:3.1.1'
     api 'joda-time:joda-time:2.9.9'
+
     //api 'com.memetix:microsoft-translator-java-api:0.6.2'
     api 'com.karumi:dexter:4.1.1'
     api 'com.jaredrummler:android-device-names:1.1.5'
@@ -153,32 +189,58 @@ dependencies {
     api 'com.sromku:simple-storage:1.2.1'
     api 'io.netty:netty-buffer:5.0.0.Alpha2'
     api 'com.einmalfel:earl:1.2.0'
-    api 'com.github.pwittchen:prefser-rx2:2.1.0'
+    api 'com.github.chimbori:crux:2.0.1'
+    api 'org.jsoup:jsoup:1.11.2'
+    //api 'com.github.karussell:snacktory:-SNAPSHOT'
+    api 'com.github.pwittchen:prefser-rx2:2.2.1'
     api 'com.oasisfeng.condom:library:2.0.0'
     api 'com.github.shree-vastava:ValidUtil:v1.0'
-    api 'com.wordnik:wordnik-android-client:4.0'
-    api 'com.github.javiersantos:AppUpdater:2.6.3'
+    api 'com.github.javiersantos:AppUpdater:2.6.4'
     api 'com.codemybrainsout.rating:ratingdialog:1.0.8'
+    api 'com.github.thunder413:DateTimeUtils:1.0'
+    api 'com.wordnik:wordnik-android-client:4.0'
+    api 'cc.mvdan.accesspoint:library:0.2.0'
+    api 'com.github.pwittchen:reactivewifi:0.2.0'
+    api 'com.github.pwittchen:reactivenetwork-rx2:0.12.3'
+    api 'com.webianks.library:easy-feedback:1.0.2'
+    api 'com.ihongqiqu:android-utils:1.0.2'
+    api 'com.hbb20:ccp:2.1.4'
+    api 'com.github.pchmn:MaterialChipsInput:1.0.8'
+    api 'org.sufficientlysecure:html-textview:3.5'
+    api 'android.zetterstrom.com.forecast:forecast:1.2.0'
+    implementation 'frankiesardo:icepick:3.2.0'
+    annotationProcessor 'frankiesardo:icepick-processor:3.2.0'
+    api 'pub.devrel:easypermissions:0.3.0'
+    api 'com.github.florent37:rxgps:1.0.0'
+    api 'io.nlopez.smartlocation:library:3.3.2'
+    api 'io.nlopez.smartlocation:rx:3.3.2'
+    //api 'com.afollestad:sectioned-recyclerview:0.5.0'
+
+    //api 'com.klinkerapps:article_viewer:0.24.4'
+
+    //api 'com.github.vbauer:yandex-translate-api:1.3.2'
+
     //api 'com.github.kobeumut:UpdateChecker:0.1.2'
+
     //api 'com.github.vbauer:yandex-translate-api:1.3.2'
 
     //compile 'com.github.nisrulz:android-utils:1.0.3'
+
     // compile 'net.the4thdimension:android-utils:2.0.4'
 
     //ui library
-    api 'eu.davidea:flipview:1.1.1'
-    api 'eu.davidea:flexible-adapter:5.0.0-rc3'
-    api 'eu.davidea:flexible-adapter-livedata:1.0.0-b1'
+    api 'eu.davidea:flipview:1.1.3'
+    api 'eu.davidea:flexible-adapter:5.0.0-rc4'
+    api 'eu.davidea:flexible-adapter-ui:1.0.0-b2'
+    api 'eu.davidea:flexible-adapter-livedata:1.0.0-b2'
     api 'eu.davidea:flexible-adapter-databinding:1.0.0-b2'
-
     api 'com.daasuu:CountAnimationTextView:0.1.1'
     api 'com.gordonwong:material-sheet-fab:1.2.1'
     api 'com.ms-square:expandableTextView:0.1.4'
-    api 'net.cachapa.expandablelayout:expandablelayout:2.8'
     api 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
     api 'com.wang.avi:library:2.1.3'
     api 'com.daimajia.swipelayout:library:1.2.0@aar'
-    api 'com.vstechlab.easyfonts:easyfonts:1.0.0'
+    //api 'com.vstechlab.easyfonts:easyfonts:1.0.0'
     api 'uk.co.chrisjenx:calligraphy:2.3.0'
     api 'com.dev.sacot41:scviewpager:0.0.4'
     api 'com.roughike:swipe-selector:1.0.6'
@@ -204,7 +266,7 @@ dependencies {
     api 'com.akexorcist:RoundCornerProgressBar:2.0.3'
     api 'com.tapadoo.android:alerter:2.0.1'
     api 'com.github.clans:fab:1.6.4'
-    api 'com.github.medyo:android-about-page:1.2.1'
+    api 'com.github.medyo:android-about-page:1.2.2'
     api 'org.aviran.cookiebar2:cookiebar2:1.0.5'
     api 'cz.kinst.jakub:android-stateful-layout-base:2.0.7'
     api 'cz.kinst.jakub:android-stateful-layout-simple:2.0.7'
@@ -213,7 +275,7 @@ dependencies {
     api 'com.github.arimorty:floatingsearchview:2.1.1'
     api 'com.lapism:searchview:5.0.0-alpha7'
     api 'lt.neworld:spanner:v0.3.1'
-    api 'com.jaredrummler:material-spinner:1.2.1'
+    api 'com.jaredrummler:material-spinner:1.2.3'
     api 'com.flipboard:bottomsheet-core:1.5.3'
     api 'com.flipboard:bottomsheet-commons:1.5.3'
     api 'com.github.fafaldo:fab-toolbar:1.2.0'
@@ -221,29 +283,85 @@ dependencies {
     api 'com.github.castorflex.smoothprogressbar:library:1.1.0'
     api 'com.github.castorflex.smoothprogressbar:library-circular:1.3.0'
     api 'com.github.krtkush:LinearTimer:v2.1.1'
-    api "com.mikepenz:iconics-core:2.9.5@aar"
-    api "com.mikepenz:iconics-views:2.9.5@aar"
-    api 'com.jaredrummler:material-spinner:1.2.1'
-    api 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2' // (v4.5)
-    api 'com.joanzapata.iconify:android-iconify-entypo:2.2.2' // (v3,2015)
-    api 'com.joanzapata.iconify:android-iconify-typicons:2.2.2' // (v2.0.7)
-    api 'com.joanzapata.iconify:android-iconify-material:2.2.2' // (v2.0.0)
-    api 'com.joanzapata.iconify:android-iconify-material-community:2.2.2' // (v1.4.57)
-    api 'com.joanzapata.iconify:android-iconify-meteocons:2.2.2' // (latest)
-    api 'com.joanzapata.iconify:android-iconify-weathericons:2.2.2' // (v2.0)
-    api 'com.joanzapata.iconify:android-iconify-simplelineicons:2.2.2' // (v1.0.0)
-    api 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2' // (v2.0.1)
+    api 'com.mikepenz:iconics-core:2.9.5@aar'
+    api 'com.mikepenz:iconics-views:2.9.5@aar'
+    api 'com.thefinestartist:finestwebview:1.2.7'
+    api 'com.github.halysongoncalves:pugnotification:1.8.1'
+    api 'com.github.curioustechizen.android-ago:library:1.3.4'
+    api 'com.dinuscxj:circleprogressbar:1.1.1'
+    api 'com.github.lzyzsd:circleprogress:1.2.1'
+    api 'com.hanks:htextview-base:0.1.2'
+    api 'com.hanks:htextview-rainbow:0.1.2'
+    api 'com.afollestad:aesthetic:0.4.7'
+    api 'com.miguelcatalan:materialsearchview:1.4.0'
+    api 'com.github.arimorty:floatingsearchview:2.1.1'
+    api 'com.irozon.sneaker:sneaker:1.0.1'
+    api 'io.supercharge:shimmerlayout:1.1.0'
+    api 'com.github.linger1216:labelview:v1.1.2'
+    api 'com.github.shts:TriangleLabelView:1.1.2'
+    api 'com.rilixtech:materialfancybuttons:1.8.7'
+    api 'com.github.smart-fun:SmartFonts:1.0.3'
+    api 'com.github.delight-im:Android-Languages:v1.0.1'
+    api 'com.github.jaychang0917:SimpleText:1.3.0'
+    api 'lt.neworld:spanner:v0.3.2'
+    api 'com.klinkerapps:link_builder:1.6.1'
+    api 'com.yarolegovich:discrete-scrollview:1.3.2'
+    api 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
+    api 'com.webianks.library:popup-bubble:1.0.5'
+    api 'com.jpardogo.googleprogressbar:library:1.2.0'
+    api 'com.stone.vega.library:VegaLayoutManager:1.0.6'
+    api 'com.farbod.labelledspinner:labelledspinner:1.1.5'
+    api 'com.github.pavlospt:roundedletterview:1.2'
+    api 'com.github.blackbeared:fusion:1.0.2'
+    api 'com.afollestad.material-dialogs:core:0.9.6.0'
+    api 'com.afollestad.material-dialogs:commons:0.9.6.0'
+    api 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    api 'com.github.whalemare:sheetmenu:1.3.3'
+    api 'com.airbnb.android:lottie:2.5.0-rc1'
+
+/*    api 'gr.escsoft.michaelprimez.searchablespinner:SearchableSpinner:1.0.9'
+    api 'gr.escsoft.michaelprimez.revealedittext:RevealEditText:1.0.2'
+    api 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'*/
+    //api 'com.ramotion.garlandview:garland-view:0.2.1'
+    //api 'at.blogc:expandabletextview:1.0.5'
+
+    //api 'ayar.oktay.library:advancedtextview:0.4.5'
+
     //api 'net.steamcrafted:materialiconlib:1.1.4'
+
     //maven
-    //compile 'com.github.linger1216:labelview:v1.1.1'
+
+    //
+
     //compile 'com.github.shts:TriangleLabelView:1.1.2'
+
     // compile 'org.slf4j:slf4j-android:1.7.22'
+
     // compile 'io.netty:netty-buffer:5.0.0.Alpha2'
+
     // compile 'com.google.protobuf:protobuf-java:2.6.1'
+
     //  compile project(':swipe-selector')
 
-    //network
+    //api 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2' // (v4.5)
 
+    //api 'com.joanzapata.iconify:android-iconify-entypo:2.2.2' // (v3,2015)
+
+    //api 'com.joanzapata.iconify:android-iconify-typicons:2.2.2' // (v2.0.7)
+
+    //api 'com.joanzapata.iconify:android-iconify-material:2.2.2' // (v2.0.0)
+
+    //api 'com.joanzapata.iconify:android-iconify-material-community:2.2.2' // (v1.4.57)
+
+    //api 'com.joanzapata.iconify:android-iconify-meteocons:2.2.2' // (latest)
+
+    //api 'com.joanzapata.iconify:android-iconify-weathericons:2.2.2' // (v2.0)
+
+    //api 'com.joanzapata.iconify:android-iconify-simplelineicons:2.2.2' // (v1.0.0)
+
+    //api 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2' // (v2.0.1)
+
+    //network
 }
 
 idea {
@@ -252,19 +370,20 @@ idea {
     }
 }
 
-/*ext {
+
+ext {
     bintrayRepo = 'framework'
     bintrayName = 'frame'
     publishedGroupId = 'com.dreampany.framework'
     libraryName = 'frame'
     artifact = 'frame'
 
-    libraryDescription = 'A android framework to work happily.'
+    libraryDescription = 'A android framwork to work happily. Room Persistence database, RxJava, RxAndroid and Kotlin supported'
 
     siteUrl = 'https://bintray.com/dreampanymail/framework'
     gitUrl = 'https://bintray.com/dreampanymail/framework.git'
 
-    libraryVersion = '0.0.4'
+    libraryVersion = '0.0.7'
 
     developerId = 'dreampanymail'
     developerName = 'dreampany'
@@ -283,5 +402,3 @@ tasks.withType(Javadoc).all {
 
 apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/installv.gradle'
 apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/bintrayv.gradle'
-
-*/

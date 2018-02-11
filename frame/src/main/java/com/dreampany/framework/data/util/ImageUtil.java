@@ -127,8 +127,14 @@ public final class ImageUtil {
     public static Uri getUri(String path, int defaultResource) {
         Uri.Builder builder = new Uri.Builder();
 
-        if (FileUtil.isFileExists(path)) {
+        if (path.startsWith(UriUtil.LOCAL_FILE_SCHEME)) {
             builder.scheme(UriUtil.LOCAL_FILE_SCHEME)
+                    .path(path);
+        } else if (path.startsWith(UriUtil.HTTP_SCHEME)) {
+            builder.scheme(UriUtil.HTTP_SCHEME)
+                    .path(path);
+        } else if (path.startsWith(UriUtil.HTTPS_SCHEME)) {
+            builder.scheme(UriUtil.HTTPS_SCHEME)
                     .path(path);
         } else {
             builder.scheme(UriUtil.LOCAL_RESOURCE_SCHEME)

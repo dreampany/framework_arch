@@ -29,7 +29,7 @@ public final class SessionManager {
         if (session == null) {
             session = new Session();
             session.setBeginTime(TimeUtil.currentTime());
-            session.setDatetime(TimeUtil.getStartOfDay());
+            session.setDatetime(TimeUtil.startOfDay());
         }
 
         session.setEndTime(TimeUtil.currentTime());

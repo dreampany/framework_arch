@@ -1,3 +1,4 @@
+/*
 package com.dreampany.framework.ui.fragment;
 
 import android.app.Activity;
@@ -15,9 +16,11 @@ import com.dreampany.framework.data.util.ColorUtil;
 import com.dreampany.framework.ui.activity.BaseActivity;
 import com.dreampany.framework.ui.activity.BaseMenuActivity;
 
+*/
 /**
  * Created by nuc on 8/13/2016.
- */
+ *//*
+
 public abstract class BaseMenuFragmentCompat extends BaseFragmentCompat implements AdapterView.OnItemSelectedListener, MenuItem.OnActionExpandListener, SearchView.OnQueryTextListener, ActionMode.Callback, android.view.ActionMode.Callback {
 
     private final int defaultMenuId = 0;
@@ -168,3 +171,4 @@ public abstract class BaseMenuFragmentCompat extends BaseFragmentCompat implemen
         }
     }
 }
+*/

@@ -1,4 +1,4 @@
-/*package com.dreampany.framework.data.callback;
+package com.dreampany.framework.data.callback;/*package com.dreampany.framework.data.callback;
 
 import com.dreampany.framework.data.event.NetworkEvent;
 

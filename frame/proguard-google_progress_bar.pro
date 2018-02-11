@@ -1,0 +1,1 @@
+-keep class com.jpardogo.android.googleprogressbar.** { *; }

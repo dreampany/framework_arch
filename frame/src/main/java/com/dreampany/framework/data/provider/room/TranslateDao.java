@@ -18,11 +18,14 @@ public interface TranslateDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Translate translate);
 
-    @Query("select targetText from translate where source = :source and target = :target and sourceText = :sourceText limit 1")
-    String getTargetText(String source, String target, String sourceText);
+    @Query("select * from translate where source = :source and target = :target and sourceText = :sourceText limit 1")
+    Translate get(String source, String target, String sourceText);
 
-    @Query("select sourceText from translate where source = :source and target = :target and targetText = :targetText limit 1")
-    String getSourceText(String source, String target, String targetText);
+    @Query("select * from translate where source = :source and target = :target and sourceText = :sourceText limit 1")
+    Translate getTarget(String source, String target, String sourceText);
+
+    @Query("select * from translate where source = :target and target = :source and targetText = :sourceText limit 1")
+    Translate getSource(String source, String target, String sourceText);
 
     @Update
     void update(Translate translate);

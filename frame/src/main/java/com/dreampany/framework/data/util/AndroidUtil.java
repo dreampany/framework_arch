@@ -1,5 +1,8 @@
 package com.dreampany.framework.data.util;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.bluetooth.BluetoothManager;
@@ -10,30 +13,42 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.Point;
 import android.hardware.display.DisplayManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
+import android.os.Parcelable;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
+import android.support.annotation.ColorInt;
+import android.support.annotation.IntRange;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
+import com.dreampany.framework.R;
 import com.dreampany.framework.data.manager.PermissionManager;
+import com.dreampany.framework.data.model.BaseParcel;
 import com.dreampany.framework.data.model.Task;
+import com.dreampany.framework.ui.activity.BaseActivity;
 import com.google.common.hash.Hashing;
 import com.jaredrummler.android.device.DeviceName;
 import com.karumi.dexter.Dexter;
@@ -45,13 +60,22 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
+
+import eu.davidea.flexibleadapter.utils.FlexibleUtils;
 
 public final class AndroidUtil {
     private static final String TAG = AndroidUtil.class.getSimpleName();
     private static boolean debug = true;
+    public static final String DATE_TIME = "dd MMM yyyy HH:mm:ss z";
+    private static int colorPrimary = -1;
+    private static int colorPrimaryDark = -1;
+    private static int colorAccent = -1;
 
     private AndroidUtil() {
     }
@@ -60,9 +84,6 @@ public final class AndroidUtil {
         AndroidUtil.debug = isDebug(context);
     }
 
-    public static boolean hasMarshmallow() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
-    }
 
     public static boolean isPermissionGranted(Context context, String permission) {
         return PermissionManager.isPermissionGranted(context, permission);
@@ -128,7 +149,7 @@ public final class AndroidUtil {
     }*/
 
     public static long getDeviceId(Context context) {
-        String androidId = Settings.Secure.getString(context.getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);//InstanceID.getInstance(context).getId();
+        String androidId = Settings.Secure.getString(context.getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);//InstanceID.getContext(context).getId();
         long deviceId = Hashing.sha256().newHasher().putUnencodedChars(androidId).hash().asLong();
 
         return Math.abs(deviceId);
@@ -147,6 +168,9 @@ public final class AndroidUtil {
         return System.getProperty("java.vm.name").equalsIgnoreCase("Dalvik");
     }
 
+    public static String getUuid() {
+        return UUID.randomUUID().toString();
+    }
 
     public static void log(String unit, String message) {
         if (isDebug()) {
@@ -196,25 +220,33 @@ public final class AndroidUtil {
         }
     }
 
-    public static <T extends Activity> void openActivity(Activity activity, Class<T> clazz) {
+    public static void openActivity(Activity activity, Class<?> clazz) {
         activity.startActivity(new Intent(activity, clazz));
     }
 
-    public static <T extends Activity> void openDestroyActivity(Activity activity, Class<T> clazz) {
+    public static void openDestroyActivity(Activity activity, Class<?> clazz) {
         activity.startActivity(new Intent(activity, clazz));
         activity.finish();
     }
 
-    public static <T extends Activity> void openActivity(Fragment fragment, Class<T> clazz) {
+    public static void openActivity(Fragment fragment, Class<?> clazz) {
         fragment.getActivity().startActivity(new Intent(fragment.getActivity(), clazz));
     }
 
-    public static <T extends Activity> void openDestroyActivity(Fragment fragment, Class<T> clazz) {
+    public static void openDestroyActivity(Fragment fragment, Class<?> clazz) {
         fragment.getActivity().startActivity(new Intent(fragment.getActivity(), clazz));
         fragment.getActivity().finish();
     }
 
-    public static <T extends Activity> void openActivity(Activity activity, Class<T> clazz, Task task) {
+    public static void openActivity(Fragment fragment, Class<?> clazz, Task task) {
+        Intent intent = new Intent(fragment.getActivity(), clazz);
+        if (task != null) {
+            intent.putExtra(Task.class.getName(), task);
+        }
+        fragment.startActivity(intent);
+    }
+
+    public static void openActivity(Activity activity, Class<?> clazz, Task task) {
         Intent intent = new Intent(activity, clazz);
         if (task != null) {
             intent.putExtra(Task.class.getName(), task);
@@ -222,11 +254,11 @@ public final class AndroidUtil {
         activity.startActivity(intent);
     }
 
-    public static <T extends Activity> void openActivityForResult(Activity activity, Class<T> clazz, int requestCode) {
+    public static void openActivityForResult(Activity activity, Class<?> clazz, int requestCode) {
         openActivityForResult(activity, clazz, requestCode, null);
     }
 
-    public static <T extends Activity> void openActivityForResult(Activity activity, Class<T> clazz, int requestCode, Task task) {
+    public static void openActivityForResult(Activity activity, Class<?> clazz, int requestCode, Task task) {
         Intent intent = new Intent(activity, clazz);
         if (task != null) {
             intent.putExtra(Task.class.getName(), task);
@@ -234,12 +266,12 @@ public final class AndroidUtil {
         activity.startActivityForResult(intent, requestCode);
     }
 
-    public static <T extends Activity> void openActivityForResult(Activity activity, Fragment fragment, Class<T> clazz, int requestCode) {
-       openActivityForResult(activity, fragment, clazz, requestCode, null);
+    public static void openActivityForResult(Fragment fragment, Class<?> clazz, int requestCode) {
+        openActivityForResult(fragment, clazz, requestCode, null);
     }
 
-    public static <T extends Activity> void openActivityForResult(Activity activity, Fragment fragment, Class<T> clazz, int requestCode, Task task) {
-        Intent intent = new Intent(activity, clazz);
+    public static void openActivityForResult(Fragment fragment, Class<?> clazz, int requestCode, Task task) {
+        Intent intent = new Intent(fragment.getActivity(), clazz);
         if (task != null) {
             intent.putExtra(Task.class.getName(), task);
         }
@@ -247,7 +279,7 @@ public final class AndroidUtil {
     }
 
 
-    public static String printKeyHash(Activity context) {
+/*    public static String printKeyHash(Activity context) {
         PackageInfo packageInfo;
         String key = null;
         try {
@@ -261,7 +293,7 @@ public final class AndroidUtil {
             Log.e("Package Name=", context.getApplicationContext().getPackageName());
 
             for (android.content.pm.Signature signature : packageInfo.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
+                MessageDigest md = MessageDigest.getContext("SHA");
                 md.update(signature.toByteArray());
                 key = new String(Base64.encode(md.digest(), 0));
 
@@ -277,7 +309,7 @@ public final class AndroidUtil {
         }
 
         return key;
-    }
+    }*/
 
     public static Locale getCurrentLocale(Context context) {
         return context.getResources().getConfiguration().locale;
@@ -292,9 +324,9 @@ public final class AndroidUtil {
     }
 
     public static void hideKeyboard(Activity activity) {
-       /* ((InputMethodManager) view.getContext().getSystemService(Activity.INPUT_METHOD_SERVICE))
-                .hideSoftInputFromWindow(view.getWindowToken(), 0);*/
-
+        if (activity == null || activity.isDestroyed() || activity.isFinishing()) {
+            return;
+        }
         View view = activity.getCurrentFocus();
         if (view != null) {
             InputMethodManager inputManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -302,8 +334,18 @@ public final class AndroidUtil {
         }
     }
 
+    public static void hideKeyboard(Fragment fragment) {
+        if (fragment == null) {
+            return;
+        }
+        Activity activity = fragment.getActivity();
+        hideKeyboard(activity);
+    }
+
     public static void showKeyboard(Activity activity) {
-        // Check if no view has focus:
+        if (activity == null || activity.isDestroyed() || activity.isFinishing()) {
+            return;
+        }
         View view = activity.getCurrentFocus();
         if (view != null) {
             InputMethodManager inputManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -400,53 +442,14 @@ public final class AndroidUtil {
         nonUiHandler.postDelayed(runnable, timeout);
     }
 
-    // Checking and Getting
-    public static boolean isNull(Object object) {
-        return object == null;
-    }
-
-    public static boolean isNull(View view) {
-        return view == null;
-    }
-
-    public static boolean isNull(Context context) {
-        return context == null;
-    }
-
-    public static View getViewById(View parentView, int viewId) {
-        if (!isNull(parentView)) {
-            return parentView.findViewById(viewId);
-        }
-        return null;
-    }
-
-    public static ViewPager getViewPager(View parentView, int viewPagerId) {
-        View viewPager = getViewById(parentView, viewPagerId);
-        if (ViewPager.class.isInstance(viewPager)) {
-            return (ViewPager) viewPager;
-        }
-        return null;
-    }
-
-    public static TabLayout getTabLayout(View parentView, int tabLayoutId) {
-        View tabLayout = getViewById(parentView, tabLayoutId);
-        if (TabLayout.class.isInstance(tabLayout)) {
-            return (TabLayout) tabLayout;
-        }
-        return null;
-    }
-
     private static TextToSpeech textToSpeech;
 
     public static void initTextToSpeech(Context context) {
         if (textToSpeech == null) {
             try {
-                textToSpeech = new TextToSpeech(context.getApplicationContext(), new TextToSpeech.OnInitListener() {
-                    @Override
-                    public void onInit(int status) {
-                        if (status != TextToSpeech.ERROR) {
-                            textToSpeech.setLanguage(Locale.ENGLISH);
-                        }
+                textToSpeech = new TextToSpeech(context.getApplicationContext(), status -> {
+                    if (status != TextToSpeech.ERROR) {
+                        textToSpeech.setLanguage(Locale.ENGLISH);
                     }
                 });
             } catch (IllegalArgumentException e) {
@@ -456,11 +459,21 @@ public final class AndroidUtil {
     }
 
     public static void speak(String text) {
-        if (textToSpeech != null) {
+        if (textToSpeech != null && text != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
             } else {
                 textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        }
+    }
+
+    public static void silentSpeak() {
+        if (textToSpeech != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                textToSpeech.speak("", TextToSpeech.QUEUE_FLUSH, null, null);
+            } else {
+                textToSpeech.speak("", TextToSpeech.QUEUE_FLUSH, null);
             }
         }
     }
@@ -514,9 +527,6 @@ public final class AndroidUtil {
         return true;
     }
 
-    public static boolean hasLollipop() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
-    }
 
     public static boolean isJellyBeanMR2() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2;
@@ -638,6 +648,315 @@ public final class AndroidUtil {
         WindowManager windowManager = (WindowManager) context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(dm);
         return dm.widthPixels;
+    }
+
+    public static void share(Fragment fragment, String subject, String text) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, text);
+        fragment.startActivity(Intent.createChooser(shareIntent, "Share via"));
+    }
+
+    public static void share(Activity activity, String subject, String text) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, text);
+        activity.startActivity(Intent.createChooser(shareIntent, "Share via"));
+    }
+
+    public static Point getScreenDimensions(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+
+        DisplayMetrics dm = new DisplayMetrics();
+        display.getMetrics(dm);
+
+        Point point = new Point();
+        point.set(dm.widthPixels, dm.heightPixels);
+        return point;
+    }
+
+    public static DisplayMetrics getDisplayMetrics(Context context) {
+        return context.getResources().getDisplayMetrics();
+    }
+
+    public static int dpToPx(Context context, float dp) {
+        return Math.round(dp * getDisplayMetrics(context).density);
+    }
+
+    /**
+     * dd MMM yyyy HH:mm:ss z
+     *
+     * @return The date formatted.
+     */
+    public static String formatDate(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_TIME, Locale.getDefault());
+        return dateFormat.format(date);
+    }
+
+    /**
+     * API 11
+     *
+     * @see VERSION_CODES#HONEYCOMB
+     */
+    public static boolean hasHoneycomb() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
+    }
+
+    /**
+     * API 14
+     *
+     * @see VERSION_CODES#ICE_CREAM_SANDWICH
+     */
+    public static boolean hasIceCreamSandwich() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+    }
+
+    /**
+     * API 16
+     *
+     * @see VERSION_CODES#JELLY_BEAN
+     */
+    public static boolean hasJellyBean() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN;
+    }
+
+    /**
+     * API 19
+     *
+     * @see VERSION_CODES#KITKAT
+     */
+    public static boolean hasKitkat() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+    }
+
+    /**
+     * API 21
+     *
+     * @see VERSION_CODES#LOLLIPOP
+     */
+    public static boolean hasLollipop() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+    }
+
+    /**
+     * API 23
+     *
+     * @see VERSION_CODES#M
+     */
+    public static boolean hasMarshmallow() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
+    }
+
+    /**
+     * API 24
+     *
+     * @see VERSION_CODES#N
+     */
+    public static boolean hasNougat() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N;
+    }
+
+/*    public static String getVersionName(Context context) {
+        try {
+            PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            return "v" + pInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            return context.getString(android.R.string.unknownName);
+        }
+    }
+
+    public static int getVersionCode(Context context) {
+        try {
+            PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            return pInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            return 0;
+        }
+    }*/
+
+    /**
+     * Adjusts the alpha of a color.
+     *
+     * @param color the color
+     * @param alpha the alpha value we want to set 0-255
+     * @return the adjusted color
+     */
+    public static int adjustAlpha(@ColorInt int color, @IntRange(from = 0, to = 255) int alpha) {
+        return (alpha << 24) | (color & 0x00ffffff);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static int getColorPrimary(Context context) {
+        if (colorPrimary < 0) {
+            int primaryAttr = FlexibleUtils.hasLollipop() ? android.R.attr.colorPrimary : R.attr.colorPrimary;
+            TypedArray androidAttr = context.getTheme().obtainStyledAttributes(new int[]{primaryAttr});
+            colorPrimary = androidAttr.getColor(0, 0xFFFFFFFF); //Default: material_deep_teal_500
+            androidAttr.recycle();
+        }
+        return colorPrimary;
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static int getColorPrimaryDark(Context context) {
+        if (colorPrimaryDark < 0) {
+            int primaryDarkAttr = FlexibleUtils.hasLollipop() ? android.R.attr.colorPrimaryDark : R.attr.colorPrimaryDark;
+            TypedArray androidAttr = context.getTheme().obtainStyledAttributes(new int[]{primaryDarkAttr});
+            colorPrimaryDark = androidAttr.getColor(0, 0xFFFFFFFF); //Default: material_deep_teal_500
+            androidAttr.recycle();
+        }
+        return colorPrimaryDark;
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static int getColorAccent(Context context) {
+        if (colorAccent < 0) {
+            int accentAttr = FlexibleUtils.hasLollipop() ? android.R.attr.colorAccent : R.attr.colorAccent;
+            TypedArray androidAttr = context.getTheme().obtainStyledAttributes(new int[]{accentAttr});
+            colorAccent = androidAttr.getColor(0, 0xFFFFFFFF); //Default: material_deep_teal_500
+            androidAttr.recycle();
+        }
+        return colorAccent;
+    }
+
+
+    @SuppressWarnings("deprecation")
+    public static Spanned fromHtmlCompat(String text) {
+        if (hasNougat()) {
+            return Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY);
+        } else {
+            return Html.fromHtml(text);
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    public static void textAppearanceCompat(TextView textView, int resId) {
+        if (hasMarshmallow()) {
+            textView.setTextAppearance(resId);
+        } else {
+            textView.setTextAppearance(textView.getContext(), resId);
+        }
+    }
+
+    /**
+     * Show Soft Keyboard with new Thread
+     *
+     * @param activity
+     */
+    public static void hideSoftInput(final Activity activity) {
+        if (activity.getCurrentFocus() != null) {
+            new Runnable() {
+                public void run() {
+                    InputMethodManager imm =
+                            (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+                }
+            }.run();
+        }
+    }
+
+    /**
+     * Hide Soft Keyboard from Dialogs with new Thread
+     *
+     * @param context
+     * @param view
+     */
+    public static void hideSoftInputFrom(final Context context, final View view) {
+        new Runnable() {
+            @Override
+            public void run() {
+                InputMethodManager imm =
+                        (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        }.run();
+    }
+
+    /**
+     * Show Soft Keyboard with new Thread
+     *
+     * @param context
+     * @param view
+     */
+    public static void showSoftInput(final Context context, final View view) {
+        new Runnable() {
+            @Override
+            public void run() {
+                InputMethodManager imm =
+                        (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+            }
+        }.run();
+    }
+
+    /**
+     * Create the reveal effect animation
+     *
+     * @param view the View to reveal
+     * @param cx   coordinate X
+     * @param cy   coordinate Y
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static void reveal(final View view, int cx, int cy) {
+        if (!hasLollipop()) {
+            view.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        //Get the final radius for the clipping circle
+        int finalRadius = Math.max(view.getWidth(), view.getHeight());
+
+        //Create the animator for this view (the start radius is zero)
+        Animator animator =
+                ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
+
+        //Make the view visible and start the animation
+        view.setVisibility(View.VISIBLE);
+        animator.start();
+    }
+
+    /**
+     * Create the un-reveal effect animation
+     *
+     * @param view the View to hide
+     * @param cx   coordinate X
+     * @param cy   coordinate Y
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static void unReveal(final View view, int cx, int cy) {
+        if (!hasLollipop()) {
+            view.setVisibility(View.GONE);
+            return;
+        }
+
+        //Get the initial radius for the clipping circle
+        int initialRadius = view.getWidth();
+
+        //Create the animation (the final radius is zero)
+        Animator animator =
+                ViewAnimationUtils.createCircularReveal(view, cx, cy, initialRadius, 0);
+
+        //Make the view invisible when the animation is done
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                view.setVisibility(View.GONE);
+            }
+        });
+
+        //Start the animation
+        animator.start();
+    }
+
+
+    public static void rateUs(Activity activity) {
+        String id = getApplicationId(activity);
+        Uri uri = Uri.parse("market://details?id=" + id);
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        activity.startActivity(goToMarket);
     }
 
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="blockchain_keywords">
+        <item>blockchain</item>
+        <item>bitcoin</item>
+        <item>ethereum</item>
+        <item>bitcoin-cash</item>
+        <item>ripple</item>
+        <item>litecoin</item>
+        <item>iota</item>
+        <item>cardano</item>
+        <item>dash</item>
+        <item>nem</item>
+        <item>monero</item>
+    </string-array>
+
+</resources>

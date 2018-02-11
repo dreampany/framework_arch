@@ -9,7 +9,7 @@ import android.os.Parcel;
 
 public enum Density implements Type {
 
-    SINGLE, MULTIPLE;
+    SINGLE, MULTIPLE, SIMPLE, FULL;
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {

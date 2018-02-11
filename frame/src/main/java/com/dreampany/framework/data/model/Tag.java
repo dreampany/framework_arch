@@ -1,44 +1,47 @@
 package com.dreampany.framework.data.model;
 
-import android.databinding.Bindable;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Index;
 import android.os.Parcel;
-import android.os.Parcelable;
+import android.support.annotation.NonNull;
+
+import com.google.common.base.Objects;
 
 
 /**
- * Created by nuc on 8/22/2015.
+ * Created by air on 3/12/17.
  */
-public class Tag extends Base {
 
-    private String value;
-    private long count;
+@Entity(indices = {@Index(value = {"tag", "type", "subtype"}, unique = true)}, primaryKeys = {"tag", "type", "subtype"})
+public class Tag extends BaseParcel {
 
-    public Tag(){}
+    @NonNull
+    private String tag;
+    @NonNull
+    private String type;
+    @NonNull
+    private String subtype;
 
-    public Tag(String value) {
-        this.value = value;
-        this.count = 1;
+    @Ignore
+    public Tag() {
     }
 
-    public Tag(String value, long count) {
-        this.value = value;
-        this.count = count;
+    public Tag(@NonNull String tag) {
+        this.tag = tag;
     }
 
-    protected Tag(Parcel in) {
+    @Ignore
+    private Tag(Parcel in) {
         super(in);
-        value = in.readString();
-        count = in.readLong();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);
-        dest.writeString(value);
-        dest.writeLong(count);
     }
 
-    public static final Parcelable.Creator<Tag> CREATOR = new Parcelable.Creator<Tag>() {
+    public static final Creator<Tag> CREATOR = new Creator<Tag>() {
         @Override
         public Tag createFromParcel(Parcel in) {
             return new Tag(in);
@@ -51,31 +54,43 @@ public class Tag extends Base {
     };
 
     @Override
-    public int describeContents() {
-        return 0;
+    public boolean equals(Object inObject) {
+        if (Tag.class.isInstance(inObject)) {
+            Tag item = (Tag) inObject;
+            return tag.equals(item.tag) && type.equals(item.type);
+        }
+        return false;
     }
 
-    public void setTag(Tag tag) {
-        setValue(tag.value);
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(tag, type);
     }
 
-    @Bindable
-    public String getValue() {
-        return this.value;
+    public void setTag(@NonNull String tag) {
+        this.tag = tag;
     }
 
-    @Bindable
-    public long getCount() {
-        return count;
+    public void setType(@NonNull String type) {
+        this.type = type;
     }
 
-    public void setValue(String value) {
-        this.value = value;
-        //notifyPropertyChanged(BR.value);
+    public void setSubtype(@NonNull String subtype) {
+        this.subtype = subtype;
     }
 
-    public void setCount(long count) {
-        this.count = count;
-    //    notifyPropertyChanged(BR.count);
+    @NonNull
+    public String getTag() {
+        return tag;
+    }
+
+    @NonNull
+    public String getType() {
+        return type;
+    }
+
+    @NonNull
+    public String getSubtype() {
+        return subtype;
     }
 }

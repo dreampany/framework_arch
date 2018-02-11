@@ -1,8 +1,13 @@
 package com.dreampany.framework.data.model;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.support.annotation.NonNull;
+
+import com.google.common.base.Objects;
+
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by air on 11/2/17.
@@ -18,24 +23,31 @@ public class Translate extends BaseSerial {
     @NonNull
     private String sourceText;
     private String targetText;
-    private long time;
 
+    @Ignore
     public Translate() {
 
+    }
+
+    public Translate(@NotNull String source, @NotNull String target, @NotNull String sourceText, String targetText) {
+        this.source = source;
+        this.target = target;
+        this.sourceText = sourceText;
+        this.targetText = targetText;
     }
 
     @Override
     public boolean equals(Object inObject) {
         if (Translate.class.isInstance(inObject)) {
             Translate translate = (Translate) inObject;
-            return source.equals(translate.source) && target.equals(translate.target) && sourceText.equals(translate.sourceText);
+            return source.equals(translate.source) && target.equals(translate.target) && sourceText.equals(translate.sourceText) && targetText.equals(translate.targetText);
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return source.hashCode() ^ target.hashCode() ^ sourceText.hashCode();
+        return Objects.hashCode(source, target, sourceText, targetText);
     }
 
     public void setSource(@NonNull String source) {
@@ -50,12 +62,8 @@ public class Translate extends BaseSerial {
         this.sourceText = sourceText;
     }
 
-    public void setTargetText(String targetText) {
+    public void setTargetText(@NotNull String targetText) {
         this.targetText = targetText;
-    }
-
-    public void setTime(long time) {
-        this.time = time;
     }
 
     @NonNull
@@ -77,7 +85,16 @@ public class Translate extends BaseSerial {
         return targetText;
     }
 
-    public long getTime() {
-        return time;
+    public void adjust() {
+        // small one to left
+        if (source.compareTo(target) > 0) {
+            String t = source;
+            source = target;
+            target = t;
+
+            t = sourceText;
+            sourceText = targetText;
+            targetText = t;
+        }
     }
 }

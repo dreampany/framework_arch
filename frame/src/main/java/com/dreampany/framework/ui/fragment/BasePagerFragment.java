@@ -1,11 +1,12 @@
 package com.dreampany.framework.ui.fragment;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.dreampany.framework.R;
-import com.dreampany.framework.data.adapter.FragmentAdapter;
+import com.dreampany.framework.data.adapter.SupportFragmentAdapter;
 import com.dreampany.framework.data.model.Color;
 import com.dreampany.framework.data.util.AndroidUtil;
 import com.dreampany.framework.data.util.ColorUtil;
@@ -21,62 +22,64 @@ public abstract class BasePagerFragment extends BaseMenuFragment {
 
     public abstract Class[] pageClasses();
 
+    public abstract boolean keepAllPage();
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_tabpager;
     }
 
     public int getViewPagerId() {
-        return R.id.viewPager;
+        return R.id.view_pager;
     }
 
     public int getTabLayoutId() {
-        return R.id.tabLayout;
+        return R.id.tab_layout;
     }
 
     @Override
-    public void startUi() {
+    protected void startUi(Bundle state) {
+        super.startUi(state);
 
-        ViewPager viewPager = AndroidUtil.getViewPager(getView(), getViewPagerId());
-        TabLayout tabLayout = AndroidUtil.getTabLayout(getView(), getTabLayoutId());
+        ViewPager viewPager = ViewUtil.getViewPager(getView(), getViewPagerId());
+        TabLayout tabLayout = ViewUtil.getTabLayout(getView(), getTabLayoutId());
 
-        if (AndroidUtil.isNull(viewPager) || AndroidUtil.isNull(tabLayout)) return;
+        if (viewPager == null || tabLayout == null) {
+            return;
+        }
 
-        FragmentAdapter<BaseFragment> fragmentAdapter = resolveFragmentAdapter();
+        SupportFragmentAdapter<BaseFragment> fragmentAdapter = resolveFragmentAdapter();
 
         viewPager.setAdapter(fragmentAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
 
         Color color = getColor();
-        if (color == null) {
+        if (color != null) {
+            //tabLayout.setBackgroundColor(ColorUtil.getColor(getContext(), color.getColorPrimaryId()));
 
+
+            tabLayout.setSelectedTabIndicatorColor(
+                    ColorUtil.getColor(getContext(), color.getColorAccentId())
+            );
+
+            tabLayout.setTabTextColors(
+                    ColorUtil.getColor(getContext(), color.getColorPrimaryId()),
+                    ColorUtil.getColor(getContext(), color.getColorAccentId())
+            );
         }
 
-        //tabLayout.setBackgroundColor(ColorUtil.getColor(getContext(), color.getColorPrimaryId()));
-
-
-        tabLayout.setSelectedTabIndicatorColor(
-                ColorUtil.getColor(getContext(), color.getColorAccentId())
-        );
-
-        tabLayout.setTabTextColors(
-                ColorUtil.getColor(getContext(), color.getColorAccentId()),
-                ColorUtil.getColor(getContext(), color.getColorPrimaryId())
-        );
-
-        // fragmentAdapter.removeAll();
-
-        final FragmentAdapter<BaseFragment> fixedAdapter = fragmentAdapter;
+        final SupportFragmentAdapter<BaseFragment> fixedAdapter = fragmentAdapter;
         final String[] pageTitles = pageTitles();
         final Class[] pageClasses = pageClasses();
 
-        final Runnable pagerRunnable = new Runnable() {
-            @Override
-            public void run() {
-                for (int index = 0; index < pageTitles.length; index++) {
-                    fixedAdapter.addPage(pageTitles[index], pageClasses[index]);
-                }
+        if (keepAllPage()) {
+            viewPager.setOffscreenPageLimit(pageClasses.length);
+        }
+
+        final Runnable pagerRunnable = () -> {
+            for (int index = 0; index < pageClasses.length; index++) {
+                fixedAdapter.addPage(pageTitles[index], pageClasses[index]);
             }
         };
 
@@ -90,36 +93,42 @@ public abstract class BasePagerFragment extends BaseMenuFragment {
     }
 
     @Override
-    public boolean performBackPressed() {
+    public boolean beBackPressed() {
         BaseFragment currentFragment = getCurrentPagerFragment();
-        return currentFragment.performBackPressed();
+        if (currentFragment != null) {
+            return currentFragment.beBackPressed();
+        }
+        return super.beBackPressed();
     }
 
     public BaseFragment getCurrentPagerFragment() {
-        ViewPager viewPager = AndroidUtil.getViewPager(getView(), getViewPagerId());
-        FragmentAdapter<BaseFragment> pagerAdapter = getFragmentAdapter();
-        if (!AndroidUtil.isNull(viewPager) && !AndroidUtil.isNull(pagerAdapter)) {
-            return pagerAdapter.getFragment(viewPager.getCurrentItem()).getCurrentFragment();
+        ViewPager viewPager = ViewUtil.getViewPager(getView(), getViewPagerId());
+        SupportFragmentAdapter pagerAdapter = getFragmentAdapter();
+        if (viewPager != null && pagerAdapter != null) {
+            BaseFragment compat = (BaseFragment) pagerAdapter.getFragment(viewPager.getCurrentItem());
+            if (compat != null) {
+                return compat.getCurrentFragment();
+            }
         }
         return null;
     }
 
-    public <T extends BaseFragment> FragmentAdapter<T> getFragmentAdapter() {
-        ViewPager viewPager = AndroidUtil.getViewPager(getView(), getViewPagerId());
+    public <T extends BaseFragment> SupportFragmentAdapter getFragmentAdapter() {
+        ViewPager viewPager = ViewUtil.getViewPager(getView(), getViewPagerId());
         PagerAdapter pagerAdapter = ViewUtil.getAdapter(viewPager);
 
-        if (!AndroidUtil.isNull(pagerAdapter)) {
-            return (FragmentAdapter<T>) pagerAdapter;
+        if (pagerAdapter != null) {
+            return (SupportFragmentAdapter) pagerAdapter;
         }
 
         return null;
     }
 
-    public <T extends BaseFragment> FragmentAdapter<T> resolveFragmentAdapter() {
-        FragmentAdapter<T> fragmentAdapter = getFragmentAdapter();
+    public <T extends BaseFragment> SupportFragmentAdapter<T> resolveFragmentAdapter() {
+        SupportFragmentAdapter fragmentAdapter = getFragmentAdapter();
 
-        if (AndroidUtil.isNull(fragmentAdapter)) {
-            fragmentAdapter = (FragmentAdapter<T>) FragmentAdapter.newAdapter(getFragmentManager());
+        if (fragmentAdapter == null) {
+            fragmentAdapter = SupportFragmentAdapter.newAdapter(getFragmentManager());
         }
 
         return fragmentAdapter;

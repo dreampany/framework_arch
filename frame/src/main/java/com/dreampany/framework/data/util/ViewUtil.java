@@ -6,28 +6,32 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.IdRes;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.daasuu.cat.CountAnimationTextView;
+import com.dreampany.framework.data.adapter.BaseAdapter;
+import com.dreampany.framework.data.adapter.SmartAdapter;
+import com.dreampany.framework.data.listener.RecyclerClickListener;
+import com.dreampany.framework.data.model.Color;
 import com.facebook.common.util.UriUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.gms.ads.AdView;
-import com.dreampany.framework.data.adapter.BaseAdapter;
-import com.dreampany.framework.data.listener.RecyclerClickListener;
 
 import eu.davidea.flexibleadapter.common.SmoothScrollGridLayoutManager;
 import eu.davidea.flexibleadapter.common.SmoothScrollLinearLayoutManager;
@@ -39,6 +43,22 @@ import mehdi.sakout.fancybuttons.FancyButton;
  */
 public final class ViewUtil {
     private ViewUtil() {
+    }
+
+    public static void setScrimColor(CollapsingToolbarLayout layout, Color color) {
+        layout.setContentScrimColor(ColorUtil.getColor(layout.getContext(), color.getColorPrimaryId()));
+        layout.setStatusBarScrimColor(ColorUtil.getColor(layout.getContext(), color.getColorPrimaryDarkId()));
+    }
+
+    public static void setTint(android.support.v4.app.Fragment parent, int viewId, int colorId) {
+        setTint(getViewById(parent, viewId), colorId);
+    }
+
+    public static void setTint(View view, int colorId) {
+        if (ImageView.class.isInstance(view)) {
+            ImageView target = (ImageView) view;
+            DrawableCompat.setTint(target.getDrawable(), ColorUtil.getColor(view.getContext(), colorId));
+        }
     }
 
     public static View inflate(Context context, int layoutId) {
@@ -113,7 +133,7 @@ public final class ViewUtil {
         setClickListener(getViewById(activity, viewId), clickListener);
     }
 
-    public static void setClickListener(Activity activity, int viewId, View.OnLongClickListener clickListener) {
+    public static void setLongClickListener(Activity activity, int viewId, View.OnLongClickListener clickListener) {
         setClickListener(getViewById(activity, viewId), clickListener);
     }
 
@@ -125,7 +145,7 @@ public final class ViewUtil {
         setClickListener(getViewById(fragment.getView(), viewId), clickListener);
     }
 
-    public static void setClickListener(android.support.v4.app.Fragment fragment, int viewId, View.OnLongClickListener clickListener) {
+    public static void setLongClickListener(android.support.v4.app.Fragment fragment, int viewId, View.OnLongClickListener clickListener) {
         setClickListener(getViewById(fragment.getView(), viewId), clickListener);
     }
 
@@ -159,6 +179,22 @@ public final class ViewUtil {
 
     public static <T extends View> T getViewById(View parentView, int viewId) {
         return (parentView == null || viewId <= 0) ? null : parentView.findViewById(viewId);
+    }
+
+    public static ViewPager getViewPager(View parentView, int viewPagerId) {
+        View viewPager = getViewById(parentView, viewPagerId);
+        if (ViewPager.class.isInstance(viewPager)) {
+            return (ViewPager) viewPager;
+        }
+        return null;
+    }
+
+    public static TabLayout getTabLayout(View parentView, int tabLayoutId) {
+        View tabLayout = getViewById(parentView, tabLayoutId);
+        if (TabLayout.class.isInstance(tabLayout)) {
+            return (TabLayout) tabLayout;
+        }
+        return null;
     }
 
     public static boolean setText(Fragment fragment, int viewId, String text) {
@@ -217,12 +253,10 @@ public final class ViewUtil {
     }
 
     public static boolean setText(View view, String text) {
-
         if (TextView.class.isInstance(view)) {
             ((TextView) view).setText(text);
             return true;
         }
-
         return false;
     }
 
@@ -251,18 +285,32 @@ public final class ViewUtil {
         return setText(view, (int) value);
     }
 
+    public static boolean setText(View view, float value) {
+        return setText(view, String.valueOf(value));
+    }
+
+    public static boolean setText(View view, double value) {
+        return setText(view, String.valueOf(value));
+    }
+
     public static boolean setText(View view, int value) {
         if (CountAnimationTextView.class.isInstance(view)) {
             CountAnimationTextView countView = (CountAnimationTextView) view;
             int sourceValue = Integer.parseInt(countView.getText().toString());
             if (sourceValue != value) {
-                countView.setAnimationDuration(500).countAnimation(sourceValue, value);
+                countView.setAnimationDuration(1000).countAnimation(sourceValue, value);
             }
         } else if (TextView.class.isInstance(view)) {
             ((TextView) view).setText(String.valueOf(value));
             return true;
         }
         return false;
+    }
+
+    public static void setTextSize(View view, int size) {
+        if (TextView.class.isInstance(view)) {
+            ((TextView) view).setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+        }
     }
 
     public static void setError(Activity parent, int viewId, String error) {
@@ -276,6 +324,10 @@ public final class ViewUtil {
 
     public static String getText(Activity parent, int viewId) {
         View view = getViewById(parent, viewId);
+        return getText(view);
+    }
+
+    public static String getText(View view) {
         if (TextView.class.isInstance(view)) {
             TextView textView = (TextView) view;
             return textView.getText().toString().trim();
@@ -285,11 +337,7 @@ public final class ViewUtil {
 
     public static String getText(android.support.v4.app.Fragment parent, int viewId) {
         View view = getViewById(parent, viewId);
-        if (TextView.class.isInstance(view)) {
-            TextView textView = (TextView) view;
-            return textView.getText().toString().trim();
-        }
-        return null;
+        return getText(view);
     }
 
     public static String getSelectedText(View view) {
@@ -332,12 +380,7 @@ public final class ViewUtil {
             };
             AndroidUtil.post(runnable);
         } else if (ImageView.class.isInstance(view)) {
-            Runnable runnable = new Runnable() {
-                @Override
-                public void run() {
-                    ((ImageView) view).setImageResource(resourceId);
-                }
-            };
+            Runnable runnable = () -> ((ImageView) view).setImageResource(resourceId);
             AndroidUtil.post(runnable);
         }
     }
@@ -410,6 +453,10 @@ public final class ViewUtil {
         }
     }
 
+
+    public static void setBackground(final android.support.v4.app.Fragment parent, final int viewId, final int colorId) {
+        setBackground(getViewById(parent, viewId), colorId);
+    }
     public static void setBackground(final View view, final int colorId) {
         if (FloatingActionButton.class.isInstance(view)) {
             Runnable runnable = () -> ((FloatingActionButton) view).setBackgroundTintList(ColorStateList.valueOf(ColorUtil.getColor(view.getContext(), colorId)));
@@ -442,6 +489,10 @@ public final class ViewUtil {
             };
             AndroidUtil.post(runnable);
         }
+    }
+
+    public static void setTextColor(android.support.v4.app.Fragment fragment, int viewId, int colorId) {
+        setTextColor(getViewById(fragment, viewId), colorId);
     }
 
     public static void setTextColor(View parentView, int viewId, int colorId) {
@@ -519,7 +570,7 @@ public final class ViewUtil {
         return getAdapter(fragment.getView(), recyclerId);
     }
 
-    public static <T extends RecyclerView.Adapter> T  getAdapter(android.support.v4.app.Fragment fragment, int recyclerId) {
+    public static <T extends RecyclerView.Adapter> T getAdapter(android.support.v4.app.Fragment fragment, int recyclerId) {
         return getAdapter(fragment.getView(), recyclerId);
     }
 
@@ -536,12 +587,11 @@ public final class ViewUtil {
     }
 
     public static PagerAdapter getAdapter(ViewPager viewPager) {
-        if (!AndroidUtil.isNull(viewPager)) {
+        if (viewPager != null) {
             return viewPager.getAdapter();
         }
         return null;
     }
-
 
 
     public static <T> void initRecyclerView(
@@ -609,5 +659,20 @@ public final class ViewUtil {
 
     public static RecyclerClickListener getRecyclerListener(RecyclerView recyclerView, RecyclerClickListener.OnItemClickListener itemClickListener) {
         return new RecyclerClickListener(recyclerView.getContext(), recyclerView, itemClickListener);
+    }
+
+    public static void setRecycler(RecyclerView recycler, SmartAdapter adapter, RecyclerView.LayoutManager layout, RecyclerView.ItemAnimator animator, RecyclerView.ItemDecoration decoration) {
+        recycler.setAdapter(adapter);
+        recycler.setLayoutManager(layout);
+        recycler.setHasFixedSize(true);
+        adapter.setAnimationOnForwardScrolling(true);
+
+        if (animator != null) {
+            recycler.setItemAnimator(animator);
+        }
+
+        if (decoration != null) {
+            recycler.addItemDecoration(decoration);
+        }
     }
 }

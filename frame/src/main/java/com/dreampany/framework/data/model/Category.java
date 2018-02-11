@@ -1,44 +1,46 @@
-package com.dreampany.framework.data.model;/*
-package com.ringbyte.framekit.data.model;
+package com.dreampany.framework.data.model;
 
-import android.databinding.Bindable;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Index;
 import android.os.Parcel;
+import android.support.annotation.NonNull;
 
-import com.ringbyte.english.BR;
+import com.google.common.base.Objects;
 
-*/
+
 /**
- * Created by nuc on 8/22/2015.
- *//*
+ * Created by air on 3/12/17.
+ */
 
-public class Category extends Base {
+@Entity(indices = {@Index(value = {"category", "type", "subtype"}, unique = true)}, primaryKeys = {"category", "type", "subtype"})
+public class Category extends BaseParcel {
 
-    private String title;
-    private long count;
-    private boolean checked;
+    @NonNull
+    private String category;
+    @NonNull
+    private String type;
+    @NonNull
+    private String subtype;
 
-    public Category(String title) {
-        this.title = title;
+    @Ignore
+    public Category() {
     }
 
-    public Category(String title, boolean checked) {
-        this.title = title;
-        this.checked = checked;
+    public Category(@NonNull String category, @NonNull String type, @NonNull String subtype) {
+        this.category = category;
+        this.type = type;
+        this.subtype = subtype;
     }
 
-    protected Category(Parcel in) {
+    @Ignore
+    private Category(Parcel in) {
         super(in);
-        title = in.readString();
-        count = in.readLong();
-        checked = in.readByte() != 0;
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);
-        dest.writeString(title);
-        dest.writeLong(count);
-        dest.writeByte((byte) (checked ? 1 : 0));
     }
 
     public static final Creator<Category> CREATOR = new Creator<Category>() {
@@ -54,49 +56,47 @@ public class Category extends Base {
     };
 
     @Override
-    public int describeContents() {
-        return 0;
+    public boolean equals(Object inObject) {
+        if (Category.class.isInstance(inObject)) {
+            Category item = (Category) inObject;
+            return category.equals(item.category) && type.equals(item.type) && subtype.equals(item.subtype);
+        }
+        return false;
     }
 
-    public Category setCategory(Category category) {
-        setTitle(category.title);
-        setCount(category.count);
-
-        setChecked(category.checked);
-        return this;
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(category, type, subtype);
     }
 
-    @Bindable
-    public String getTitle() {
-        return this.title;
+    public void setCategory(@NonNull String category) {
+        this.category = category;
     }
 
-    @Bindable
-    public long getCount() {
-        return count;
+    public void setType(@NonNull String type) {
+        this.type = type;
     }
 
-    @Bindable
-    public boolean isChecked() {
-        return checked;
+    public void setSubtype(@NonNull String subtype) {
+        this.subtype = subtype;
     }
 
-    public Category setTitle(String title) {
-        this.title = title;
-        notifyPropertyChanged(BR.title);
-        return this;
+    @NonNull
+    public String getCategory() {
+        return category;
     }
 
-    public Category setCount(long count) {
-        this.count = count;
-        notifyPropertyChanged(BR.count);
-        return this;
+    @NonNull
+    public String getType() {
+        return type;
     }
 
-    public Category setChecked(boolean checked) {
-        this.checked = checked;
-        notifyPropertyChanged(BR.checked);
-        return this;
+    @NonNull
+    public String getSubtype() {
+        return subtype;
+    }
+
+    public String getId() {
+        return String.valueOf(hashCode());
     }
 }
-*/

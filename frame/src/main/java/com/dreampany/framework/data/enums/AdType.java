@@ -6,7 +6,22 @@ import android.os.Parcel;
  * Created by nuc on 4/10/2016.
  */
 public enum AdType implements Type {
-    BANNER;
+    BANNER, INTERSTITIAL, REWARDED;
+
+    @Override
+    public boolean equals(Type type) {
+        return this == type && type instanceof AdType && compareTo((AdType) type) == 0;
+    }
+
+    @Override
+    public int ordinalValue() {
+        return ordinal();
+    }
+
+    @Override
+    public String value() {
+        return name();
+    }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -30,25 +45,14 @@ public enum AdType implements Type {
 
     };
 
-    @Override
-    public boolean equals(Type type) {
-        return this == type && type instanceof AdType && compareTo((AdType) type) == 0;
-    }
-
-    @Override
-    public int ordinalValue() {
-        return ordinal();
-    }
-
-    @Override
-    public String value() {
-        return name();
-    }
-
     public static AdType valueOf(int ordinal) {
         switch (ordinal) {
             case 0:
                 return BANNER;
+            case 1:
+                return INTERSTITIAL;
+            case 2:
+                return REWARDED;
             default:
                 return null;
         }

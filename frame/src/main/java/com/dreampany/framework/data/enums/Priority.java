@@ -9,7 +9,32 @@ import android.os.Parcel;
 
 public enum Priority implements Type {
 
-    LOW, MEDIUM, HIGH;
+    LOW(0), MEDIUM(1), HIGH(2), OMG(3);
+
+    private final int level;
+
+    Priority(int level) {
+        this.level = level;
+    }
+
+    @Override
+    public int ordinalValue() {
+        return ordinal();
+    }
+
+    @Override
+    public boolean equals(Type type) {
+        if (Priority.class.isInstance(type)) {
+            Priority item = (Priority) type;
+            return compareTo(item) == 0;
+        }
+        return false;
+    }
+
+    @Override
+    public String value() {
+        return name();
+    }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -32,17 +57,4 @@ public enum Priority implements Type {
         }
 
     };
-    @Override
-    public int ordinalValue() {
-        return ordinal();
-    }
-    @Override
-    public boolean equals(Type priority) {
-        return this == priority && priority instanceof Priority && compareTo((Priority) priority) == 0;
-    }
-
-    @Override
-    public String value() {
-        return name();
-    }
 }

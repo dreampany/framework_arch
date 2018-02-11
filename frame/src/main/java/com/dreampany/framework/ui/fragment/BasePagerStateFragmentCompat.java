@@ -1,3 +1,4 @@
+/*
 package com.dreampany.framework.ui.fragment;
 
 import android.support.design.widget.TabLayout;
@@ -9,11 +10,14 @@ import com.dreampany.framework.data.adapter.SupportFragmentStateAdapter;
 import com.dreampany.framework.data.model.Color;
 import com.dreampany.framework.data.util.AndroidUtil;
 import com.dreampany.framework.data.util.ColorUtil;
+import com.dreampany.framework.data.util.DataUtil;
 import com.dreampany.framework.data.util.ViewUtil;
 
+*/
 /**
  * Created by nuc on 10/9/2016.
- */
+ *//*
+
 
 public abstract class BasePagerStateFragmentCompat extends BaseMenuFragmentCompat {
 
@@ -29,20 +33,20 @@ public abstract class BasePagerStateFragmentCompat extends BaseMenuFragmentCompa
     }
 
     public int getViewPagerId() {
-        return R.id.viewPager;
+        return R.id.view_pager;
     }
 
     public int getTabLayoutId() {
-        return R.id.tabLayout;
+        return R.id.tab_layout;
     }
 
     @Override
     public void startUi() {
 
-        ViewPager viewPager = AndroidUtil.getViewPager(getView(), getViewPagerId());
-        TabLayout tabLayout = AndroidUtil.getTabLayout(getView(), getTabLayoutId());
+        ViewPager viewPager = ViewUtil.getViewPager(getView(), getViewPagerId());
+        TabLayout tabLayout = ViewUtil.getTabLayout(getView(), getTabLayoutId());
 
-        if (AndroidUtil.isNull(viewPager) || AndroidUtil.isNull(tabLayout)) return;
+        if (viewPager == null || tabLayout == null) return;
 
         SupportFragmentStateAdapter<BaseFragmentCompat> fragmentAdapter = resolveFragmentAdapter();
 
@@ -100,7 +104,7 @@ public abstract class BasePagerStateFragmentCompat extends BaseMenuFragmentCompa
     }
 
     public BaseFragmentCompat getCurrentPagerFragment() {
-        ViewPager viewPager = AndroidUtil.getViewPager(getView(), getViewPagerId());
+        ViewPager viewPager = ViewUtil.getViewPager(getView(), getViewPagerId());
         SupportFragmentStateAdapter pagerAdapter = getFragmentAdapter();
         if (viewPager != null && pagerAdapter != null) {
             BaseFragmentCompat compat = (BaseFragmentCompat) pagerAdapter.getFragment(viewPager.getCurrentItem());
@@ -112,7 +116,7 @@ public abstract class BasePagerStateFragmentCompat extends BaseMenuFragmentCompa
     }
 
     public <T extends BaseFragmentCompat> SupportFragmentStateAdapter getFragmentAdapter() {
-        ViewPager viewPager = AndroidUtil.getViewPager(getView(), getViewPagerId());
+        ViewPager viewPager = ViewUtil.getViewPager(getView(), getViewPagerId());
         PagerAdapter pagerAdapter = ViewUtil.getAdapter(viewPager);
 
         if (pagerAdapter != null) {
@@ -125,10 +129,11 @@ public abstract class BasePagerStateFragmentCompat extends BaseMenuFragmentCompa
     public <T extends BaseFragmentCompat> SupportFragmentStateAdapter resolveFragmentAdapter() {
         SupportFragmentStateAdapter fragmentAdapter = getFragmentAdapter();
 
-        if (AndroidUtil.isNull(fragmentAdapter)) {
+        if (fragmentAdapter == null) {
             fragmentAdapter = SupportFragmentStateAdapter.newAdapter(getFragmentManager());
         }
 
         return fragmentAdapter;
     }
 }
+*/

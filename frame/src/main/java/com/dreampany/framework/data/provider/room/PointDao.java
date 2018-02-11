@@ -33,7 +33,22 @@ public interface PointDao {
     Point get(String id, String type);
 
     @Query("select * from point where type = :type")
-    List<Point> gets(String type);
+    List<Point> getPoints(String type);
+
+    @Query("select sum(points) from point")
+    int getPoints();
+
+    @Query("select sum(points) from point where points < 0")
+    int getUsedPoints();
+
+    @Query("select sum(points) from point where type = :type and subtype = :subtype and points < 0")
+    int getUsedPoints(String type, String subtype);
+
+    @Query("select sum(points) from point where points > 0")
+    int getEarnedPoints();
+
+    @Query("select sum(points) from point where type = :type and subtype = :subtype and points > 0")
+    int getEarnedPoints(String type, String subtype);
 
     @Update
     void update(Point point);

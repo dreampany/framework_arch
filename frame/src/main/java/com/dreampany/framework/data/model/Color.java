@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Created by nuc on 1/24/2016.
  */
-public class Color extends Base {
+public class Color extends BaseParcel {
 
     private int colorPrimaryId;
     private int colorPrimaryDarkId;
@@ -26,7 +26,7 @@ public class Color extends Base {
         super.writeToParcel(dest, flags);
     }
 
-    public static final Parcelable.Creator<Color> CREATOR = new Parcelable.Creator<Color>() {
+    public static final Creator<Color> CREATOR = new Creator<Color>() {
         @Override
         public Color createFromParcel(Parcel in) {
             return new Color(in);

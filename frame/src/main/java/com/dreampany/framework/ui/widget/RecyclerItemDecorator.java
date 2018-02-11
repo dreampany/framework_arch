@@ -21,21 +21,18 @@ public class RecyclerItemDecorator extends RecyclerView.ItemDecoration {
 
 
     public RecyclerItemDecorator(Context context) {
-        final TypedArray a = context
-                .obtainStyledAttributes(null, new int[]{android.R.attr.listDivider});
+        final TypedArray a = context.obtainStyledAttributes(null, new int[]{android.R.attr.listDivider});
         mDivider = a.getDrawable(0);
         a.recycle();
     }
 
     public RecyclerItemDecorator(Context context, AttributeSet attrs) {
-        final TypedArray a = context
-                .obtainStyledAttributes(attrs, new int[]{android.R.attr.listDivider});
+        final TypedArray a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.listDivider});
         mDivider = a.getDrawable(0);
         a.recycle();
     }
 
-    public RecyclerItemDecorator(Context context, AttributeSet attrs, boolean showFirstDivider,
-                                 boolean showLastDivider) {
+    public RecyclerItemDecorator(Context context, AttributeSet attrs, boolean showFirstDivider, boolean showLastDivider) {
         this(context, attrs);
         mShowFirstDivider = showFirstDivider;
         mShowLastDivider = showLastDivider;

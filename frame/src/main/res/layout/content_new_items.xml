@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:auto="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="${relativePackage}.${activityClass}">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        auto:cardBackgroundColor="@color/colorAccent"
+        auto:cardCornerRadius="25dp"
+        auto:cardElevation="10dp">
+
+        <RelativeLayout
+            android:id="@+id/layoutNewItems"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingEnd="18dp"
+            android:paddingStart="18dp"
+            android:paddingTop="10dp">
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/buttonNewItems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="New Items"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                auto:smart_font="@string/fontRobotoSlabTitle" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</layout>

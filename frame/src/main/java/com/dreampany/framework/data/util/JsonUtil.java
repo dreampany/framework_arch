@@ -13,7 +13,8 @@ import java.util.List;
  */
 
 public final class JsonUtil {
-    private JsonUtil() {}
+    private JsonUtil() {
+    }
 
     public static JsonObject getJsonObject(String json) {
         JsonParser parser = new JsonParser();
@@ -21,15 +22,73 @@ public final class JsonUtil {
     }
 
     public static String getString(JsonObject json, String key, String defaultValue) {
-        return json.has(key) ? json.get(key).getAsString() : defaultValue;
+        if (json.has(key)) {
+            JsonElement value = json.get(key);
+            if (!value.isJsonNull()) {
+                return value.getAsString();
+            }
+        }
+        return defaultValue;
+    }
+
+    public static int getInt(JsonObject json, String key, int defaultValue) {
+        if (json.has(key)) {
+            JsonElement value = json.get(key);
+            if (!value.isJsonNull()) {
+                return value.getAsInt();
+            }
+        }
+        return defaultValue;
     }
 
     public static long getLong(JsonObject json, String key, long defaultValue) {
-        return json.has(key) ? json.get(key).getAsLong() : defaultValue;
+        if (json.has(key)) {
+            JsonElement value = json.get(key);
+            if (!value.isJsonNull()) {
+                return value.getAsLong();
+            }
+        }
+        return defaultValue;
+    }
+
+    public static float getFloat(JsonObject json, String key, float defaultValue) {
+        if (json.has(key)) {
+            JsonElement value = json.get(key);
+            if (!value.isJsonNull()) {
+                return value.getAsFloat();
+            }
+        }
+        return defaultValue;
+    }
+
+    public static double getDouble(JsonObject json, String key, double defaultValue) {
+        if (json.has(key)) {
+            JsonElement value = json.get(key);
+            if (!value.isJsonNull()) {
+                return value.getAsDouble();
+            }
+        }
+        return defaultValue;
+    }
+
+    public static JsonObject getObject(JsonObject json, String key, JsonObject defaultValue) {
+        if (json.has(key)) {
+            JsonElement value = json.get(key);
+            if (!value.isJsonNull()) {
+                return value.getAsJsonObject();
+            }
+        }
+        return defaultValue;
     }
 
     public static JsonArray getArray(JsonObject json, String key, JsonArray defaultValue) {
-        return json.has(key) ? json.get(key).getAsJsonArray() : defaultValue;
+        if (json.has(key)) {
+            JsonElement value = json.get(key);
+            if (!value.isJsonNull()) {
+                return value.getAsJsonArray();
+            }
+        }
+        return defaultValue;
     }
 
     public static List<String> getStringList(JsonObject json, String key, List<String> defaultValue) {
@@ -39,8 +98,12 @@ public final class JsonUtil {
         }
         List<String> items = new ArrayList<>(array.size());
         for (JsonElement element : array) {
-            items.add(element.getAsString());
+            if (!element.isJsonNull()) {
+                items.add(element.getAsString());
+            }
         }
         return items;
     }
+
+
 }

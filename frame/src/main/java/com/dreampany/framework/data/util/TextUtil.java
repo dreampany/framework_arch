@@ -5,6 +5,7 @@ import android.text.Html;
 import android.text.Spanned;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -175,6 +176,10 @@ public final class TextUtil {
 
     public static String[] getStringArray(Context context, int arrayId) {
         return context.getResources().getStringArray(arrayId);
+    }
+
+    public static List<String> getStringList(Context context, int arrayId) {
+        return Arrays.asList(context.getResources().getStringArray(arrayId));
     }
 
     public static String toString(int value) {

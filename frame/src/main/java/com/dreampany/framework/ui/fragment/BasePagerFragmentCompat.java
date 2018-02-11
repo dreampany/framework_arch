@@ -1,3 +1,4 @@
+/*
 package com.dreampany.framework.ui.fragment;
 
 import android.support.design.widget.TabLayout;
@@ -11,9 +12,11 @@ import com.dreampany.framework.data.util.AndroidUtil;
 import com.dreampany.framework.data.util.ColorUtil;
 import com.dreampany.framework.data.util.ViewUtil;
 
+*/
 /**
  * Created by nuc on 10/9/2016.
- */
+ *//*
+
 
 public abstract class BasePagerFragmentCompat extends BaseMenuFragmentCompat {
 
@@ -132,3 +135,4 @@ public abstract class BasePagerFragmentCompat extends BaseMenuFragmentCompat {
         return fragmentAdapter;
     }
 }
+*/

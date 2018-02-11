@@ -1,20 +1,22 @@
 package com.dreampany.framework.data.manager;
 
-import android.arch.persistence.room.Room;
 import android.content.Context;
 
-import com.dreampany.framework.data.enums.Type;
 import com.dreampany.framework.data.model.Flag;
+import com.dreampany.framework.data.model.History;
 import com.dreampany.framework.data.model.Point;
+import com.dreampany.framework.data.model.Translate;
+import com.dreampany.framework.data.provider.room.CategoryDao;
 import com.dreampany.framework.data.provider.room.FlagDao;
 import com.dreampany.framework.data.provider.room.FrameDatabase;
 import com.dreampany.framework.data.provider.room.HistoryDao;
+import com.dreampany.framework.data.provider.room.PointDao;
 import com.dreampany.framework.data.provider.room.StateDao;
-import com.dreampany.framework.data.provider.sqlite.FrameSQLite;
+import com.dreampany.framework.data.provider.room.TranslateDao;
 import com.dreampany.framework.data.util.DataUtil;
-import com.dreampany.framework.data.util.TextUtil;
 import com.dreampany.framework.data.util.TimeUtil;
 
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -30,8 +32,11 @@ public final class FrameManager {
     private Executor executor;
 
     private FrameManager(Context context) {
+        if (context == null) {
+            throw new NullPointerException();
+        }
         this.context = context.getApplicationContext();
-        database = Room.databaseBuilder(this.context, FrameDatabase.class, FrameDatabase.DATABASE).build();
+        database = FrameDatabase.onInstance(context);
         executor = Executors.newCachedThreadPool();
     }
 
@@ -42,6 +47,10 @@ public final class FrameManager {
         return instance;
     }
 
+    public PointDao pointDao() {
+        return database.pointDao();
+    }
+
     public StateDao stateDao() {
         return database.stateDao();
     }
@@ -50,12 +59,20 @@ public final class FrameManager {
         return database.flagDao();
     }
 
+    public TranslateDao translateDao() {
+        return database.translateDao();
+    }
+
     public HistoryDao historyDao() {
         return database.historyDao();
     }
 
-    public boolean isFlagged(String id, String type) {
-        return database.flagDao().count(id, type) > 0;
+    public CategoryDao categoryDao() {
+        return database.categoryDao();
+    }
+
+    public boolean hasFlag(String id, String type, String subtype) {
+        return database.flagDao().count(id, type, subtype) > 0;
     }
 
     public void insertFlag(Flag flag) {
@@ -66,26 +83,50 @@ public final class FrameManager {
         database.flagDao().delete(flag);
     }
 
-    public String getTranslation(String source, String target, String text) {
-        text = text.toLowerCase();
-        String result = database.translateDao().getTargetText(source, target, text);
-        if (DataUtil.isEmpty(result)) {
-            result = database.translateDao().getSourceText(target, source, text);
-        }
-        return result;
+    public Translate getTranslate(String source, String target, String sourceText) {
+
+/*        Translate translate = database.translateDao().getTarget(source, target, sourceText);
+        if (translate == null) {
+            translate = database.translateDao().getSource(source, target, sourceText);
+        }*/
+        return database.translateDao().getTarget(source, target, sourceText);
     }
 
-    public void trackPoints(String id, String type, long points, String comment) {
+    public void trackPoints(String id, String type, String subtype, int points, String comment) {
         executor.execute(() -> {
             Point point = new Point();
             point.setId(id);
             point.setType(type);
+            point.setSubtype(subtype);
             point.setPoints(points);
             point.setComment(comment);
             point.setTime(TimeUtil.currentTime());
             database.pointDao().insert(point);
         });
     }
+
+    public void produceHistory(String type) {
+        executor.execute(() -> {
+            List<History> items = database.historyDao().getItems(type);
+            if (!DataUtil.isEmpty(items)) {
+                EventManager.post(items);
+            }
+        });
+    }
+
+    public void insertHistory(History history) {
+        executor.execute(() -> {
+            database.historyDao().insert(history);
+        });
+    }
+
+
+/*    public void storeLanguage(int codeArray, int nameArray) {
+        String[] codes = TextUtil.getStringArray(context, codeArray);
+        String[] names = TextUtil.getStringArray(context, nameArray);
+
+
+    }*/
 
 /*    public long getAvailablePoints(Context context) {
         long totalPoints = FrameSQLite.onInstance(context).getPoints();

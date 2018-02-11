@@ -33,8 +33,8 @@ public abstract class BaseNavigationActivity extends BaseMenuActivity implements
     }
 
     @Override
-    protected void startUi() {
-        super.startUi();
+    protected void startUi(Bundle state) {
+        super.startUi(state);
         initDrawer();
     }
 

@@ -2,14 +2,27 @@ package com.dreampany.framework.data.enums;
 
 import android.os.Parcel;
 
-
-/**
- * Created by nuc on 12/3/2016.
- */
-
 public enum TaskType implements Type {
+    PRODUCE, RESOLVE, PUBLISH, DISCOVER;
 
-    READ, WRITE, SYNC, SEARCH, UI;
+    @Override
+    public boolean equals(Type type) {
+        if (TaskType.class.isInstance(type)) {
+            TaskType item = (TaskType) type;
+            return compareTo(item) == 0;
+        }
+        return false;
+    }
+
+    @Override
+    public int ordinalValue() {
+        return ordinal();
+    }
+
+    @Override
+    public String value() {
+        return name();
+    }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -24,7 +37,7 @@ public enum TaskType implements Type {
     public static final Creator<TaskType> CREATOR = new Creator<TaskType>() {
 
         public TaskType createFromParcel(Parcel in) {
-            return TaskType.values()[in.readInt()];
+            return TaskType.valueOf(in.readInt());
         }
 
         public TaskType[] newArray(int size) {
@@ -33,18 +46,18 @@ public enum TaskType implements Type {
 
     };
 
-    @Override
-    public boolean equals(Type type) {
-        return this == type && type instanceof TaskType && compareTo((TaskType) type) == 0;
-    }
-
-    @Override
-    public int ordinalValue() {
-        return ordinal();
-    }
-
-    @Override
-    public String value() {
-        return name();
+    public static TaskType valueOf(int ordinal) {
+        switch (ordinal) {
+            case 0:
+                return PRODUCE;
+            case 1:
+                return RESOLVE;
+            case 2:
+                return PRODUCE;
+            case 3:
+                return DISCOVER;
+            default:
+                return null;
+        }
     }
 }

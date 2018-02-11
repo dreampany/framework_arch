@@ -4,6 +4,10 @@
 
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+
+<!--        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>-->
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
 
         <!-- Transitions settings -->

@@ -1,3 +1,4 @@
+/*
 package com.dreampany.framework.ui.fragment;
 
 import android.app.Activity;
@@ -43,9 +44,11 @@ import java.util.List;
 
 import eu.davidea.flipview.FlipView;
 
+*/
 /**
  * Created by nuc on 3/12/2016.
- */
+ *//*
+
 public abstract class BaseFragmentCompat extends PreferenceFragmentCompat implements UiCallback, View.OnClickListener, View.OnLongClickListener, CompoundButton.OnCheckedChangeListener, TabLayout.OnTabSelectedListener, RecyclerClickListener.OnItemClickListener, RecyclerClickListener.OnItemChildClickListener, PermissionListener, MultiplePermissionsListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private final int defaultLayoutId = 0;
@@ -390,12 +393,15 @@ public abstract class BaseFragmentCompat extends PreferenceFragmentCompat implem
 
     public void showFragment() {
         View view = getView();
+*/
 /*        if (view != null && !ViewUtil.isVisible(view)) {
             view.setVisibility(View.VISIBLE);
-        }*/
+        }*//*
+
     }
 
     public void initSwipeRefreshLayout(SwipeRefreshLayout.OnRefreshListener refreshListener) {
+*/
 /*        SwipeRefreshLayout swipeRefreshLayout = getSwipeRefreshLayout();
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.setColorSchemeResources(
@@ -405,10 +411,12 @@ public abstract class BaseFragmentCompat extends PreferenceFragmentCompat implem
                     android.R.color.holo_red_light);
 
             swipeRefreshLayout.setOnRefreshListener(refreshListener);
-        }*/
+        }*//*
+
     }
 
     public void startSwipeRefresh() {
+*/
 /*        final SwipeRefreshLayout swipeRefreshLayout = getSwipeRefreshLayout();
         if (swipeRefreshLayout != null) {
             Runnable startRunnable = new Runnable() {
@@ -418,10 +426,12 @@ public abstract class BaseFragmentCompat extends PreferenceFragmentCompat implem
                 }
             };
             swipeRefreshLayout.post(startRunnable);
-        }*/
+        }*//*
+
     }
 
     public void stopSwipeRefresh() {
+*/
 /*        final SwipeRefreshLayout swipeRefreshLayout = getSwipeRefreshLayout();
         if (swipeRefreshLayout != null) {
 
@@ -433,11 +443,13 @@ public abstract class BaseFragmentCompat extends PreferenceFragmentCompat implem
             };
 
             swipeRefreshLayout.post(stopRunnable);
-        }*/
+        }*//*
+
     }
 
     public void initFabButton(View.OnClickListener clickListener) {
-        /*FloatingActionButton fab = getFabButton();
+        */
+/*FloatingActionButton fab = getFabButton();
         if (fab != null) {
             fab.setOnClickListener(clickListener);
 
@@ -446,7 +458,8 @@ public abstract class BaseFragmentCompat extends PreferenceFragmentCompat implem
                 fab.setBackgroundTintList(ColorStateList.valueOf(ColorUtil.getColor(getContext(), color.getColorPrimaryId())));
                 fab.setRippleColor(ColorUtil.getColor(getContext(), color.getColorPrimaryDarkId()));
             }
-        }*/
+        }*//*
+
     }
 
     protected void showProgressDialog(String message) {
@@ -492,3 +505,4 @@ public abstract class BaseFragmentCompat extends PreferenceFragmentCompat implem
         return true;
     }
 }
+*/

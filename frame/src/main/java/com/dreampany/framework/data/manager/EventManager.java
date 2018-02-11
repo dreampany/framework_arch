@@ -1,11 +1,12 @@
 package com.dreampany.framework.data.manager;
 
-import com.dreampany.framework.data.model.Event;
+import com.dreampany.framework.data.event.Event;
+import com.dreampany.framework.data.model.Task;
 import com.dreampany.framework.data.structure.SmartQueue;
 
 import org.greenrobot.eventbus.EventBus;
 
-public abstract class EventManager extends Manager {
+public abstract class EventManager<T extends Task> extends Manager<T> {
 
     protected SmartQueue<Event> queue;
 
@@ -14,11 +15,7 @@ public abstract class EventManager extends Manager {
     }
 
     public void putEvent(Event event) {
-        if (event.isPriority()) {
-            queue.insertFirstUniquely(event);
-        } else {
-            queue.insertLastUniquely(event);
-        }
+        queue.insertLastUniquely(event);
         start();
     }
 

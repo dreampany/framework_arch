@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.arlib.floatingsearchview.FloatingSearchView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:auto="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/floating_search_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    auto:floatingSearch_close_search_on_keyboard_dismiss="false"
+    auto:floatingSearch_dimBackground="false"
+    auto:floatingSearch_dismissOnOutsideTouch="true"
+    auto:floatingSearch_leftActionMode="showHamburger"
+    auto:floatingSearch_searchHint="Search..."
+    auto:floatingSearch_showSearchKey="true"
+    auto:floatingSearch_suggestionsListAnimDuration="250" />

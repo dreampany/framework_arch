@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="company">Dreampany</string>
+
+    <string name="email">dreampanymail@gmail.com</string>
+    <string name="website">http://dreampany.com/</string>
+    <string name="id_github">dreampany</string>
+
+    <string name="title_email">Contact us</string>
+    <string name="title_website">Visit our website</string>
+    <string name="title_github">Fork us on Github</string>
+    <string name="title_play_store">Rate us on the Play Store</string>
+
+</resources>

@@ -1,5 +1,6 @@
 package com.dreampany.framework.ui.activity;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
@@ -13,8 +14,8 @@ public abstract class BaseBottomNavigationActivity extends BaseMenuActivity impl
     protected int currentNavId;
 
     @Override
-    protected void startUi() {
-        super.startUi();
+    protected void startUi(Bundle state) {
+        super.startUi(state);
 
         final BottomNavigationView bottomNavigationView = getBottomNavigationView();
         if (bottomNavigationView != null) {
@@ -33,12 +34,12 @@ public abstract class BaseBottomNavigationActivity extends BaseMenuActivity impl
         return false;
     }
 
-    protected int getBottomNavigationViewId() {
+    protected int getNavigationViewId() {
         return 0;
     }
 
     protected BottomNavigationView getBottomNavigationView() {
-        return (BottomNavigationView) findViewById(getBottomNavigationViewId());
+        return (BottomNavigationView) findViewById(getNavigationViewId());
     }
 
     protected void onNavigationItem(int navItemId) {

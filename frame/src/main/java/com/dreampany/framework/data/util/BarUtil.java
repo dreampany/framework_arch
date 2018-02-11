@@ -83,12 +83,14 @@ public class BarUtil {
     public static void showToolbar(Toolbar toolbar) {
         if (toolbar != null) {
             toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator()).start();
+            toolbar.setVisibility(View.VISIBLE);
         }
     }
 
     public static void hideToolbar(Toolbar toolbar) {
         if (toolbar != null) {
             toolbar.animate().translationY(-toolbar.getBottom()).setInterpolator(new AccelerateInterpolator()).start();
+            toolbar.setVisibility(View.GONE);
         }
     }
 }

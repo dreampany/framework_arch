@@ -2,7 +2,13 @@ package com.dreampany.framework.data.provider.pref;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+
+import com.dreampany.framework.data.util.AndroidUtil;
+import com.github.pwittchen.prefser.library.rx2.Prefser;
+import com.github.pwittchen.prefser.library.rx2.TypeToken;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by nuc on 1/12/2017.
@@ -10,103 +16,58 @@ import android.preference.PreferenceManager;
 
 public abstract class BasePref {
 
-    protected int getMode() {
-        return Context.MODE_PRIVATE;
-    }
-
-    protected String getPrefName() {
-        return context.getPackageName();
-    }
-
-    protected void release() {
-        context = null;
-        publicPref = null;
-        privatePref = null;
-    }
-
-    protected Context context;
-    private SharedPreferences publicPref;
-    private SharedPreferences privatePref;
+    protected Prefser publicPref;
+    protected Prefser privatePref;
 
     protected BasePref(Context context) {
-        this.context = context.getApplicationContext();
-        publicPref = PreferenceManager.getDefaultSharedPreferences(context);
-        privatePref = this.context.getSharedPreferences(getPrefName(), getMode());
+        if (context == null) {
+            throw new NullPointerException();
+        }
+
+        publicPref = new Prefser(context.getApplicationContext());
+        String prefName = AndroidUtil.getApplicationId(context.getApplicationContext());
+        SharedPreferences pref = context.getApplicationContext().getSharedPreferences(prefName, Context.MODE_PRIVATE);
+        privatePref = new Prefser(pref);
     }
 
-    public void setPublicValue(String key, String value) {
-        SharedPreferences.Editor editor = publicPref.edit();
-        editor.putString(key, value);
-        editor.apply();
+    public <T> void setListItem(String key, T item) {
+        TypeToken<List<T>> typeToken = new TypeToken<List<T>>() {
+        };
+        List<T> inputs = new ArrayList<>();
+        inputs.add(item);
+        List<T> items = privatePref.get(key, typeToken, inputs);
+        if (!items.contains(item)) {
+            items.add(item);
+        }
+        privatePref.put(key, items, typeToken);
     }
 
-    public void setPublicValue(String key, boolean value) {
-        SharedPreferences.Editor editor = publicPref.edit();
-        editor.putBoolean(key, value);
-        editor.apply();
+    public <T> void setListItems(String key, List<T> items) {
+        TypeToken<List<T>> typeToken = new TypeToken<List<T>>() {
+        };
+        privatePref.put(key, items, typeToken);
     }
 
-    public void setPrivateValue(String key, String value) {
-        SharedPreferences.Editor editor = privatePref.edit();
-        editor.putString(key, value);
-        editor.apply();
+    public <T> List<T> getListItems(String key) {
+        TypeToken<List<T>> typeToken = new TypeToken<List<T>>() {
+        };
+        List<T> inputs = new ArrayList<>();
+        return privatePref.get(key, typeToken, inputs);
     }
 
-    public void setPrivateValue(String key, int value) {
-        SharedPreferences.Editor editor = privatePref.edit();
-        editor.putInt(key, value);
-        editor.apply();
+    public void setValue(String key, long value) {
+        privatePref.put(key, value);
     }
 
-    public void setPrivateValue(String key, long value) {
-        SharedPreferences.Editor editor = privatePref.edit();
-        editor.putLong(key, value);
-        editor.apply();
+    public void putString(String key, String value) {
+        privatePref.put(key, value);
     }
 
-    public void setPrivateValue(String key, boolean value) {
-        SharedPreferences.Editor editor = privatePref.edit();
-        editor.putBoolean(key, value);
-        editor.apply();
+    public String getString(String key) {
+        return privatePref.get(key, String.class, null);
     }
 
-    public String getPublicString(String key, String defaultValue) {
-        return publicPref.getString(key, defaultValue);
-    }
-
-    public String getPrivateString(String key, String defaultValue) {
-        return privatePref.getString(key, defaultValue);
-    }
-
-    public int getPrivateInt(String key, int defaultValue) {
-        return privatePref.getInt(key, defaultValue);
-    }
-
-    public long getPrivateLong(String key, long defaultValue) {
-        return privatePref.getLong(key, defaultValue);
-    }
-
-    public boolean getPrivateBoolean(String key, boolean defaultValue) {
-        return privatePref.getBoolean(key, defaultValue);
-    }
-
-    public boolean getPublicBoolean(String key, boolean defaultValue) {
-        return publicPref.getBoolean(key, defaultValue);
-    }
-
-    public void removePublic(String key) {
-        publicPref.edit().remove(key).apply();
-    }
-
-    public void removePrivate(String key) {
-        privatePref.edit().remove(key).apply();
-    }
-
-    public boolean hasPublic(String key) {
-        return publicPref.contains(key);
-    }
-
-    public boolean hasPrivate(String key) {
-        return privatePref.contains(key);
+    public long getLong(String key, long defaultValue) {
+        return privatePref.get(key, Long.class, defaultValue);
     }
 }

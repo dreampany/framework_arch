@@ -13,6 +13,10 @@
     <color name="colorPrimaryDark">@color/colorTeal700</color>
     <color name="colorAccent">@color/colorGreen900</color>-->
 
+    <color name="colorBlackPrimary">#a4a4a4</color>
+    <color name="colorBlackPrimaryDark">#6c6c6c</color>
+    <color name="colorBlackAccent">#ff333333</color>
+
 
     <!-- Light Theme -->
     <color name="colorPrimary_light">#673ab7</color><!-- Deep Purple 500 -->
@@ -28,21 +32,24 @@
     <color name="colorRedDark">#aa0707</color>
 
 
-    <color name="colorWhite">#ffffff</color>
-    <color name="colorWhite1">#fafafa</color>
-    <color name="colorWhite2">#f4f4f4</color>
-    <color name="colorLightWhite">#e9e6e6</color>
-    <color name="colorLightWhite1">#f7f6f6</color>
-    <color name="colorLightDark">#ececec</color>
-    <color name="colorLightDark1">#bab7b7</color>
+    <color name="colorWhite">#ffffffff</color>
+    <color name="colorWhite1">#fffafafa</color>
+    <color name="colorWhite2">#fff4f4f4</color>
+    <color name="colorWhite3">#ffeaeaea</color>
+    <color name="colorWhite4">#ffe1e1e1</color>
+    <color name="colorLightWhite">#ffe9e6e6</color>
+    <color name="colorLightWhite1">#fff7f6f6</color>
+    <color name="colorLightDark">#ffececec</color>
+    <color name="colorLightDark1">#ffbab7b7</color>
 
-    <color name="colorBlack">#000000</color>
-    <color name="colorBlack1">#232323</color>
-    <color name="colorBlack2">#5b5b5b</color>
-    <color name="colorBlack3">#dedede</color>
-    <color name="colorBlack4">#eaeaea</color>
+    <color name="colorBlack">#ff000000</color>
+    <color name="colorBlack1">#ff232323</color>
+    <color name="colorBlack2">#ff5b5b5b</color>
+    <color name="colorBlack3">#ffbcbcbc</color>
+    <color name="colorBlack4">#ffeaeaea</color>
+    <color name="colorBlack5">#f4f4f4</color>
 
-    <color name="colorDarkGray">#696666</color>
+    <color name="colorDarkGray">#ff696666</color>
 
 
     <!--android color-palette-->
@@ -98,7 +105,7 @@
     <color name="colorYellow800">#fff9a825</color>
     <color name="colorYellow900">#fff57f17</color>
 
-    <color name="colorAmber600">#ffb300</color>
+    <color name="colorAmber600">#ffffb300</color>
     <color name="colorAmber800">#ffff8f00</color>
     <color name="colorAmber900">#ffff6f00</color>
 

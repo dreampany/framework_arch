@@ -4,6 +4,8 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.support.annotation.NonNull;
 
+import com.google.common.base.Objects;
+
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -34,7 +36,7 @@ public class History extends BaseSerial {
 
     @Override
     public int hashCode() {
-        return type.hashCode() ^ value.hashCode();
+        return Objects.hashCode(type, value);
     }
 
     public void setType(@NotNull String type) {

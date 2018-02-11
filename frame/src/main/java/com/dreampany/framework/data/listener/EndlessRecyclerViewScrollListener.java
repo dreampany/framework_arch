@@ -76,7 +76,7 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
         int totalItemCount = layoutManager.getItemCount();
 
         // If the total item count is zero and the previous isn't, assume the
-        // list is invalidated and should be reset performBackPressed to initial state
+        // list is invalidated and should be reset beBackPressed to initial state
         if (totalItemCount < previousTotalItemCount) {
             currentPage = startingPageIndex;
             previousTotalItemCount = totalItemCount;

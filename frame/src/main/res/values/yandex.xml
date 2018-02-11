@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_yandex_translation">Powered by Yandex.Translate</string>
+    <string name="url_yandex_translation">http://translate.yandex.com/</string>
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:auto="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="${relativePackage}.${activityClass}">
+
+    <net.cachapa.expandablelayout.ExpandableLayout
+        android:id="@+id/layoutStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorRed500"
+        auto:el_duration="500"
+        auto:el_expanded="false"
+        auto:el_parallax="0.5">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/viewStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="No internet"
+                android:textColor="@color/colorWhite1"
+                android:textSize="18sp"
+                auto:smart_font="@string/fontRobotoSlabBody" />
+
+        </RelativeLayout>
+
+    </net.cachapa.expandablelayout.ExpandableLayout>
+
+</layout>

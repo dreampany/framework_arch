@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string translatable="false" name="fontLatoTitle">fonts/Lato-Bold.ttf</string>
+    <string translatable="false" name="fontLatoBody">fonts/Lato-Regular.ttf</string>
+
+    <string translatable="false" name="fontRobotoSlabTitle">fonts/RobotoSlab-Bold.ttf</string>
+    <string translatable="false" name="fontRobotoSlabBody">fonts/RobotoSlab-Regular.ttf</string>
+
+</resources>

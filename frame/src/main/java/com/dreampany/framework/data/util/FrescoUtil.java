@@ -3,10 +3,13 @@ package com.dreampany.framework.data.util;
 import android.net.Uri;
 
 import com.facebook.common.util.UriUtil;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
 public class FrescoUtil {
-
 
     public static void loadResource(SimpleDraweeView view, int resourceId) {
         Uri uri = new Uri.Builder()
@@ -14,6 +17,31 @@ public class FrescoUtil {
                 .path(String.valueOf(resourceId))
                 .build();
         view.setImageURI(uri);
+    }
+
+    public static void loadImage(SimpleDraweeView view, String imageUri, int size) {
+        loadImage(view, imageUri, size, size);
+    }
+
+    public static void loadImage(SimpleDraweeView view, String imageUri, int width, int height) {
+        if (imageUri == null) {
+            return;
+        }
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(imageUri))
+                .setResizeOptions(new ResizeOptions(width, height))
+                .build();
+        view.setController(
+                Fresco.newDraweeControllerBuilder()
+                        .setOldController(view.getController())
+                        .setImageRequest(request)
+                        .build());
+    }
+
+    public static void loadImage(SimpleDraweeView view, String imageUri) {
+        if (imageUri == null) {
+            return;
+        }
+        view.setImageURI(imageUri);
     }
 
    /* public static final File CACHE_DIR = BaseApp.getContext().getExternalCacheDir();
@@ -25,7 +53,7 @@ public class FrescoUtil {
         if (!picDir.exists()) {
             picDir.mkdir();
         }
-        CacheKey cacheKey = DefaultCacheKeyFactory.getInstance().getEncodedCacheKey(ImageRequest.fromUri(picUrl),context);
+        CacheKey cacheKey = DefaultCacheKeyFactory.getContext().getEncodedCacheKey(ImageRequest.fromUri(picUrl),context);
         File cacheFile = getCacheImageOnDisk(cacheKey);
         if (cacheFile == null) {
             downloadImage(Uri.parse(picUrl), fileName, context);
@@ -40,11 +68,11 @@ public class FrescoUtil {
         Logger.d(IMAGE_CACHE_DIR);
         File localFile = null;
         if (cacheKey != null) {
-            if (ImagePipelineFactory.getInstance().getMainFileCache().hasKey(cacheKey)) {
-                BinaryResource resource = ImagePipelineFactory.getInstance().getMainFileCache().getResource(cacheKey);
+            if (ImagePipelineFactory.getContext().getMainFileCache().hasKey(cacheKey)) {
+                BinaryResource resource = ImagePipelineFactory.getContext().getMainFileCache().getResource(cacheKey);
                 localFile = ((FileBinaryResource) resource).getFile();
-            } else if (ImagePipelineFactory.getInstance().getSmallImageFileCache().hasKey(cacheKey)) {
-                BinaryResource resource = ImagePipelineFactory.getInstance().getSmallImageFileCache().getResource(cacheKey);
+            } else if (ImagePipelineFactory.getContext().getSmallImageFileCache().hasKey(cacheKey)) {
+                BinaryResource resource = ImagePipelineFactory.getContext().getSmallImageFileCache().getResource(cacheKey);
                 localFile = ((FileBinaryResource) resource).getFile();
             }
         }
@@ -120,7 +148,7 @@ public class FrescoUtil {
             protected void onFailureImpl(DataSource<CloseableReference<CloseableImage>> dataSource) {
 
             }
-        }, CallerThreadExecutor.getInstance());
+        }, CallerThreadExecutor.getContext());
     }*/
 
 

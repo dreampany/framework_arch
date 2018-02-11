@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="yandex_language_names">
+        <item>Default</item>
+        <item>Arabic</item>
+        <item>Azerbaijan</item>
+        <item>Bengali</item>
+        <item>Chinese</item>
+        <item>English</item>
+        <item>Hindi</item>
+        <item>German</item>
+        <item>Persian</item>
+        <item>Russian</item>
+        <item>Vietnamese</item>
+        <item>French</item>
+        <item>Spanish</item>
+        <item>Turkish</item>
+    </string-array>
+
+    <string-array name="yandex_language_codes">
+        <item>default</item>
+        <item>ar</item>
+        <item>az</item>
+        <item>bn</item>
+        <item>zh</item>
+        <item>en</item>
+        <item>hi</item>
+        <item>de</item>
+        <item>fa</item>
+        <item>ru</item>
+        <item>vi</item>
+        <item>fr</item>
+        <item>es</item>
+        <item>tr</item>
+    </string-array>
+
+    <!--
+        SQ sq", "Albanian");
+        AM am", "Amharic");
+        HY hy", "Armenian");
+        AF af", "Afrikaans");
+        EU eu", "Basque");
+        BA ba", "Bashkir");
+        BE be", "Belarusian");
+        MY my", "Burmese");
+        BG bg", "Bulgarian");
+        BS bs", "Bosnian");
+        CY cy", "Welsh");
+        HU hu", "Hungarian");
+        HT ht", "Haitian (Creole)");
+        GL gl", "Galician");
+        NL nl", "Dutch");
+        MRJ mrj", "Hill Mari");
+        EL el", "Greek");
+        KA ka", "Georgian");
+        GU gu", "Gujarati");
+        DA da", "Danish");
+        HE he", "Hebrew");
+        YI yi", "Yiddish");
+        ID id", "Indonesian");
+        GA ga", "Irish");
+        IT it", "Italian");
+        IS is", "Icelandic");
+        KK kk", "Kazakh");
+        KN kn", "Kannada");
+        CA ca", "Catalan");
+        KY ky", "Kyrgyz");
+        KO ko", "Korean");
+        XH xh", "Xhosa");
+        KM km", "Khmer");
+        LO lo", "Laotian");
+        LA la", "Latin");
+        LV lv", "Latvian");
+        LT lt", "Lithuanian");
+        LB lb", "Luxembourgish");
+        MG mg", "Malagasy");
+        MS ms", "Malay");
+        ML ml", "Malayalam");
+        MT mt", "Maltese");
+        MK mk", "Macedonian");
+        MI mi", "Maori");
+        MR mr", "Marathi");
+        MHR mhr", "Mari");
+        MN mn", "Mongolian");
+
+        NE ne", "Nepali");
+        NO no", "Norwegian");
+        PA pa", "Punjabi");
+        PAP pap", "Papiamento");
+
+        PL pl", "Polish");
+        PT pt", "Portuguese");
+        RO ro", "Romanian");
+        CEB ceb", "Cebuano");
+        SR sr", "Serbian");
+        SI si", "Sinhala");
+        SK sk", "Slovakian");
+        SL sl", "Slovenian");
+        SW sw", "Swahili");
+        SU su", "Sundanese");
+        TG tg", "Tajik");
+        TH th", "Thai");
+        TL tl", "Tagalog");
+        TA ta", "Tamil");
+        TT tt", "Tatar");
+        TE te", "Telugu");
+        UDM udm", "Udmurt");
+        UZ uz", "Uzbek");
+        UK uk", "Ukrainian");
+        UR ur", "Urdu");
+        FI fi", "Finnish");
+        HR hr", "Croatian");
+        CS cs", "Czech");
+        SV sv", "Swedish");
+        GD gd", "Scottish");
+        ET et", "Estonian");
+        EO eo", "Esperanto");
+        JV jv", "Javanese");
+        JA ja", "Japanese");-->
+
+</resources>

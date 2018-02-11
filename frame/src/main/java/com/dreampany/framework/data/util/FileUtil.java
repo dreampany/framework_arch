@@ -34,48 +34,6 @@ public final class FileUtil {
     private FileUtil() {
     }
 
-    public static final int KB = 1024;
-    public static final int MB = 1024 * KB;
-    public static final long GB = 1024 * MB;
-    public static final long TB = 1024 * GB;
-    public static final long PB = 1024 * TB;
-
-    public static String getReadableDuration(long duration) {
-        long seconds = duration / 1000;
-        long s = seconds % 60;
-        long m = (seconds / 60) % 60;
-        long h = (seconds / (60 * 60)) % 24;
-        if (h <= 0) {
-            return String.format(Locale.ENGLISH, "%02d:%02d", m, s);
-        }
-        return String.format(Locale.ENGLISH, "%02d:%02d:%02d", h, m, s);
-    }
-
-
-    public static String getHumanReadableSize(long size) {
-        return getHumanReadableSize(size, false);
-    }
-
-    /**
-     * @param size
-     * @param si   or binary unit
-     * @return
-     */
-    public static String getHumanReadableSize(long size, boolean si) {
-        int unit = si ? 1000 : 1024;
-        if (size < unit) return size + " B";
-        int exp = (int) (Math.log(size) / Math.log(unit));
-        String pre = (si ? "kMGTPE" : "KMGTPE").charAt(exp - 1) + "";
-        return String.format(Locale.ENGLISH, "%.1f %sB", size / Math.pow(unit, exp), pre);
-    }
-
-    public static String humanReadableByteCount(long bytes, boolean si) {
-        int unit = si ? 1000 : 1024;
-        if (bytes < unit) return bytes + " B";
-        int exp = (int) (Math.log(bytes) / Math.log(unit));
-        String pre = (si ? "kMGTPE" : "KMGTPE").charAt(exp - 1) + (si ? "" : "i");
-        return String.format(Locale.ENGLISH, "%.1f %sB", bytes / Math.pow(unit, exp), pre);
-    }
 
     public static long getFileHash(String path) {
         File file = new File(path);

@@ -20,20 +20,26 @@ public interface FlagDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Flag flag);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(List<Flag> flags);
+
     @Query("select count(*) from flag")
     int count();
 
-    @Query("select count(*) from flag where id = :id and type = :type")
-    int count(String id, String type);
+    @Query("select count(*) from flag where id = :id and type = :type and subtype = :subtype")
+    int count(String id, String type, String subtype);
 
     @Query("select * from flag")
     List<Flag> getAll();
 
-    @Query("select * from flag where id = :id and type = :type limit 1")
-    Flag get(String id, String type);
+    @Query("select * from flag where id = :id and type = :type and subtype = :subtype limit 1")
+    Flag get(String id, String type, String subtype);
 
-    @Query("select id from flag where type = :type")
-    List<String> gets(String type);
+    @Query("select id from flag where type = :type and subtype = :subtype")
+    List<String> getIds(String type, String subtype);
+
+    @Query("select id from flag where type = :type and subtype = :subtype and orderBy = :orderBy")
+    List<String> getIds(String type, String subtype, int orderBy);
 
     @Update
     void update(Flag flag);

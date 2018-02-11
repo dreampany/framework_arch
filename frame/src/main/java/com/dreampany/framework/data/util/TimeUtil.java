@@ -1,12 +1,13 @@
 package com.dreampany.framework.data.util;
 
+import com.github.thunder413.datetimeutils.DateTimeStyle;
+import com.github.thunder413.datetimeutils.DateTimeUtils;
+
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Days;
-import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 import org.joda.time.Period;
-import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 
 import java.text.ParseException;
@@ -47,27 +48,42 @@ public final class TimeUtil {
 
     private static final String timeZone = "UTC";
 
+
     public static long secondToMilli(long seconds) {
-        return seconds * second;
+        return TimeUnit.SECONDS.toMillis(seconds);
+        //return seconds * second;
     }
 
-    public static long minuteToMilli(int minute) {
-        return secondToMilli(60 * minute);
+    public static long minuteToMilli(int minutes) {
+        return TimeUnit.MINUTES.toMillis(minutes);
+        //return secondToMilli(60 * minute);
     }
 
-    public static long hourToMilli(int hour) {
-        return minuteToMilli(60 * hour);
+    public static long hourToSeconds(int hours) {
+        return TimeUnit.HOURS.toSeconds(hours);
+        //return minuteToMilli(60 * hour);
     }
 
-    public static long dayToMilli(int day) {
-        return hourToMilli(24 * day);
+    public static long hourToMilli(int hours) {
+        return TimeUnit.HOURS.toMillis(hours);
+        //return minuteToMilli(60 * hour);
+    }
+
+    public static long dayToSeconds(int days) {
+        return TimeUnit.DAYS.toSeconds(days);
+        //return hourToMilli(24 * day);
+    }
+
+    public static long dayToMilli(int days) {
+        return TimeUnit.DAYS.toMillis(days);
+        //return hourToMilli(24 * day);
     }
 
     public static long getHalfDayFromCurrent() {
         return currentTime() + (day / 2);
     }
 
-    public static long timeToday() {
+    /*public static long timeToday() {
         return getStartOfDay();
     }
 
@@ -75,8 +91,12 @@ public final class TimeUtil {
         return getStartOfDayInMillis(currentTime());
     }
 
+    public static long getStartOfHour() {
+        return getStartOfHourInMillis(currentTime());
+    }
+
     public static long getStartOfDayInMillis(long millis) {
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getContext();
         calendar.setTimeInMillis(millis);
         calendar.setTimeZone(TimeZone.getTimeZone(timeZone));
         calendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -86,26 +106,18 @@ public final class TimeUtil {
         return calendar.getTimeInMillis();
     }
 
+
     public static long getEndOfDayInMillis(long millis) {
         return getStartOfDayInMillis(millis) + day;
-    }
+    }*/
 
-    public static long startOfToday() {
-        DateTimeZone timeZone = DateTimeZone.forID("America/Montreal");
-        DateTime now = DateTime.now(timeZone);
-        DateTime todayStart = now.withTimeAtStartOfDay();
-        DateTime tomorrowStart = now.plusDays(1).withTimeAtStartOfDay();
-        Interval today = new Interval(todayStart, tomorrowStart);
-        return 0;
-    }
-
-    public static long addDay(long time) {
+/*    public static long addDay(long time) {
         return TimeUtil.getStartOfDayInMillis(resolveDay(time, 1));
     }
 
     public static long removeDay(long time) {
         return TimeUtil.getStartOfDayInMillis(resolveDay(time, -1));
-    }
+    }*/
 
     public static long resolveDay(long time, int days) {
         Calendar calendar = Calendar.getInstance();
@@ -114,10 +126,10 @@ public final class TimeUtil {
         return calendar.getTime().getTime();
     }
 
-    public static long getPreviousDateTime(long time) {
+ /*   public static long getPreviousDateTime(long time) {
         DateTime dt = new DateTime(time, DateTimeZone.UTC);
         return TimeUtil.getStartOfDayInMillis(dt.minusDays(1).getMillis());
-    }
+    }*/
 
     /**
      * Basic regex for parsing ISO-8601 durations.
@@ -132,6 +144,10 @@ public final class TimeUtil {
     private static final String patternDate = "MM/dd/yy";
     private static final String patternDateWordnik = "yyyy-MM-dd"; // wordnik support date pattern
 
+    private static final String patternLong = "MMM dd, yyyy, hh:mm aaa";
+    private static final String WEATHER_PATTERN = "MMM dd, hh:mm aaa";
+    private static final String UTC_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+
     private static final SimpleDateFormat dateFormatFull = new SimpleDateFormat(patternFull, Locale.getDefault());
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat(pattern, Locale.getDefault());
     private static final SimpleDateFormat dateFormatToday = new SimpleDateFormat(patternToday, Locale.getDefault());
@@ -139,6 +155,8 @@ public final class TimeUtil {
     private static final SimpleDateFormat dateFormatWeek = new SimpleDateFormat(patternDay, Locale.getDefault());
     private static final SimpleDateFormat dateFormatDate = new SimpleDateFormat(patternDate, Locale.getDefault());
     private static final SimpleDateFormat dateFormatDateWordnik = new SimpleDateFormat(patternDateWordnik, Locale.getDefault());
+    private static final SimpleDateFormat dateFormatLong = new SimpleDateFormat(patternLong, Locale.getDefault());
+    private static final SimpleDateFormat WEATHER_FORMAT = new SimpleDateFormat(WEATHER_PATTERN, Locale.getDefault());
 
     public static String toLocalTime(long time) {
         return dateFormat.format(time);
@@ -172,6 +190,11 @@ public final class TimeUtil {
         return dateFormatFull.format(time);
     }
 
+    public static String getTimeInLongPatternLocal(long time) {
+        dateFormatLong.setTimeZone(TimeZone.getDefault());
+        return dateFormatLong.format(time);
+    }
+
     public static long toMilli(String date) {
         try {
             return dateFormatDateWordnik.parse(date).getTime();
@@ -182,10 +205,17 @@ public final class TimeUtil {
     }
 
     public static long isoToMilli(String timestamp) {
-        DateTimeFormatter fmt = ISODateTimeFormat.dateTime();
-        DateTime dt = fmt.parseDateTime(timestamp);
+        DateTime dt = DateTime.parse(timestamp, ISODateTimeFormat.dateTimeParser());
         DateTime utc = dt.withZone(DateTimeZone.UTC);
         return utc.getMillis();
+    }
+
+    public static String formatDate(long timestamp) {
+        return DateTimeUtils.formatWithStyle(new Date(timestamp), DateTimeStyle.FULL); // Tuesday, June 13, 2017
+    }
+
+    public static String getStartDate() {
+        return getDate(startOfDay());
     }
 
     public static String getCurrentDate() {
@@ -206,6 +236,10 @@ public final class TimeUtil {
 
     public static String getDayFromTime(long date) {
         return dateFormatWeek.format(date);
+    }
+
+    public static String getWeatherDate(long timestamp) {
+        return WEATHER_FORMAT.format(timestamp);
     }
 
     public static String getShortDateFromTime(long date) {
@@ -275,9 +309,7 @@ public final class TimeUtil {
         return getDate(currentTime());
     }
 
-    public static String getStartDate() {
-        return getDate(startOfToday());
-    }
+/*    */
 
     public static String getDate(long time) {
         return dateFormatDateWordnik.format(time);
@@ -507,4 +539,58 @@ public final class TimeUtil {
             timer = null;
         }
     }
+
+    /* Year */
+    private static DateTime endOfYear(DateTime dateTime) {
+        return endOfDay(dateTime).withMonthOfYear(12).withDayOfMonth(31);
+    }
+
+    private static DateTime beginningOfYear(DateTime dateTime) {
+        return beginningOfMonth(dateTime).withMonthOfYear(1);
+    }
+
+    /* Month */
+    private static DateTime endOfMonth(DateTime dateTime) {
+        return endOfDay(dateTime).withDayOfMonth(dateTime.dayOfMonth().getMaximumValue());
+    }
+
+    private static DateTime beginningOfMonth(DateTime dateTime) {
+        return beginningOfday(dateTime).withDayOfMonth(1);
+    }
+
+    /* Day */
+    private static DateTime endOfDay(DateTime dateTime) {
+        return endOfHour(dateTime).withHourOfDay(23);
+    }
+
+    private static DateTime beginningOfday(DateTime dateTime) {
+        return beginningOfHour(dateTime).withHourOfDay(0);
+    }
+
+    /* Hour */
+    private static DateTime beginningOfHour(DateTime dateTime) {
+        return dateTime.withMillisOfSecond(0).withSecondOfMinute(0).withMinuteOfHour(0);
+    }
+
+    private static DateTime endOfHour(DateTime dateTime) {
+        return dateTime.withMillisOfSecond(999).withSecondOfMinute(59).withMinuteOfHour(59);
+    }
+
+    public static long startOfHour() {
+        DateTime time = new DateTime(DateTimeZone.UTC);
+        return beginningOfHour(time).getMillis();
+    }
+
+    public static long startOfDay() {
+        DateTime time = new DateTime(DateTimeZone.UTC);
+        return beginningOfday(time).getMillis();
+    }
+
+//    public static long utcToLocal(long timestamp) {
+//
+//    }
+
+    /*public static long localToUtc() {
+
+    }*/
 }

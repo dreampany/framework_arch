@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_url">https://play.google.com/store/apps/text?id=%1$s</string>
+</resources>

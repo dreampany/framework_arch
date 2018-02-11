@@ -1,26 +1,60 @@
 package com.dreampany.framework.data.model;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Index;
+import android.os.Parcel;
 import android.support.annotation.NonNull;
+
+import com.google.common.base.Objects;
 
 /**
  * Created by air on 5/11/17.
  */
 
-@Entity(primaryKeys = {"id", "type"})
-public class Point extends BaseSerial {
+@Entity(indices = {@Index(value = {"id", "type", "subtype"}, unique = true)}, primaryKeys = {"id", "type", "subtype"})
+public class Point extends Base {
 
     @NonNull
     private String id;
     @NonNull
     private String type;
-    private long points;
+    @NonNull
+    private String subtype;
+    private int points;
     private String comment;
-    private long time;
-
 
     public Point() {
     }
+
+    @Ignore
+    public Point(@NonNull String id, @NonNull String type, @NonNull String subtype) {
+        this.id = id;
+        this.type = type;
+        this.subtype = subtype;
+    }
+
+    @Ignore
+    private Point(Parcel in) {
+        super(in);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
+    }
+
+    public static final Creator<Point> CREATOR = new Creator<Point>() {
+        @Override
+        public Point createFromParcel(Parcel in) {
+            return new Point(in);
+        }
+
+        @Override
+        public Point[] newArray(int size) {
+            return new Point[size];
+        }
+    };
 
     @Override
     public boolean equals(Object inObject) {
@@ -33,7 +67,7 @@ public class Point extends BaseSerial {
 
     @Override
     public int hashCode() {
-        return id.hashCode() ^ type.hashCode();
+        return Objects.hashCode(id, type, subtype);
     }
 
     public void setId(@NonNull String id) {
@@ -44,16 +78,16 @@ public class Point extends BaseSerial {
         this.type = type;
     }
 
-    public void setPoints(long points) {
+    public void setSubtype(@NonNull String subtype) {
+        this.subtype = subtype;
+    }
+
+    public void setPoints(int points) {
         this.points = points;
     }
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public void setTime(long time) {
-        this.time = time;
     }
 
     @NonNull
@@ -66,15 +100,16 @@ public class Point extends BaseSerial {
         return type;
     }
 
-    public long getPoints() {
+    @NonNull
+    public String getSubtype() {
+        return subtype;
+    }
+
+    public int getPoints() {
         return points;
     }
 
     public String getComment() {
         return comment;
-    }
-
-    public long getTime() {
-        return time;
     }
 }

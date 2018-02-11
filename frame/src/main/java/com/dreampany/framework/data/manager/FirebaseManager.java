@@ -1,17 +1,16 @@
 package com.dreampany.framework.data.manager;
 
-import android.support.annotation.NonNull;
-
+import com.dreampany.framework.data.connection.FirebaseConnection;
 import com.dreampany.framework.data.model.FirebaseLock;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.dreampany.framework.data.util.DataUtil;
+import com.dreampany.framework.data.util.TimeUtil;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.dreampany.framework.data.connection.FirebaseConnection;
-import com.dreampany.framework.data.util.Constant;
-import com.dreampany.framework.data.util.DataUtil;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -26,10 +25,15 @@ import java.util.Locale;
  */
 public final class FirebaseManager {
 
+    private static final long AUTH_TIMEOUT = TimeUtil.secondToMilli(10);
     private final FirebaseLock<?, DatabaseError, FirebaseAuth> firebaseLock = new FirebaseLock<>();
 
     private static FirebaseManager firebaseManager;
     private FirebaseConnection firebaseConnection;
+
+    private long serverTime;
+
+
 
     private FirebaseManager() {
         firebaseConnection = new FirebaseConnection<>();
@@ -68,29 +72,22 @@ public final class FirebaseManager {
     }
 
     public boolean signInAnonymously() {
-
-        if (FirebaseManager.onManager().isAuthenticated()) return true;
+        if (isAuthenticated()) return true;
 
         FirebaseAuth.getInstance().signInAnonymously()
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        notifyWaiting();
-                    }
-                });
-        waiting();
-
-        return FirebaseManager.onManager().isAuthenticated();
+                .addOnCompleteListener(task -> notifyWaiting());
+        waiting(TimeUtil.secondToMilli(15));
+        return isAuthenticated();
     }
 
     public void signOut() {
         FirebaseAuth.getInstance().signOut();
     }
 
-    private void waiting() {
+    private void waiting(long timeout) {
         synchronized (firebaseLock) {
             try {
-                firebaseLock.wait(Constant.HALF_MINUTE);
+                firebaseLock.wait(timeout);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -190,5 +187,35 @@ public final class FirebaseManager {
     public <T> List<T> read(Class<T> tClass, String orderBy, long equalTo) {
         String parentPath = Key.data + "/" + toName(tClass);
         return firebaseConnection.takeFromFirebase(tClass, parentPath, orderBy, equalTo);
+    }
+
+    public boolean resolveAuth() {
+        if (!isAuthenticated()) {
+            signInAnonymously();
+        }
+        return isAuthenticated();
+    }
+
+    public long getServerTime() {
+        //FirebaseDatabase.getInstance().goOffline();
+        //FirebaseDatabase.getInstance().goOnline();
+        DatabaseReference offsetRef = FirebaseDatabase.getInstance().getReference(".info/serverTimeOffset");
+        offsetRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot != null) {
+                    double offset = snapshot.getValue(Double.class);
+                    serverTime = (long) (System.currentTimeMillis() + offset);
+                }
+                notifyWaiting();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+            }
+        });
+        waiting(AUTH_TIMEOUT);
+        return serverTime;
     }
 }

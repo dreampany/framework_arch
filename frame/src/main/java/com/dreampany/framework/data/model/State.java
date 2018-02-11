@@ -4,15 +4,15 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.support.annotation.NonNull;
 
-import org.jetbrains.annotations.NotNull;
+import com.google.common.base.Objects;
 
-import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by air on 10/18/17.
  */
 
-@Entity(indices = {@Index(value = {"id", "type"}, unique = true)}, primaryKeys = {"id", "type"})
+@Entity(indices = {@Index(value = {"id", "type", "subtype"}, unique = true)}, primaryKeys = {"id", "type", "subtype"})
 public class State extends BaseSerial {
 
     @NonNull
@@ -20,8 +20,9 @@ public class State extends BaseSerial {
     @NonNull
     private String type;
     @NonNull
-    private String value;
-    private long time;
+    private String subtype;
+    @NonNull
+    private String state;
 
     public State() {
     }
@@ -30,14 +31,14 @@ public class State extends BaseSerial {
     public boolean equals(Object inObject) {
         if (State.class.isInstance(inObject)) {
             State state = (State) inObject;
-            return id.equals(state.id) && type.equals(state.type);
+            return id.equals(state.id) && type.equals(state.type) && subtype.equals(state.subtype);
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode() ^ type.hashCode();
+        return Objects.hashCode(id, type, subtype);
     }
 
     public void setId(@NotNull String id) {
@@ -48,12 +49,12 @@ public class State extends BaseSerial {
         this.type = type;
     }
 
-    public void setValue(@NonNull String value) {
-        this.value = value;
+    public void setSubtype(@NonNull String subtype) {
+        this.subtype = subtype;
     }
 
-    public void setTime(long time) {
-        this.time = time;
+    public void setState(@NonNull String state) {
+        this.state = state;
     }
 
     @NotNull
@@ -67,11 +68,12 @@ public class State extends BaseSerial {
     }
 
     @NonNull
-    public String getValue() {
-        return value;
+    public String getSubtype() {
+        return subtype;
     }
 
-    public long getTime() {
-        return time;
+    @NonNull
+    public String getState() {
+        return state;
     }
 }

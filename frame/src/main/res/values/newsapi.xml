@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_news_api">Powered by NewsAPI.org</string>
+    <string name="url_news_api">https://newsapi.org/</string>
+
+<!--
+    <string name="newsapi_languages">ar,en,cn,de,es,fr,he,it,nl,no,pt,ru,sv,ud</string>
+-->
+    <string name="newsapi_languages">ar,de,en,es,fr,he,it,nl,no,pt,ru,se,ud,zh</string>
+    <string name="newsapi_countries">ae,ar,at,au,be,bg,br,ca,ch,cn,co,cu,cz,de,eg,fr,gb,gr,hk,hu,id,ie,il,in,it,jp,kr,lt,lv,ma,mx,my,ng,nl,no,nz,ph,pl,pt,ro,rs,ru,sa,se,sg,si,sk,th,tr,tw,ua,us,ve,za</string>
+
+    <string-array name="newsapi_categories">
+        <item>business</item>
+        <item>entertainment</item>
+        <item>gaming</item>
+        <item>general</item>
+        <item>health</item>
+        <item>science</item>
+        <item>sports</item>
+        <item>technology</item>
+    </string-array>
+
+<!--    <string-array name="newsapi_category_codes">
+        <item>business</item>
+        <item>entertainment</item>
+        <item>gaming</item>
+        <item>general</item>
+        <item>health</item>
+        &lt;!&ndash;<item>music</item>&ndash;&gt;
+        &lt;!&ndash;<item>politics</item>&ndash;&gt;
+        <item>science</item>
+        <item>sports</item>
+        <item>technology</item>
+    </string-array>-->
+
+    <string-array name="newsapi_language_codes">
+        <item>ar</item>
+        <item>de</item>
+        <item>en</item>
+        <item>es</item>
+        <item>fr</item>
+        <item>he</item>
+        <item>it</item>
+        <item>nl</item>
+        <item>no</item>
+        <item>pt</item>
+        <item>ru</item>
+        <item>se</item>
+        <item>ud</item>
+        <item>zh</item>
+    </string-array>
+
+    <string-array name="newsapi_language_names">
+        <item>Arabic</item>
+        <item>German</item>
+        <item>English</item>
+        <item>Spanish</item>
+        <item>French</item>
+        <item>Hebrew</item>
+        <item>Italian</item>
+        <item>Dutch</item>
+        <item>Norwegian</item>
+        <item>Portuguese</item>
+        <item>Russian</item>
+        <item>Swedish</item>
+        <item>Urdu</item>
+        <item>Chinese</item>
+    </string-array>
+
+<!--    <string-array name="newsapi_country_names">
+        <item>United Arab Emirates</item>
+        <item>Argentina</item>
+        <item>Austria</item>
+        <item>Australia</item>
+        <item>Belgium</item>
+        <item>Bulgaria</item>
+        <item>Brazil</item>
+        <item>Canada</item>
+        <item>Switzerland</item>
+        <item>China</item>
+        <item>Colombia</item>
+        <item>Cuba</item>
+        <item>Germany</item>
+        <item>Egypt</item>
+        <item>France</item>
+        <item>United Kingdom</item>
+        <item>Greece</item>
+        <item>Hong Kong</item>
+        <item>Hungary</item>
+        <item>Indonesia</item>
+        <item>Ireland</item>
+        <item>India</item>
+        <item>Iceland</item>
+        <item>Italy</item>
+        <item>Netherlands</item>
+        <item>Norway</item>
+        <item>Pakistan</item>
+        <item>Russian</item>
+        <item>Saudi Arabia</item>
+        <item>El Salvador</item>
+        <item>United States</item>
+        <item>South Africa</item>
+    </string-array>-->
+
+    <string-array name="newsapi_country_codes">
+        <item>ae</item>
+        <item>ar</item>
+        <item>at</item>
+        <item>au</item>
+        <item>be</item>
+        <item>bg</item>
+        <item>br</item>
+        <item>ca</item>
+        <item>ch</item>
+        <item>cn</item>
+        <item>co</item>
+        <item>cu</item>
+        <item>de</item>
+        <item>eg</item>
+        <item>fr</item>
+        <item>gb</item>
+        <item>gr</item>
+        <item>hk</item>
+        <item>hu</item>
+        <item>id</item>
+        <item>ie</item>
+        <item>in</item>
+        <item>is</item>
+        <item>it</item>
+        <item>nl</item>
+        <item>no</item>
+        <item>pk</item>
+        <item>ru</item>
+        <item>sa</item>
+        <item>sv</item>
+        <item>us</item>
+        <item>za</item>
+    </string-array>
+
+</resources>

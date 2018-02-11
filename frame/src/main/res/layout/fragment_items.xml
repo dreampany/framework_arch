@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:auto="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="${relativePackage}.${activityClass}">
+
+    <data>
+
+        <variable
+            name="items"
+            type="android.databinding.ObservableArrayList" />
+    </data>
+
+    <cz.kinst.jakub.view.SimpleStatefulLayout
+        android:id="@+id/stateful"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        auto:emptyLayout="@layout/state_empty"
+        auto:offlineLayout="@layout/state_offline"
+        auto:progressLayout="@layout/state_progress">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/layoutStatus"
+                layout="@layout/content_top_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none"
+                    auto:items="@{items}"
+                    tools:listitem="@layout/item_list" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+    </cz.kinst.jakub.view.SimpleStatefulLayout>
+
+</layout>

@@ -14,8 +14,8 @@ public abstract class Runner implements Runnable {
     protected long semiPeriodWait = 1000L / 10;
     protected long wait = defaultWait;
 
-    private Thread thread;
-    private boolean running;
+    private volatile Thread thread;
+    private volatile boolean running;
     private final Object guard = new Object();
     private volatile boolean guarded;
 
@@ -36,6 +36,13 @@ public abstract class Runner implements Runnable {
         running = false;
         thread.interrupt();
         notifyRunner();
+    }
+
+    public void interrupt() {
+        if (thread == null || thread.isInterrupted() || (!thread.isAlive() && !thread.isDaemon())) {
+            return;
+        }
+        thread.interrupt();
     }
 
     public void waitRunner(long timeoutMs) {
@@ -83,7 +90,9 @@ public abstract class Runner implements Runnable {
         Thread.sleep(timeout);
     }
 
-    protected abstract boolean looping() throws InterruptedException;
+    protected boolean looping() throws InterruptedException {
+        return false;
+    }
 
     @Override
     public void run() {

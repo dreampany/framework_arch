@@ -1,3 +1,4 @@
+/*
 package com.dreampany.framework.data.model;
 
 import android.os.Parcel;
@@ -9,9 +10,11 @@ import com.dreampany.framework.data.enums.SQLiteSelectionType;
 
 import java.lang.reflect.Field;
 
+*/
 /**
  * Created by nuc on 12/3/2016.
- */
+ *//*
+
 
 public class SQLiteTask<T extends Base, X extends Type> extends Task<T> {
 
@@ -90,3 +93,4 @@ public class SQLiteTask<T extends Base, X extends Type> extends Task<T> {
         return result.toString();
     }
 }
+*/

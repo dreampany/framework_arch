@@ -37,7 +37,7 @@ public class Profile extends Base {
         dest.writeInt(losses);
     }
 
-    public static final Parcelable.Creator<Profile> CREATOR = new Parcelable.Creator<Profile>() {
+    public static final Creator<Profile> CREATOR = new Creator<Profile>() {
         @Override
         public Profile createFromParcel(Parcel in) {
             return new Profile(in);

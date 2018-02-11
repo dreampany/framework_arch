@@ -23,6 +23,12 @@ public interface HistoryDao {
     @Query("select value from history where type = :type")
     List<String> getValues(String type);
 
+    @Query("select * from history where type = :type")
+    List<History> getItems(String type);
+
+    @Query("select * from history where type = :type limit :limit")
+    List<History> getItems(String type, int limit);
+
     @Update
     void update(History history);
 

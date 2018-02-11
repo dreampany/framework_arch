@@ -1,0 +1,3 @@
+-keep class com.ihongqiqu.** { *; }
+-keepclassmembers class com.ihongqiqu.** { *; }
+-dontwarn com.ihongqiqu.**
