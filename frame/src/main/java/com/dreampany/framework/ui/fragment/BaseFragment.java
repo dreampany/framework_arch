@@ -1,6 +1,8 @@
 package com.dreampany.framework.ui.fragment;
 
 import android.app.Activity;
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,6 +32,7 @@ import com.dreampany.framework.data.model.Task;
 import com.dreampany.framework.data.util.AndroidUtil;
 import com.dreampany.framework.data.util.DataUtil;
 import com.dreampany.framework.data.util.FragmentUtil;
+import com.dreampany.framework.data.util.NotifyUtil;
 import com.dreampany.framework.data.util.TextUtil;
 import com.dreampany.framework.ui.activity.BaseActivity;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -40,6 +43,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.karumi.dexter.listener.single.PermissionListener;
 
+import java.io.Serializable;
 import java.util.List;
 
 import eu.davidea.flexibleadapter.FlexibleAdapter;
@@ -51,6 +55,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * Created by nuc on 3/12/2016.
  */
 public abstract class BaseFragment extends PreferenceFragmentCompat implements
+        LifecycleOwner,
         UiCallback,
         View.OnClickListener,
         View.OnLongClickListener,
@@ -66,7 +71,8 @@ public abstract class BaseFragment extends PreferenceFragmentCompat implements
         EasyPermissions.PermissionCallbacks,
         SharedPreferences.OnSharedPreferenceChangeListener,
         Preference.OnPreferenceClickListener,
-        TextWatcher {
+        TextWatcher,
+        SwipeRefreshLayout.OnRefreshListener {
 
     private final int defaultLayoutId = 0;
     private final int defaultPrefLayoutId = 0;
@@ -168,7 +174,6 @@ public abstract class BaseFragment extends PreferenceFragmentCompat implements
 
     @Override
     public void onDestroyView() {
-        super.onDestroyView();
         stopUi();
         if (view != null) {
             ViewGroup parent = (ViewGroup) view.getParent();
@@ -176,12 +181,18 @@ public abstract class BaseFragment extends PreferenceFragmentCompat implements
                 parent.removeAllViews();
             }
         }
+        super.onDestroyView();
     }
 
     @Override
     public void onDestroy() {
         stopUi();
         super.onDestroy();
+    }
+
+    @Override
+    public Lifecycle getLifecycle() {
+        return super.getLifecycle();
     }
 
     @Override
@@ -327,6 +338,11 @@ public abstract class BaseFragment extends PreferenceFragmentCompat implements
 
     @Override
     public void afterTextChanged(Editable editable) {
+
+    }
+
+    @Override
+    public void onRefresh() {
 
     }
 
@@ -603,8 +619,8 @@ public abstract class BaseFragment extends PreferenceFragmentCompat implements
 
             Color color = getColor();
             if (color != null) {
-                fab.setBackgroundTintList(ColorStateList.valueOf(ColorUtil.getColor(getContext(), color.getColorPrimaryId())));
-                fab.setRippleColor(ColorUtil.getColor(getContext(), color.getColorPrimaryDarkId()));
+                fab.setBackgroundTintList(ColorStateList.valueOf(ColorUtil.getColor(getContext(), color.getPrimaryId())));
+                fab.setRippleColor(ColorUtil.getColor(getContext(), color.getPrimaryDarkId()));
             }
         }*/
     }
@@ -656,7 +672,7 @@ public abstract class BaseFragment extends PreferenceFragmentCompat implements
             return;
         }
         Intent intent = new Intent();
-        intent.putExtra(Task.class.getName(), getCurrentTask());
+        intent.putExtra(Task.class.getName(), (Serializable) getCurrentTask());
         getParent().setResult(Activity.RESULT_OK, intent);
         getParent().finish();
     }
@@ -666,7 +682,7 @@ public abstract class BaseFragment extends PreferenceFragmentCompat implements
             return;
         }
         BaseActivity parent = getParent();
-        parent.showInfo(info);
+        NotifyUtil.showInfo(getContext(), info);
     }
 
     protected void showError(String error) {
@@ -674,7 +690,7 @@ public abstract class BaseFragment extends PreferenceFragmentCompat implements
             return;
         }
         BaseActivity parent = getParent();
-        parent.showError(error);
+        NotifyUtil.showInfo(getContext(), error);
     }
 
     public void showAlert(String title, String text, int backgroundColor, long timeout) {

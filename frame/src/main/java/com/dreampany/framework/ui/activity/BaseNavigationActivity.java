@@ -95,7 +95,7 @@ public abstract class BaseNavigationActivity extends BaseMenuActivity implements
                         if (newState == DrawerLayout.STATE_SETTLING) {
                             if (!isDrawerOpen()) {
                                 onDrawerOpening();
-                                ViewUtil.setBackground(getNavigationHeader(), color.getColorPrimaryId());
+                                ViewUtil.setBackground(getNavigationHeader(), color.getPrimaryId());
                             } else {
                                 onDrawerClosing();
                             }

@@ -6,5 +6,8 @@
     android:layout_height="wrap_content"
     android:background="@android:color/white"
     auto:tabGravity="fill"
+    auto:tabIndicatorColor="@android:color/white"
     auto:tabIndicatorHeight="3dp"
-    auto:tabMode="scrollable" />
+    auto:tabMode="scrollable"
+    auto:tabSelectedTextColor="@android:color/white"
+    auto:tabTextColor="@android:color/darker_gray" />

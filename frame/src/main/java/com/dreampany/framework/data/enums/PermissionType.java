@@ -17,7 +17,10 @@ public enum PermissionType implements Type {
     public int ordinalValue() {
         return ordinal();
     }
-
+    @Override
+    public String toLowerValue() {
+        return name().toLowerCase();
+    }
     @Override
     public String value() {
         return name();

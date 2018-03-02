@@ -25,6 +25,11 @@ public enum TaskType implements Type {
     }
 
     @Override
+    public String toLowerValue() {
+        return name().toLowerCase();
+    }
+
+    @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(ordinal());
     }

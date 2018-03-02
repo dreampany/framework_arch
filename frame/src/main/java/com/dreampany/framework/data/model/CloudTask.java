@@ -1,13 +1,13 @@
-package com.dreampany.framework.data.model;
+package com.dreampany.framework.data.model;/*package com.dreampany.framework.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.dreampany.framework.data.enums.Type;
 
-/**
+*//**
  * Created by nuc on 11/16/2016.
- */
+ *//*
 
 public class CloudTask<T extends Base, X extends Type, Y extends Type, S extends Type> extends Task<T, X, Y, S> {
 
@@ -31,4 +31,4 @@ public class CloudTask<T extends Base, X extends Type, Y extends Type, S extends
             return null;
         }
     }
-}
+}*/

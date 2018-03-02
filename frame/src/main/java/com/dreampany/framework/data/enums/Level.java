@@ -30,7 +30,10 @@ public enum Level implements Type {
         }
         return false;
     }
-
+    @Override
+    public String toLowerValue() {
+        return name().toLowerCase();
+    }
     @Override
     public String value() {
         return name();

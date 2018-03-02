@@ -1,6 +1,8 @@
 package com.dreampany.framework.ui.activity;
 
 import android.app.ProgressDialog;
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -17,12 +19,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.afollestad.aesthetic.Aesthetic;
-import com.afollestad.aesthetic.BottomNavBgMode;
-import com.afollestad.aesthetic.BottomNavIconTextMode;
-import com.afollestad.aesthetic.NavigationViewMode;
 import com.dreampany.framework.R;
 import com.dreampany.framework.app.BaseApp;
 import com.dreampany.framework.data.callback.UiCallback;
@@ -33,9 +31,9 @@ import com.dreampany.framework.data.util.AndroidUtil;
 import com.dreampany.framework.data.util.BarUtil;
 import com.dreampany.framework.data.util.ColorUtil;
 import com.dreampany.framework.data.util.FragmentUtil;
-import com.dreampany.framework.data.util.LogKit;
 import com.dreampany.framework.data.util.ViewUtil;
 import com.dreampany.framework.ui.fragment.BaseFragment;
+import com.jaeger.library.StatusBarUtil;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -43,7 +41,6 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.karumi.dexter.listener.single.PermissionListener;
-import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.tapadoo.alerter.Alerter;
 
 import java.util.List;
@@ -55,7 +52,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * Created by nuc on 3/12/2016.
  */
 public abstract class BaseActivity extends AppCompatActivity implements
-        View.OnClickListener, View.OnLongClickListener, UiCallback, PermissionListener, MultiplePermissionsListener, EasyPermissions.PermissionCallbacks {
+        LifecycleOwner, View.OnClickListener, View.OnLongClickListener, UiCallback, PermissionListener, MultiplePermissionsListener, EasyPermissions.PermissionCallbacks {
 
     private final int defaultLayoutId = 0;
     private final int defaultToolbarId = 0;
@@ -88,6 +85,10 @@ public abstract class BaseActivity extends AppCompatActivity implements
 
     private boolean enableTheme() {
         return getApp().enableTheme();
+    }
+
+    protected int getAppTheme() {
+        return R.style.AppTheme_Frame;
     }
 
     protected boolean enabledHomeUp() {
@@ -123,9 +124,9 @@ public abstract class BaseActivity extends AppCompatActivity implements
             requestWindowFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         }
 
-/*        if (enableTheme()) {
+        if (enableTheme()) {
             Aesthetic.attach(this);
-        }*/
+        }
 
         super.onCreate(savedInstanceState);
 
@@ -211,9 +212,9 @@ public abstract class BaseActivity extends AppCompatActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-  /*      if (enableTheme()) {
+        if (enableTheme()) {
             Aesthetic.resume(this);
-        }*/
+        }
       /*  if (FirebaseManager.onInstance().isAuthenticated()) {
             hideProgress();
         }*/
@@ -221,9 +222,9 @@ public abstract class BaseActivity extends AppCompatActivity implements
 
     @Override
     protected void onPause() {
-/*        if (enableTheme()) {
+        if (enableTheme()) {
             Aesthetic.pause(this);
-        }*/
+        }
         super.onPause();
     }
 
@@ -235,6 +236,11 @@ public abstract class BaseActivity extends AppCompatActivity implements
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public Lifecycle getLifecycle() {
+        return super.getLifecycle();
     }
 
     @Override
@@ -314,16 +320,22 @@ public abstract class BaseActivity extends AppCompatActivity implements
         boolean applyColor = applyColor();
         boolean enableTheme = enableTheme();
 
+        int layoutId = getLayoutId();
+        if (layoutId == defaultLayoutId) {
+            return;
+        }
+
         if (fullScreen) {
             requestWindowFeature(Window.FEATURE_NO_TITLE);
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
             BarUtil.hide(this);
-        }
-
-        int layoutId = getLayoutId();
-        if (layoutId == defaultLayoutId) {
-            return;
+        } else {
+            if (applyColor && !enableTheme) {
+                BarUtil.setStatusColor(this, color);
+                // BarUtil.setActionBarColor(toolbar, color);
+                StatusBarUtil.setColorNoTranslucent(this, ColorUtil.getColor(this, color.getPrimaryDarkId()));
+            }
         }
 
         //first checking for app theme color
@@ -332,6 +344,13 @@ public abstract class BaseActivity extends AppCompatActivity implements
             color = ColorUtil.getRandColor();
         }
         setColor(color);*/
+
+/*        if (!fullScreen && applyColor && !enableTheme) {
+            BarUtil.setStatusColor(this, color);
+            // BarUtil.setActionBarColor(toolbar, color);
+            StatusBarUtil.setColor(this, color.getPrimaryId());
+        }*/
+
         binding = DataBindingUtil.setContentView(this, layoutId);
 
         if (fullScreen) {
@@ -341,10 +360,6 @@ public abstract class BaseActivity extends AppCompatActivity implements
                 BarUtil.hideToolbar(toolbar);
             }
         } else {
-            if (applyColor && !enableTheme) {
-                BarUtil.setStatusColor(this, color);
-                // BarUtil.setActionBarColor(toolbar, color);
-            }
 
 
             Toolbar toolbar = ViewUtil.getToolbar(this, getToolbarId());
@@ -418,14 +433,14 @@ public abstract class BaseActivity extends AppCompatActivity implements
 
     public Task getCurrentTask(boolean freshTask) {
         if (currentTask == null || freshTask) {
-            currentTask = getIntentValue(Task.class.getName());
+            currentTask = getIntentValue(AndroidUtil.TASK_TAG);
         }
         return currentTask;
     }
 
     public Task getCurrentTask(Intent data) {
         if (currentTask == null) {
-            currentTask = getIntentValue(Task.class.getName());
+            currentTask = getIntentValue(AndroidUtil.TASK_TAG);
         }
         return currentTask;
     }
@@ -467,7 +482,6 @@ public abstract class BaseActivity extends AppCompatActivity implements
         if (bundle != null) {
             t = (T) bundle.getParcelable(key);
         }
-
         if (bundle != null && t == null) {
             t = (T) bundle.getSerializable(key);
         }
@@ -492,10 +506,6 @@ public abstract class BaseActivity extends AppCompatActivity implements
         BarUtil.hide(this);
 
         DataBindingUtil.setContentView(this, getLayoutId());
-    }
-
-    protected <T extends BaseActivity> void openActivity(Class<T> aClass) {
-        startActivity(new Intent(this, aClass));
     }
 
     protected <T extends BaseActivity> void openActivity(Class<T> aClass, String key, String value) {
@@ -580,49 +590,32 @@ public abstract class BaseActivity extends AppCompatActivity implements
         hideAlert();
     };
 
-    public void showInfo(String info) {
-        StyleableToast st = new StyleableToast
-                .Builder(this)
-                .text(info)
-                .textColor(android.graphics.Color.WHITE)
-                .backgroundColor(ColorUtil.getColor(this, R.color.colorGreen700))
-                .duration(Toast.LENGTH_LONG)
-                .build();
-        st.show();
-    }
-
-    public void showError(String error) {
-        StyleableToast st = new StyleableToast
-                .Builder(this)
-                .text(error)
-                .textColor(android.graphics.Color.WHITE)
-                .backgroundColor(ColorUtil.getColor(this, R.color.colorRed700))
-                .duration(Toast.LENGTH_LONG)
-                .build();
-        st.show();
-    }
-
     private void applyTheme() {
         if (Aesthetic.isFirstTime()) {
-
+            Color color = getColor();
+/*            Aesthetic.get()
+                    .colorPrimaryDarkRes(color.getPrimaryDarkId())
+                    .textColorPrimaryRes(R.color.text_color_primary)
+                    .textColorSecondaryRes(R.color.text_color_secondary)
+                    .colorPrimaryRes(color.getPrimaryId())
+                    .colorAccentRes(color.getAccentId())
+                    .colorStatusBarAuto()
+                    .colorNavigationBarAuto()
+                    .textColorPrimaryRes(R.color.colorBlack)
+                    .navigationViewMode(NavigationViewMode.SELECTED_ACCENT)
+                    .bottomNavigationBackgroundMode(BottomNavBgMode.PRIMARY)
+                    .bottomNavigationIconTextMode(BottomNavIconTextMode.SELECTED_ACCENT)
+                    .apply();*/
+            Aesthetic.get()
+                    .activityTheme(getAppTheme())
+                    .textColorPrimaryRes(R.color.text_color_primary)
+                    .textColorSecondaryRes(R.color.text_color_secondary)
+                    .colorPrimaryRes(color.getPrimaryId())
+                    .colorPrimaryDarkRes(color.getPrimaryDarkId())
+                    .colorAccentRes(color.getAccentId())
+                    .colorStatusBarAuto()
+                    .apply();
         }
-        Color color = getColor();
-        Aesthetic.get()
-        /*
-                .colorPrimaryDarkRes(color.getColorPrimaryDarkId())
-                */
-                .isDark(true)
-                .textColorPrimaryRes(R.color.text_color_primary)
-                .textColorSecondaryRes(R.color.text_color_secondary)
-                .colorPrimaryRes(color.getColorPrimaryId())
-                .colorAccentRes(color.getColorAccentId())
-                .colorStatusBarAuto()
-                .colorNavigationBarAuto()
-                .textColorPrimaryRes(R.color.colorBlack)
-                .navigationViewMode(NavigationViewMode.SELECTED_ACCENT)
-                .bottomNavigationBackgroundMode(BottomNavBgMode.PRIMARY)
-                .bottomNavigationIconTextMode(BottomNavIconTextMode.SELECTED_ACCENT)
-                .apply();
     }
 
 

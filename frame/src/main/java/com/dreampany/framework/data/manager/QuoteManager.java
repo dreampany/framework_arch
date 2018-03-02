@@ -26,6 +26,7 @@ public class QuoteManager extends Manager<StoreTask<?>> {
 
     private static QuoteManager instance;
     private final Context context;
+    private final FirestoreManager firestore;
     private final Forismatic forismatic;
     private final Executor executor;
 
@@ -36,6 +37,7 @@ public class QuoteManager extends Manager<StoreTask<?>> {
             throw new NullPointerException();
         }
         this.context = context.getApplicationContext();
+        firestore = FirestoreManager.onInstance();
         forismatic = new Forismatic();
         executor = Executors.newSingleThreadExecutor();
     }
@@ -58,10 +60,10 @@ public class QuoteManager extends Manager<StoreTask<?>> {
         }
         wait = defaultWait;
 
-        long fireTime = FirestoreManager.onInstance().getLastTime();
+        long fireTime = firestore.getLastTime();
         if (!isExpired(fireTime, idleDelay)) {
             putTaskUniquely(task);
-            long delay = TimeUtil.getDelayTime(fireTime);
+            long delay = TimeUtil.getExpireTime(fireTime);
             long wait = idleDelay - delay;
             if (wait > 0L) {
                 waitRunner(wait);
@@ -73,7 +75,7 @@ public class QuoteManager extends Manager<StoreTask<?>> {
             putTaskUniquely(task);
             return true;
         }
-        FirestoreManager.onInstance().addMultiple(task.getCollection(), task.getData());
+        firestore.addMultiple(task.getCollection(), task.getData());
         return true;
     }
 
@@ -106,10 +108,10 @@ public class QuoteManager extends Manager<StoreTask<?>> {
 
 
     private Quote getFromFirestore(long time) {
-        if (!FirebaseManager.onManager().resolveAuth()) {
-            return null;
+        if (FirebaseManager.onManager().resolveAuth()) {
+            return firestore.getSingle(QUOTES, TIME, time, Quote.class);
         }
-        return FirestoreManager.onInstance().getSingle(QUOTES, TIME, time, Quote.class);
+        return null;
     }
 
     private void storeInFirestore(Quote quote) {

@@ -18,6 +18,27 @@ public class StoreTask<T extends BaseSerial> extends Task<T, Type, Type, Type> {
 
     }
 
+/*    private StoreTask(Parcel in) {
+        super(in);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
+    }
+
+    public static final Creator<StoreTask> CREATOR = new Creator<StoreTask>() {
+        @Override
+        public StoreTask createFromParcel(Parcel in) {
+            return new StoreTask(in);
+        }
+
+        @Override
+        public StoreTask[] newArray(int size) {
+            return new StoreTask[size];
+        }
+    };*/
+
     @Override
     public boolean equals(Object inObject) {
         if (StoreTask.class.isInstance(inObject)) {

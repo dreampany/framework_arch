@@ -8,13 +8,13 @@ import android.os.Parcelable;
  */
 public class Color extends BaseParcel {
 
-    private int colorPrimaryId;
-    private int colorPrimaryDarkId;
-    private int colorAccentId;
+    private int primaryId;
+    private int primaryDarkId;
+    private int accentId;
 
-    public Color(int colorPrimaryId, int colorPrimaryDarkId) {
-        this.colorPrimaryId = colorPrimaryId;
-        this.colorPrimaryDarkId = colorPrimaryDarkId;
+    public Color(int primaryId, int primaryDarkId) {
+        this.primaryId = primaryId;
+        this.primaryDarkId = primaryDarkId;
     }
 
     protected Color(Parcel in) {
@@ -43,32 +43,32 @@ public class Color extends BaseParcel {
         return 0;
     }
 
-    public int getColorPrimaryId() {
-        return colorPrimaryId;
+    public int getPrimaryId() {
+        return primaryId;
     }
 
-    public int getColorPrimaryDarkId() {
-        return colorPrimaryDarkId;
+    public int getPrimaryDarkId() {
+        return primaryDarkId;
     }
 
-    public int getColorAccentId() {
-        return colorAccentId;
+    public int getAccentId() {
+        return accentId;
     }
 
-    public Color setColorPrimaryId(int colorPrimaryId) {
-        this.colorPrimaryId = colorPrimaryId;
-        //  notifyPropertyChanged(BR.colorPrimaryDarkId);
+    public Color setPrimaryId(int primaryId) {
+        this.primaryId = primaryId;
+        //  notifyPropertyChanged(BR.primaryDarkId);
         return this;
     }
 
-    public Color setColorPrimaryDarkId(int colorPrimaryDarkId) {
-        this.colorPrimaryDarkId = colorPrimaryDarkId;
-        //  notifyPropertyChanged(BR.colorPrimaryDarkId);
+    public Color setPrimaryDarkId(int primaryDarkId) {
+        this.primaryDarkId = primaryDarkId;
+        //  notifyPropertyChanged(BR.primaryDarkId);
         return this;
     }
 
-    public Color setColorAccentId(int colorAccentId) {
-        this.colorAccentId = colorAccentId;
+    public Color setAccentId(int accentId) {
+        this.accentId = accentId;
         return this;
     }
 }

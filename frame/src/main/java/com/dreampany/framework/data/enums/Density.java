@@ -47,4 +47,9 @@ public enum Density implements Type {
     public int ordinalValue() {
         return ordinal();
     }
+
+    @Override
+    public String toLowerValue() {
+        return name().toLowerCase();
+    }
 }

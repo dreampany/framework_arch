@@ -57,7 +57,7 @@ public class ServiceManager {
                 .setService(clazz)
                 .setTag(tag)
                 .setLifetime(Lifetime.FOREVER)
-                .setTrigger(Trigger.executionWindow(0, period))
+                .setTrigger(Trigger.executionWindow(period - 1, period))
                 .setReplaceCurrent(true)
                 .setRetryStrategy(RetryStrategy.DEFAULT_LINEAR)
                 .setConstraints(Constraint.ON_ANY_NETWORK)

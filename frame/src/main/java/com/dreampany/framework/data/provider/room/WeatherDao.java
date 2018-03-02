@@ -26,6 +26,9 @@ public interface WeatherDao {
     @Query("select * from weather")
     List<Weather> getAll();
 
+    @Query("select * from weather order by time desc limit 1")
+    Weather getLastWeather();
+
     @Query("select * from weather where id = :id and time >= :time order by time desc limit 1")
     Weather getWeather(String id, long time);
 

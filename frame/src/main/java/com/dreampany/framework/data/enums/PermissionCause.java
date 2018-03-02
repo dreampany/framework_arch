@@ -30,7 +30,10 @@ public enum PermissionCause implements Type {
             return new PermissionCause[size];
         }
 
-    };
+    };    @Override
+    public String toLowerValue() {
+        return name().toLowerCase();
+    }
 
     @Override
     public boolean equals(Type type) {

@@ -18,10 +18,12 @@ public final class Translator {
     private static final String KEY_HASH = "hash";
 
     private static Translator instance;
+    private final FirestoreManager firestore;
     private Yandex yandex;
     private Map<Integer, Translate> translates;
 
     private Translator() {
+        firestore = FirestoreManager.onInstance();
         yandex = new Yandex();
         translates = Maps.newConcurrentMap();
     }
@@ -66,14 +68,14 @@ public final class Translator {
 
     private Translate getFromFirestore(int hash) {
         if (FirebaseManager.onManager().resolveAuth()) {
-            return FirestoreManager.onInstance().getSingle(TRANSLATES, KEY_HASH, hash, null, 0L, Translate.class);
+            return firestore.getSingle(TRANSLATES, KEY_HASH, hash, null, 0L, Translate.class);
         }
         return null;
     }
 
     private void storeInFirestore(Translate translate) {
         if (FirebaseManager.onManager().resolveAuth()) {
-            FirestoreManager.onInstance().addSingle(TRANSLATES, String.valueOf(translate.hashCode()), translate);
+            firestore.addSingle(TRANSLATES, String.valueOf(translate.hashCode()), translate);
         }
     }
 }

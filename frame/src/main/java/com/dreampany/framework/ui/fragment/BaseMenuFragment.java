@@ -21,13 +21,13 @@ import com.dreampany.framework.ui.activity.BaseMenuActivity;
  */
 public abstract class BaseMenuFragment extends BaseFragment
         implements AdapterView.OnItemSelectedListener, MenuItem.OnActionExpandListener, SearchView.OnQueryTextListener,
-        CompoundButton.OnCheckedChangeListener, ActionMode.Callback, android.view.ActionMode.Callback
-{
+        CompoundButton.OnCheckedChangeListener, ActionMode.Callback, android.view.ActionMode.Callback {
 
     private final int defaultMenuId = 0;
     private final int defaultContextualMenuId = 0;
 
     protected Menu menu;
+    protected MenuInflater inflater;
     protected ActionMode actionMode;
 
     @Override
@@ -40,12 +40,13 @@ public abstract class BaseMenuFragment extends BaseFragment
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
+        this.menu = menu;
+        this.inflater = inflater;
         int menuId = getMenuId();
 
         if (menuId > defaultMenuId) {
             menu.clear();
             inflater.inflate(menuId, menu);
-            this.menu = menu;
             onCreatedMenu(menu);
         }
     }
@@ -71,7 +72,6 @@ public abstract class BaseMenuFragment extends BaseFragment
             //((BaseMenuActivity) activity).setOptionMenu(getMenuId());
         }
     }
-
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -155,18 +155,6 @@ public abstract class BaseMenuFragment extends BaseFragment
     @Override
     public void onDestroyActionMode(android.view.ActionMode mode) {
         BarUtil.restoreStatusColor(getActivity());
-    }
-
-    protected void setMenuIcon(int menuItemId, int iconRes) {
-        if (menu != null) {
-            menu.findItem(menuItemId).setIcon(iconRes);
-        }
-    }
-
-    protected void setMenuVisible(int menuItemId, boolean visible) {
-        if (menu != null) {
-            menu.findItem(menuItemId).setVisible(visible);
-        }
     }
 
     protected void startActionMode() {

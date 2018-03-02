@@ -14,9 +14,7 @@ import com.github.pwittchen.reactivenetwork.library.rx2.ConnectivityPredicate;
 import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork;
 
 import io.reactivex.Single;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -57,12 +55,7 @@ public final class NetworkManager {
         single
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.computation())
-                .subscribe(new Consumer<Boolean>() {
-                    @Override
-                    public void accept(@NonNull Boolean isConnectedToTheInternet) throws Exception {
-                        hasInternet = isConnectedToTheInternet;
-                    }
-                });
+                .subscribe(isConnectedToTheInternet -> hasInternet = isConnectedToTheInternet);
 
         networkDisposable = ReactiveNetwork
                 .observeNetworkConnectivity(context.getApplicationContext())

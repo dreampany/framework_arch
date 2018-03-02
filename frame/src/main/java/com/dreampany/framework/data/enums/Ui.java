@@ -31,7 +31,10 @@ public enum Ui implements Type {
         }
 
     };
-
+    @Override
+    public String toLowerValue() {
+        return name().toLowerCase();
+    }
     @Override
     public boolean equals(Type type) {
         return this == type && type instanceof Ui && compareTo((Ui) type) == 0;

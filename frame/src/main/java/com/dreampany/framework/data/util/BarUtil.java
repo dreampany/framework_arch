@@ -39,7 +39,7 @@ public class BarUtil {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ColorUtil.getColor(activity, color.getColorPrimaryDarkId()));
+            window.setStatusBarColor(ColorUtil.getColor(activity, color.getPrimaryDarkId()));
         }
         // window.set(activity.getResources().getColor(R.color.example_color));
     }
@@ -76,7 +76,7 @@ public class BarUtil {
 
     public static void setActionBarColor(Toolbar toolbar, Color color) {
         if (toolbar != null) {
-            toolbar.setBackgroundColor(ColorUtil.getColor(toolbar.getContext(), color.getColorPrimaryId()));
+            toolbar.setBackgroundColor(ColorUtil.getColor(toolbar.getContext(), color.getPrimaryId()));
         }
     }
 

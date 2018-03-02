@@ -7,5 +7,7 @@ public interface Type extends Parcelable {
 
     String value();
 
+    String toLowerValue();
+
     int ordinalValue();
 }

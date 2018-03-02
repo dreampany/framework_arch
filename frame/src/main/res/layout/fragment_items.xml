@@ -19,7 +19,7 @@
         auto:offlineLayout="@layout/state_offline"
         auto:progressLayout="@layout/state_progress">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -32,20 +32,50 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_height="match_parent"
+                android:layout_below="@id/layoutStatus">
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerView"
+                <android.support.v4.widget.SwipeRefreshLayout
+                    android:id="@+id/layoutRefresh"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scrollbars="none"
-                    auto:items="@{items}"
-                    tools:listitem="@layout/item_list" />
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbars="none"
+                        auto:items="@{items}"
+                        tools:listitem="@layout/item_list" />
+
+                </android.support.v4.widget.SwipeRefreshLayout>
 
             </FrameLayout>
 
-        </LinearLayout>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                android:visibility="gone"
+                auto:elevation="6dp"
+                auto:rippleColor="@color/colorWhite"
+                auto:srcCompat="@drawable/ic_add_white_24dp" />
+
+            <include
+                android:id="@+id/layoutNewItems"
+                layout="@layout/content_new_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </RelativeLayout>
     </cz.kinst.jakub.view.SimpleStatefulLayout>
 
 </layout>

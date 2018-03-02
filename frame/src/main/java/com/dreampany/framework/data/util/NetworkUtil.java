@@ -87,7 +87,7 @@ public final class NetworkUtil {
 
     public static boolean hasInternet() {
         try {
-            return hasInternet(DEFAULT_PING_HOST, DEFAULT_PING_PORT,DEFAULT_PING_TIMEOUT_IN_MS);
+            return hasInternet(DEFAULT_PING_HOST, DEFAULT_PING_PORT, DEFAULT_PING_TIMEOUT_IN_MS);
         } catch (IOException e) {
             return false;
         }

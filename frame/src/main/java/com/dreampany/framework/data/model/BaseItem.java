@@ -19,6 +19,7 @@ public abstract class BaseItem<VH extends FlexibleViewHolder> extends AbstractFl
     protected String id;
     protected Color color;
     protected int layoutId;
+    protected boolean flag;
 
     protected BaseItem() {
         color = ColorUtil.getRandColor();
@@ -50,6 +51,10 @@ public abstract class BaseItem<VH extends FlexibleViewHolder> extends AbstractFl
         this.layoutId = layoutId;
     }
 
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
     public String getId() {
         return id;
     }
@@ -60,5 +65,8 @@ public abstract class BaseItem<VH extends FlexibleViewHolder> extends AbstractFl
 
     public int getLayoutId() {
         return layoutId;
+    }
+    public boolean isFlag() {
+        return flag;
     }
 }

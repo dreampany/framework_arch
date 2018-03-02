@@ -25,7 +25,10 @@ public enum HostType implements Type {
     public String value() {
         return name();
     }
-
+    @Override
+    public String toLowerValue() {
+        return name().toLowerCase();
+    }
     public static final Creator<HostType> CREATOR = new Creator<HostType>() {
 
         public HostType createFromParcel(Parcel in) {

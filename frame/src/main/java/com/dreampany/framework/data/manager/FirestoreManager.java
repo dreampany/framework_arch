@@ -27,10 +27,9 @@ import java.util.Map;
 
 public final class FirestoreManager {
 
+
     private static FirestoreManager instance;
-
     private final Object sync = new Object();
-
     private FirebaseFirestore firestore;
 
     private volatile boolean result;
@@ -55,7 +54,7 @@ public final class FirestoreManager {
         return lastTime;
     }
 
-    synchronized public <T> boolean addSingle(String collection, String id, T item) {
+    synchronized public <T> boolean addSingle(final String collection, final String id, final T item) {
         DocumentReference doc = firestore.collection(collection).document(id);
         Task<Void> task = doc.set(item, SetOptions.merge());
         currentPath = doc.getPath();
@@ -64,7 +63,7 @@ public final class FirestoreManager {
         return result;
     }
 
-    synchronized public boolean addMap(String collection, String document, Map<String, Object> data) {
+    synchronized public boolean addMap(final String collection, final String document, final Map<String, Object> data) {
         DocumentReference doc = firestore.collection(collection).document(document);
         Task<Void> task = doc.set(data, SetOptions.merge());
         currentPath = doc.getPath();
@@ -79,7 +78,7 @@ public final class FirestoreManager {
      * @param <T>
      * @return
      */
-    synchronized public <T> boolean addMultiple(String collection, Map<String, T> items) {
+    synchronized public <T> boolean addMultiple(final String collection, final Map<String, T> items) {
         WriteBatch batch = firestore.batch();
         DocumentReference doc = null;
         for (Map.Entry<String, T> entry : items.entrySet()) {
@@ -87,13 +86,13 @@ public final class FirestoreManager {
             batch.set(doc, entry.getValue());
         }
         Task<Void> task = batch.commit();
-        currentPath = doc.getPath();
+        currentPath = collection + "/" + items.size();
         task.addOnCompleteListener(writeCompleteListener).addOnFailureListener(writeFailureListener);
         waiting();
         return result;
     }
 
-    synchronized public <T> T getSingle(String collection, String upperKey, Object upperValue, Class<T> outputClass) {
+    synchronized public <T> T getSingle(final String collection, final String upperKey, final Object upperValue, final Class<T> outputClass) {
         lastTime = TimeUtil.currentTime();
         CollectionReference collRef = firestore.collection(collection);
         Query query = collRef.limit(1);
@@ -115,7 +114,7 @@ public final class FirestoreManager {
     }
 
 
-    synchronized public <T> T getSingle(String collection, String where, Object whereArg, String upperKey, Object upperValue, Class<T> outputClass) {
+    synchronized public <T> T getSingle(final String collection, final String where, final Object whereArg, final String upperKey, final Object upperValue, final Class<T> outputClass) {
         lastTime = TimeUtil.currentTime();
         CollectionReference collRef = firestore.collection(collection);
         Query query = collRef.limit(1);
@@ -139,7 +138,7 @@ public final class FirestoreManager {
         return null;
     }
 
-    synchronized public <T> T getSingle(String collection, String[] where, Object[] whereArg, Class<T> outputClass) {
+    synchronized public <T> T getSingle(final String collection, final String[] where, final Object[] whereArg, final Class<T> outputClass) {
         lastTime = TimeUtil.currentTime();
         CollectionReference collRef = firestore.collection(collection);
         Query query = collRef.limit(1);
@@ -163,7 +162,7 @@ public final class FirestoreManager {
         return null;
     }
 
-    synchronized public <T> T getSingle(String collection, String[] where, Object[] whereArg, String upperKey, Object upperValue, Class<T> outputClass) {
+    synchronized public <T> T getSingle(final String collection, final String[] where, final Object[] whereArg, final String upperKey, final Object upperValue, final Class<T> outputClass) {
         lastTime = TimeUtil.currentTime();
         CollectionReference collRef = firestore.collection(collection);
         Query query = collRef.limit(1);
@@ -191,7 +190,7 @@ public final class FirestoreManager {
         return null;
     }
 
-    synchronized public <T> List<T> getMultiple(String collection, String[] where, Object[] whereArg, Class<T> outputClass, long limit) {
+    synchronized public <T> List<T> getMultiple(final String collection, final String[] where, final Object[] whereArg, final Class<T> outputClass, final long limit) {
         lastTime = TimeUtil.currentTime();
         CollectionReference collRef = firestore.collection(collection);
         Query query = collRef.limit(limit);
@@ -218,7 +217,29 @@ public final class FirestoreManager {
     }
 
 
-    synchronized public <T> List<T> getMultiple(String collection, String upperKey, Object upperValue, Class<T> outputClass, long limit) {
+    synchronized public <T> List<T> getMultipleByGreater(final String collection, final String upperKey, final Object upperValue, final Class<T> outputClass, final long limit) {
+        lastTime = TimeUtil.currentTime();
+        CollectionReference collRef = firestore.collection(collection);
+        Query query = collRef.limit(limit);
+        if (upperKey != null && upperValue != null) {
+            query = query.whereGreaterThan(upperKey, upperValue);
+        }
+        currentPath = collRef.getPath();
+        Task<QuerySnapshot> task = query.get();
+        task.addOnCompleteListener(readCompleteListener);
+        snaps = null;
+        waiting();
+        if (!DataUtil.isEmpty(snaps)) {
+            List<T> items = new ArrayList<>(snaps.size());
+            for (DocumentSnapshot snap : snaps) {
+                items.add(snap.toObject(outputClass));
+            }
+            return items;
+        }
+        return null;
+    }
+
+    synchronized public <T> List<T> getMultiple(final String collection, final String upperKey, final Object upperValue, final Class<T> outputClass, final long limit) {
         lastTime = TimeUtil.currentTime();
         CollectionReference collRef = firestore.collection(collection);
         Query query = collRef.limit(limit);
@@ -240,7 +261,7 @@ public final class FirestoreManager {
         return null;
     }
 
-    synchronized public <T> List<T> getMultiple(String collection, String[] where, Object[] whereArg, String upperKey, Object upperValue, Class<T> outputClass, long limit) {
+    synchronized public <T> List<T> getMultiple(final String collection, final String[] where, final Object[] whereArg, final String upperKey, final Object upperValue, final Class<T> outputClass, final long limit) {
         lastTime = TimeUtil.currentTime();
         CollectionReference collRef = firestore.collection(collection);
         Query query = collRef.limit(limit);
@@ -268,58 +289,6 @@ public final class FirestoreManager {
         }
         return null;
     }
-
-/*    synchronized public <T> List<T> getMultiple(String collection, String where, Object whereArg, String upperKey, Object upperValue, Class<T> outputClass, long limit) {
-        lastTime = TimeUtil.currentTime();
-        CollectionReference collRef = firestore.collection(collection);
-        Query query = collRef.limit(limit);
-        if (where != null && whereArg != null) {
-            query = query.whereEqualTo(where, whereArg);
-        }
-        if (upperKey != null && upperValue != null) {
-            query = query.whereGreaterThanOrEqualTo(upperKey, upperValue);
-        }
-        Task<QuerySnapshot> task = query.get();
-        task.addOnCompleteListener(readCompleteListener);
-        snaps = null;
-        waiting();
-        if (!DataUtil.isEmpty(snaps)) {
-            List<T> items = new ArrayList<>(snaps.size());
-            for (DocumentSnapshot snap : snaps) {
-                items.add(snap.toObject(outputClass));
-            }
-            return items;
-        }
-        return null;
-    }*/
-
-/*    synchronized public <T> List<T> getMultiples(String collection, String[] where, Object[] whereArg, String timeKey, long time, Class<T> outputClass, long limit) {
-        lastTime = TimeUtil.currentTime();
-        CollectionReference collRef = firestore.collection(collection);
-        Query query = collRef.limit(limit);
-        if (where != null && whereArg != null) {
-            for (int index = 0; index < where.length; index++) {
-                if (where[index] != null && whereArg[index] != null) {
-                    query = query.whereEqualTo(where[index], whereArg[index]);
-                }
-            }
-        }
-        if (timeKey != null && time > 0) {
-            query = query.whereGreaterThanOrEqualTo(timeKey, time);
-        }
-        Task<QuerySnapshot> task = query.get();
-        task.addOnCompleteListener(readCompleteListener);
-        snaps = null;
-        waiting();
-        if (!DataUtil.isEmpty(snaps)) {
-            List<T> items = new ArrayList<>(snaps.size());
-            for (DocumentSnapshot snap : snaps) {
-                items.add(snap.toObject(outputClass));
-            }
-            return items;
-        }
-        return null;
-    }*/
 
     synchronized public boolean isReady() {
         return !waiting;

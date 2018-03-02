@@ -1,17 +1,18 @@
 package com.dreampany.framework.data.thread;
 
 import com.dreampany.framework.data.util.LogKit;
+import com.dreampany.framework.data.util.TimeUtil;
 
 public abstract class Runner implements Runnable {
 
-    protected long defaultWait = 1000L;
+    protected long defaultWait = TimeUtil.secondToMilli(1);
     protected long semiWait = defaultWait / 2;
     protected long quarterWait = semiWait / 2;
     protected long mediumWait = 3 * defaultWait;
     protected long pureWait = 5 * defaultWait;
     protected long superWait = 8 * defaultWait;
-    protected long periodWait = 1000L / 100;
-    protected long semiPeriodWait = 1000L / 10;
+    protected long periodWait = 10L;
+    protected long semiPeriodWait = 100L;
     protected long wait = defaultWait;
 
     private volatile Thread thread;
@@ -20,6 +21,14 @@ public abstract class Runner implements Runnable {
     private volatile boolean guarded;
 
     public void start() {
+        startThread();
+    }
+
+    public void stop() {
+        stopThread();
+    }
+
+    protected void startThread() {
         if (running) {
             return;
         }
@@ -29,7 +38,8 @@ public abstract class Runner implements Runnable {
         thread.start();
     }
 
-    public void stop() {
+    protected void stopThread() {
+
         if (!running) {
             return;
         }

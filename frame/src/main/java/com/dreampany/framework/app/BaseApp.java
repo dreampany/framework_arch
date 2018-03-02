@@ -24,8 +24,6 @@ import com.oasisfeng.condom.CondomContext;
 import com.oasisfeng.condom.CondomProcess;
 import com.squareup.leakcanary.LeakCanary;
 
-import org.polaric.colorful.Colorful;
-
 import java.lang.ref.WeakReference;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -88,7 +86,7 @@ public abstract class BaseApp extends MultiDexApplication implements Application
         }
 
         if (enableTheme()) {
-            Colorful.init(context);
+            //Colorful.init(context);
         }
 
         if (enableAppIndex()) {

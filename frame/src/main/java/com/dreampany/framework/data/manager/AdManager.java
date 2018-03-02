@@ -32,9 +32,8 @@ public final class AdManager extends Manager {
         public long bannerExpireDelay;
         public long interstitialExpireDelay;
         public long rewardedExpireDelay;
+        public boolean enabled;
     }
-
-    private static final boolean OFF = false;
 
     private static AdManager manager;
     private Context context;
@@ -119,7 +118,7 @@ public final class AdManager extends Manager {
     }
 
     public void loadBanner(AdView adView) {
-        if (OFF) {
+        if (!config.enabled) {
             return;
         }
 
@@ -132,8 +131,7 @@ public final class AdManager extends Manager {
     }
 
     public void loadInterstitial(final int adUnitId) {
-
-        if (OFF) {
+        if (!config.enabled) {
             return;
         }
 
@@ -150,7 +148,7 @@ public final class AdManager extends Manager {
     }
 
     public void loadRewarded(Context context, int adUnitId) {
-        if (OFF) {
+        if (!config.enabled) {
             return;
         }
 

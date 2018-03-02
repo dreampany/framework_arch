@@ -1,5 +1,6 @@
 package com.dreampany.framework.ui.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
@@ -10,6 +11,7 @@ import com.dreampany.framework.data.adapter.SmartPagerAdapter;
 import com.dreampany.framework.data.model.Color;
 import com.dreampany.framework.data.util.AndroidUtil;
 import com.dreampany.framework.data.util.ColorUtil;
+import com.dreampany.framework.data.util.DataUtil;
 import com.dreampany.framework.data.util.ViewUtil;
 
 /**
@@ -42,51 +44,7 @@ public abstract class BaseStateFragment extends BaseMenuFragment {
     @Override
     protected void startUi(Bundle state) {
         super.startUi(state);
-
-        ViewPager viewPager = ViewUtil.getViewPager(getView(), getViewPagerId());
-        TabLayout tabLayout = ViewUtil.getTabLayout(getView(), getTabLayoutId());
-
-        if (viewPager == null || tabLayout == null) {
-            return;
-        }
-
-        SmartPagerAdapter<BaseFragment> fragmentAdapter = resolveFragmentAdapter();
-
-        viewPager.setAdapter(fragmentAdapter);
-        tabLayout.setupWithViewPager(viewPager);
-
-        if (enableTabColor()) {
-            Color color = getColor();
-            tabLayout.setBackgroundColor(ColorUtil.getColor(getContext(), color.getColorPrimaryId()));
-            tabLayout.setSelectedTabIndicatorColor(
-                    ColorUtil.getColor(getContext(), R.color.colorWhite)
-            );
-
-            tabLayout.setTabTextColors(
-                    ColorUtil.getColor(getContext(), R.color.colorWhite2),
-                    ColorUtil.getColor(getContext(), R.color.colorWhite)
-            );
-        }
-
-        // fragmentAdapter.removeAll();
-
-        final SmartPagerAdapter fixedAdapter = fragmentAdapter;
-        final String[] pageTitles = pageTitles();
-        final Class[] pageClasses = pageClasses();
-
-        if (keepAllPage()) {
-            viewPager.setOffscreenPageLimit(pageClasses.length);
-        } else {
-            //viewPager.setOffscreenPageLimit(pageClasses.length);
-        }
-
-        final Runnable pagerRunnable = () -> {
-            for (int index = 0; index < pageClasses.length; index++) {
-                fixedAdapter.addPage(pageTitles[index], pageClasses[index]);
-            }
-        };
-
-        AndroidUtil.postDelay(pagerRunnable);
+        initPager();
     }
 
 
@@ -105,7 +63,7 @@ public abstract class BaseStateFragment extends BaseMenuFragment {
     }
 
     public BaseFragment getCurrentPagerFragment() {
-        ViewPager viewPager = ViewUtil.getViewPager(getView(), getViewPagerId());
+        ViewPager viewPager = ViewUtil.getViewPager(this, getViewPagerId());
         SmartPagerAdapter pagerAdapter = getFragmentAdapter();
         if (viewPager != null && pagerAdapter != null) {
             BaseFragment fragment = pagerAdapter.getFragment(viewPager.getCurrentItem());
@@ -117,7 +75,7 @@ public abstract class BaseStateFragment extends BaseMenuFragment {
     }
 
     public <T extends BaseFragment> SmartPagerAdapter getFragmentAdapter() {
-        ViewPager viewPager = ViewUtil.getViewPager(getView(), getViewPagerId());
+        ViewPager viewPager = ViewUtil.getViewPager(this, getViewPagerId());
         PagerAdapter pagerAdapter = ViewUtil.getAdapter(viewPager);
         if (pagerAdapter != null) {
             return (SmartPagerAdapter) pagerAdapter;
@@ -134,5 +92,56 @@ public abstract class BaseStateFragment extends BaseMenuFragment {
         }
 
         return fragmentAdapter;
+    }
+
+    private void initPager() {
+
+        final String[] pageTitles = pageTitles();
+        final Class[] pageClasses = pageClasses();
+
+        ViewPager viewPager = ViewUtil.getViewPager(this, getViewPagerId());
+        TabLayout tabLayout = ViewUtil.getTabLayout(this, getTabLayoutId());
+
+        if (DataUtil.isEmpty(pageTitles) || DataUtil.isEmpty(pageClasses) || viewPager == null || tabLayout == null) {
+            return;
+        }
+
+        Context context = tabLayout.getContext();
+
+        if (enableTabColor()) {
+            Color color = getColor();
+            tabLayout.setBackgroundColor(ColorUtil.getColor(getContext(), color.getPrimaryId()));
+            tabLayout.setSelectedTabIndicatorColor(
+                    ColorUtil.getColor(getContext(), R.color.colorWhite)
+            );
+
+            tabLayout.setTabTextColors(
+                    ColorUtil.getColor(context, R.color.colorWhite2),
+                    ColorUtil.getColor(context, R.color.colorWhite)
+            );
+        }
+
+        SmartPagerAdapter<BaseFragment> fragmentAdapter = resolveFragmentAdapter();
+
+        viewPager.setAdapter(fragmentAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+
+        //fragmentAdapter.removeAll();
+
+        final SmartPagerAdapter fixedAdapter = fragmentAdapter;
+
+        if (keepAllPage()) {
+            viewPager.setOffscreenPageLimit(pageClasses.length);
+        } else {
+            //viewPager.setOffscreenPageLimit(pageClasses.length);
+        }
+
+        final Runnable pagerRunnable = () -> {
+            for (int index = 0; index < pageClasses.length; index++) {
+                fixedAdapter.addPage(pageTitles[index], pageClasses[index]);
+            }
+        };
+
+        AndroidUtil.postDelay(pagerRunnable);
     }
 }

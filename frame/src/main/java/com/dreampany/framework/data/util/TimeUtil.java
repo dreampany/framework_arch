@@ -61,7 +61,10 @@ public final class TimeUtil {
 
     public static long hourToSeconds(int hours) {
         return TimeUnit.HOURS.toSeconds(hours);
-        //return minuteToMilli(60 * hour);
+    }
+
+    public static long minuteToSeconds(int minutes) {
+        return TimeUnit.MINUTES.toSeconds(minutes);
     }
 
     public static long hourToMilli(int hours) {
@@ -173,10 +176,10 @@ public final class TimeUtil {
     }
 
     public static boolean isExpired(long time, long delay) {
-        return currentTime() - time >= delay;
+        return currentTime() - time > delay;
     }
 
-    public static long getDelayTime(long time) {
+    public static long getExpireTime(long time) {
         return currentTime() - time;
     }
 

@@ -13,18 +13,23 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.daasuu.cat.CountAnimationTextView;
+import com.dreampany.framework.R;
 import com.dreampany.framework.data.adapter.BaseAdapter;
 import com.dreampany.framework.data.adapter.SmartAdapter;
 import com.dreampany.framework.data.listener.RecyclerClickListener;
@@ -46,8 +51,8 @@ public final class ViewUtil {
     }
 
     public static void setScrimColor(CollapsingToolbarLayout layout, Color color) {
-        layout.setContentScrimColor(ColorUtil.getColor(layout.getContext(), color.getColorPrimaryId()));
-        layout.setStatusBarScrimColor(ColorUtil.getColor(layout.getContext(), color.getColorPrimaryDarkId()));
+        layout.setContentScrimColor(ColorUtil.getColor(layout.getContext(), color.getPrimaryId()));
+        layout.setStatusBarScrimColor(ColorUtil.getColor(layout.getContext(), color.getPrimaryDarkId()));
     }
 
     public static void setTint(android.support.v4.app.Fragment parent, int viewId, int colorId) {
@@ -82,6 +87,39 @@ public final class ViewUtil {
         }
     }
 
+    public static void setIcon(Menu menu, int menuItemId, int iconRes) {
+        if (menu != null) {
+            MenuItem item = menu.findItem(menuItemId);
+            if (item != null) {
+                item.setIcon(iconRes);
+            }
+        }
+    }
+
+    public static void visible(Menu menu, int menuItemId) {
+        if (menu != null) {
+            MenuItem item = menu.findItem(menuItemId);
+            if (item != null) {
+                item.setVisible(true);
+            }
+        }
+    }
+
+    public static void hide(Menu menu, int menuItemId) {
+        if (menu != null) {
+            MenuItem item = menu.findItem(menuItemId);
+            if (item != null) {
+                item.setVisible(false);
+            }
+        }
+    }
+
+    public static void setVisible(View view, boolean visible) {
+        if (view != null) {
+            view.setVisibility(visible ? View.VISIBLE : View.GONE);
+        }
+    }
+
     public static void setVisibility(Activity activity, int viewId, int visibility) {
         setVisibility(getViewById(activity, viewId), visibility);
     }
@@ -101,6 +139,15 @@ public final class ViewUtil {
     public static void setVisibility(View view, int visibility) {
         if (view != null) {
             view.setVisibility(visibility);
+        }
+    }
+
+    public static void gone(Menu menu, int menuItemId) {
+        if (menu != null) {
+            MenuItem item = menu.findItem(menuItemId);
+            if (item != null) {
+                item.setVisible(false);
+            }
         }
     }
 
@@ -181,16 +228,16 @@ public final class ViewUtil {
         return (parentView == null || viewId <= 0) ? null : parentView.findViewById(viewId);
     }
 
-    public static ViewPager getViewPager(View parentView, int viewPagerId) {
-        View viewPager = getViewById(parentView, viewPagerId);
+    public static ViewPager getViewPager(android.support.v4.app.Fragment fragment, int viewPagerId) {
+        View viewPager = getViewById(fragment.getView(), viewPagerId);
         if (ViewPager.class.isInstance(viewPager)) {
             return (ViewPager) viewPager;
         }
         return null;
     }
 
-    public static TabLayout getTabLayout(View parentView, int tabLayoutId) {
-        View tabLayout = getViewById(parentView, tabLayoutId);
+    public static TabLayout getTabLayout(android.support.v4.app.Fragment fragment, int tabLayoutId) {
+        View tabLayout = getViewById(fragment.getView(), tabLayoutId);
         if (TabLayout.class.isInstance(tabLayout)) {
             return (TabLayout) tabLayout;
         }
@@ -319,7 +366,6 @@ public final class ViewUtil {
             TextView textView = (TextView) view;
             textView.setError(error);
         }
-
     }
 
     public static String getText(Activity parent, int viewId) {
@@ -457,6 +503,7 @@ public final class ViewUtil {
     public static void setBackground(final android.support.v4.app.Fragment parent, final int viewId, final int colorId) {
         setBackground(getViewById(parent, viewId), colorId);
     }
+
     public static void setBackground(final View view, final int colorId) {
         if (FloatingActionButton.class.isInstance(view)) {
             Runnable runnable = () -> ((FloatingActionButton) view).setBackgroundTintList(ColorStateList.valueOf(ColorUtil.getColor(view.getContext(), colorId)));
@@ -669,10 +716,45 @@ public final class ViewUtil {
 
         if (animator != null) {
             recycler.setItemAnimator(animator);
+        } else {
+            ((DefaultItemAnimator) recycler.getItemAnimator()).setSupportsChangeAnimations(false);
         }
 
         if (decoration != null) {
             recycler.addItemDecoration(decoration);
         }
     }
+
+    public static void setSwipe(SwipeRefreshLayout swipe, SwipeRefreshLayout.OnRefreshListener listener) {
+        if (swipe != null) {
+            swipe.setColorSchemeResources(
+                    R.color.colorRed500,
+                    R.color.colorDeepPurple500,
+                    R.color.colorGreen600,
+                    R.color.colorAmber600);
+            swipe.setOnRefreshListener(listener);
+        }
+    }
+
+    public static void startRefreshing(android.support.v4.app.Fragment parent, int refreshId) {
+        SwipeRefreshLayout layout = getViewById(parent, refreshId);
+        if (layout != null && !layout.isRefreshing()) {
+            layout.post(() -> layout.setRefreshing(true));
+            stopRefreshing(parent, refreshId, 5000L);
+        }
+    }
+
+    public static void stopRefreshing(android.support.v4.app.Fragment parent, int refreshId, long delay) {
+        SwipeRefreshLayout layout = getViewById(parent, refreshId);
+        if (layout != null && layout.isRefreshing()) {
+            layout.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    layout.setRefreshing(false);
+                }
+            }, delay);
+        }
+    }
+
+
 }

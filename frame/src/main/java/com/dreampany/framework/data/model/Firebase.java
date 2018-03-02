@@ -33,6 +33,11 @@ public enum Firebase implements Type {
     };
 
     @Override
+    public String toLowerValue() {
+        return name().toLowerCase();
+    }
+
+    @Override
     public boolean equals(Type type) {
         return type instanceof Firebase && compareTo((Firebase) type) == 0;
     }

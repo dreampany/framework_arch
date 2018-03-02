@@ -15,23 +15,7 @@ public class UiTask<T extends BaseSerial, X extends Type, Y extends Type, S exte
 
     }
 
-    public void setFullscreen(boolean fullscreen) {
-        this.fullscreen = fullscreen;
-    }
-
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
-
-    public boolean isFullscreen() {
-        return fullscreen;
-    }
-
-    public String getKeyword() {
-        return keyword;
-    }
-
-    /*    private UiTask(Parcel in) {
+/*    private UiTask(Parcel in) {
         super(in);
     }
 
@@ -51,4 +35,22 @@ public class UiTask<T extends BaseSerial, X extends Type, Y extends Type, S exte
             return new UiTask[size];
         }
     };*/
+
+    public void setFullscreen(boolean fullscreen) {
+        this.fullscreen = fullscreen;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public boolean isFullscreen() {
+        return fullscreen;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+
 }

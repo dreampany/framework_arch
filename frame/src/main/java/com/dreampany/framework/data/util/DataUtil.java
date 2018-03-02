@@ -725,4 +725,30 @@ public final class DataUtil {
         String pre = (si ? "kMGTPE" : "KMGTPE").charAt(exp - 1) + (si ? "" : "i");
         return String.format(Locale.ENGLISH, "%.1f %s", value / Math.pow(unit, exp), pre);
     }
+
+    public static String[] toFilteredArray(String... items) {
+        if (isEmpty(items)) {
+            return null;
+        }
+        List<String> results = new ArrayList<>();
+        for (String item : items) {
+            if (!isEmpty(item)) {
+                results.add(item);
+            }
+        }
+        return results.isEmpty() ? null : results.toArray(new String[0]);
+    }
+
+    public static Object[] toFilteredArray(Object... items) {
+        if (isEmpty(items)) {
+            return null;
+        }
+        List<Object> results = new ArrayList<>();
+        for (Object item : items) {
+            if (!isEmpty(item)) {
+                results.add(item);
+            }
+        }
+        return results.isEmpty() ? null : results.toArray(new Object[0]);
+    }
 }

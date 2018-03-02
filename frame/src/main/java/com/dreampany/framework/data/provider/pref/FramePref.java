@@ -30,6 +30,7 @@ public class FramePref extends BasePref {
     private static final String LONGITUDE = "longitude";
     private static final String INTERSTITIAL_COUNT = "interstitial_count";
     private static final String REWARDED_COUNT = "rewarded_count";
+    private static final String LIST_OR_GRID = "list_grid";
     private static String NOTIFICATION;
     private static String LANGUAGE;
     private static String THEME;
@@ -73,7 +74,11 @@ public class FramePref extends BasePref {
     }
 
     public String getCountryCode() {
-        return publicPref.get(COUNTRY, String.class, Locale.getDefault().getCountry().toLowerCase());
+        String code = publicPref.get(COUNTRY, String.class, Locale.getDefault().getCountry().toLowerCase());
+        if (code == null) {
+            code = Locale.ENGLISH.getCountry().toLowerCase();
+        }
+        return code;
     }
 
     public int getFontSize() {
@@ -154,11 +159,11 @@ public class FramePref extends BasePref {
         return publicPref.get(SPEAK, Boolean.class, true);
     }
 
-    public boolean isNotification() {
+    public boolean hasNotification() {
         return publicPref.get(NOTIFICATION, Boolean.class, true);
     }
 
-    public boolean isTranslation() {
+    public boolean hasTranslation() {
         return publicPref.get(TRANSLATION, Boolean.class, true);
     }
 
@@ -198,5 +203,19 @@ public class FramePref extends BasePref {
 
     public int getRewardedCount() {
         return privatePref.get(REWARDED_COUNT, Integer.class, 0);
+    }
+
+    public void setListOrGrid(boolean listOrGrid) {
+        privatePref.put(LIST_OR_GRID , listOrGrid);
+    }
+
+    public boolean toggleListOrGrid() {
+        boolean isListOrGrid = isListOrGrid();
+        setListOrGrid(!isListOrGrid);
+        return !isListOrGrid;
+    }
+
+    public boolean isListOrGrid() {
+        return privatePref.get(LIST_OR_GRID, Boolean.class, true);
     }
 }

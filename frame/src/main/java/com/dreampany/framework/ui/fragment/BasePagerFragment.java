@@ -41,8 +41,8 @@ public abstract class BasePagerFragment extends BaseMenuFragment {
     protected void startUi(Bundle state) {
         super.startUi(state);
 
-        ViewPager viewPager = ViewUtil.getViewPager(getView(), getViewPagerId());
-        TabLayout tabLayout = ViewUtil.getTabLayout(getView(), getTabLayoutId());
+        ViewPager viewPager = ViewUtil.getViewPager(this, getViewPagerId());
+        TabLayout tabLayout = ViewUtil.getTabLayout(this, getTabLayoutId());
 
         if (viewPager == null || tabLayout == null) {
             return;
@@ -56,16 +56,16 @@ public abstract class BasePagerFragment extends BaseMenuFragment {
 
         Color color = getColor();
         if (color != null) {
-            //tabLayout.setBackgroundColor(ColorUtil.getColor(getContext(), color.getColorPrimaryId()));
+            //tabLayout.setBackgroundColor(ColorUtil.getColor(getContext(), color.getPrimaryId()));
 
 
             tabLayout.setSelectedTabIndicatorColor(
-                    ColorUtil.getColor(getContext(), color.getColorAccentId())
+                    ColorUtil.getColor(getContext(), color.getAccentId())
             );
 
             tabLayout.setTabTextColors(
-                    ColorUtil.getColor(getContext(), color.getColorPrimaryId()),
-                    ColorUtil.getColor(getContext(), color.getColorAccentId())
+                    ColorUtil.getColor(getContext(), color.getPrimaryId()),
+                    ColorUtil.getColor(getContext(), color.getAccentId())
             );
         }
 
@@ -102,7 +102,7 @@ public abstract class BasePagerFragment extends BaseMenuFragment {
     }
 
     public BaseFragment getCurrentPagerFragment() {
-        ViewPager viewPager = ViewUtil.getViewPager(getView(), getViewPagerId());
+        ViewPager viewPager = ViewUtil.getViewPager(this, getViewPagerId());
         SupportFragmentAdapter pagerAdapter = getFragmentAdapter();
         if (viewPager != null && pagerAdapter != null) {
             BaseFragment compat = (BaseFragment) pagerAdapter.getFragment(viewPager.getCurrentItem());
@@ -114,7 +114,7 @@ public abstract class BasePagerFragment extends BaseMenuFragment {
     }
 
     public <T extends BaseFragment> SupportFragmentAdapter getFragmentAdapter() {
-        ViewPager viewPager = ViewUtil.getViewPager(getView(), getViewPagerId());
+        ViewPager viewPager = ViewUtil.getViewPager(this, getViewPagerId());
         PagerAdapter pagerAdapter = ViewUtil.getAdapter(viewPager);
 
         if (pagerAdapter != null) {

@@ -18,6 +18,7 @@ import com.dreampany.framework.data.model.Session;
 import com.dreampany.framework.data.model.State;
 import com.dreampany.framework.data.model.Tag;
 import com.dreampany.framework.data.model.Translate;
+import com.dreampany.framework.data.model.User;
 
 import java.util.Locale;
 
@@ -25,7 +26,7 @@ import java.util.Locale;
  * Created by air on 10/17/17.
  */
 
-@Database(entities = {Session.class, Point.class, State.class, Flag.class, Language.class, Translate.class, History.class, Category.class, Tag.class, Keyword.class}, version = 3)
+@Database(entities = {Session.class, Point.class, State.class, Flag.class, Language.class, Translate.class, History.class, Category.class, Tag.class, Keyword.class, User.class}, version = 5)
 public abstract class FrameDatabase extends RoomDatabase {
     public static final String DATABASE = "frame-db";
     private static volatile FrameDatabase instance;
@@ -47,6 +48,8 @@ public abstract class FrameDatabase extends RoomDatabase {
     public abstract CategoryDao categoryDao();
 
     public abstract TagDao tagDao();
+
+    public abstract UserDao userDao();
 
     synchronized public static FrameDatabase onInstance(Context context) {
         if (instance == null) {

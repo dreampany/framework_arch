@@ -13,7 +13,10 @@ public enum Result implements Type {
         }
         return false;
     }
-
+    @Override
+    public String toLowerValue() {
+        return name().toLowerCase();
+    }
     @Override
     public int ordinalValue() {
         return ordinal();

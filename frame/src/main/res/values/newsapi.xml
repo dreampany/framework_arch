@@ -12,7 +12,6 @@
     <string-array name="newsapi_categories">
         <item>business</item>
         <item>entertainment</item>
-        <item>gaming</item>
         <item>general</item>
         <item>health</item>
         <item>science</item>

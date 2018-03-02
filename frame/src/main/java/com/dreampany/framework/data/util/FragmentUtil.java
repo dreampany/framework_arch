@@ -1,6 +1,7 @@
 package com.dreampany.framework.data.util;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -23,7 +24,11 @@ public final class FragmentUtil {
         return (T) activity.getSupportFragmentManager().findFragmentByTag(fragmentTag);
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+/*    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static <T extends com.Fragment> T getFragmentById(Activity activity, int fragmentId) {
+        return activity.getFragmentManager().findFragmentById(fragmentId);
+    }*/
+
     public static Fragment getFragmentById(Fragment fragment, int fragmentId) {
         return fragment.getChildFragmentManager().findFragmentById(fragmentId);
     }

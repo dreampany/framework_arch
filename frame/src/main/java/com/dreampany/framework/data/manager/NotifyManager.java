@@ -3,6 +3,7 @@ package com.dreampany.framework.data.manager;
 import android.app.Notification;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 
 import com.dreampany.framework.R;
 import com.dreampany.framework.data.enums.NotifyCause;
@@ -10,13 +11,15 @@ import com.dreampany.framework.data.enums.Type;
 import com.dreampany.framework.data.enums.Ui;
 import com.dreampany.framework.data.event.NotifyEvent;
 
+import br.com.goncalves.pugnotification.interfaces.ImageLoader;
+import br.com.goncalves.pugnotification.interfaces.OnImageLoadingCompleted;
 import br.com.goncalves.pugnotification.notification.PugNotification;
 
 /**
  * Created by air on 10/23/17.
  */
 
-public final class NotifyManager extends EventManager {
+public final class NotifyManager extends EventManager implements ImageLoader {
 
     private static final int NOTIFY_DEFAULT = 101;
     private static final String NOTIFY_IDENTIFIER = "101";
@@ -41,21 +44,11 @@ public final class NotifyManager extends EventManager {
     }
 
     public void showNotification(Context context, String title, String message, Class<?> target) {
-        showNotification(context, NOTIFY_DEFAULT, title, message, target);
+        showNotification(context, title, message, target);
     }
 
-    public void showNotification(Context context, int notifyId, String title, String message, Class<?> target) {
-
-/*        if (pref == null || !pref.isNotifyTimeExpired()) {
-            return;
-        }*/
-
-        if (icon == null) {
-            //icon = BitmapUtil.getBitmapFromResource(context.getResources(), R.mipmap.ic_launcher, 100, 100);
-        }
-
+    public void showNotification(Context context, String title, String message, Class<?> target, Bundle data) {
         PugNotification.with(context).cancel(NOTIFY_DEFAULT);
-
         PugNotification.with(context)
                 .load()
                 .identifier(NOTIFY_DEFAULT)
@@ -65,8 +58,27 @@ public final class NotifyManager extends EventManager {
                 .largeIcon(R.mipmap.ic_launcher)
                 .flags(Notification.DEFAULT_ALL)
                 .autoCancel(true)
-                .click(target)
+                .click(target, data)
                 .simple()
+                .build();
+    }
+
+    public void showNotification(Context context, int icon, String iconUri, String title, String message, String bigText, Class<?> target, Bundle data, ImageLoader loader) {
+        PugNotification.with(context)
+                .load()
+                .identifier(NOTIFY_DEFAULT)
+                .title(title)
+                .message(message)
+                .bigTextStyle(bigText)
+                .smallIcon(icon)
+                .largeIcon(icon)
+                .flags(Notification.DEFAULT_ALL)
+                .autoCancel(true)
+                .click(target, data)
+                .custom()
+                .setPlaceholder(icon)
+                .setImageLoader(loader)
+                .background(iconUri)
                 .build();
     }
 
@@ -106,4 +118,13 @@ public final class NotifyManager extends EventManager {
         post(event);
     }
 
+    @Override
+    public void load(String uri, OnImageLoadingCompleted onCompleted) {
+
+    }
+
+    @Override
+    public void load(int imageResId, OnImageLoadingCompleted onCompleted) {
+
+    }
 }

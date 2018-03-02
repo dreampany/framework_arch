@@ -33,6 +33,11 @@ public enum NotifyCause implements Type {
     };
 
     @Override
+    public String toLowerValue() {
+        return name().toLowerCase();
+    }
+
+    @Override
     public boolean equals(Type type) {
         return this == type && type instanceof NotifyCause && compareTo((NotifyCause) type) == 0;
     }

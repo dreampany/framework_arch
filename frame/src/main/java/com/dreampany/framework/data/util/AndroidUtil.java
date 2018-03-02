@@ -18,23 +18,20 @@ import android.graphics.Point;
 import android.hardware.display.DisplayManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
-import android.os.Parcelable;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IntRange;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.text.Spanned;
-import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -46,20 +43,17 @@ import android.widget.TextView;
 
 import com.dreampany.framework.R;
 import com.dreampany.framework.data.manager.PermissionManager;
-import com.dreampany.framework.data.model.BaseParcel;
 import com.dreampany.framework.data.model.Task;
-import com.dreampany.framework.ui.activity.BaseActivity;
 import com.google.common.hash.Hashing;
 import com.jaredrummler.android.device.DeviceName;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.listener.single.PermissionListener;
 
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -76,6 +70,8 @@ public final class AndroidUtil {
     private static int colorPrimary = -1;
     private static int colorPrimaryDark = -1;
     private static int colorAccent = -1;
+    public static final String TASK_TAG = Task.class.getSimpleName();
+
 
     private AndroidUtil() {
     }
@@ -220,6 +216,12 @@ public final class AndroidUtil {
         }
     }
 
+    public static Bundle getBundle(Task task) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(TASK_TAG, task);
+        return bundle;
+    }
+
     public static void openActivity(Activity activity, Class<?> clazz) {
         activity.startActivity(new Intent(activity, clazz));
     }
@@ -240,17 +242,13 @@ public final class AndroidUtil {
 
     public static void openActivity(Fragment fragment, Class<?> clazz, Task task) {
         Intent intent = new Intent(fragment.getActivity(), clazz);
-        if (task != null) {
-            intent.putExtra(Task.class.getName(), task);
-        }
+        intent.putExtra(TASK_TAG, (Serializable) task);
         fragment.startActivity(intent);
     }
 
     public static void openActivity(Activity activity, Class<?> clazz, Task task) {
         Intent intent = new Intent(activity, clazz);
-        if (task != null) {
-            intent.putExtra(Task.class.getName(), task);
-        }
+        intent.putExtra(TASK_TAG, (Serializable) task);
         activity.startActivity(intent);
     }
 
@@ -260,9 +258,7 @@ public final class AndroidUtil {
 
     public static void openActivityForResult(Activity activity, Class<?> clazz, int requestCode, Task task) {
         Intent intent = new Intent(activity, clazz);
-        if (task != null) {
-            intent.putExtra(Task.class.getName(), task);
-        }
+        intent.putExtra(TASK_TAG, (Serializable) task);
         activity.startActivityForResult(intent, requestCode);
     }
 
@@ -272,9 +268,7 @@ public final class AndroidUtil {
 
     public static void openActivityForResult(Fragment fragment, Class<?> clazz, int requestCode, Task task) {
         Intent intent = new Intent(fragment.getActivity(), clazz);
-        if (task != null) {
-            intent.putExtra(Task.class.getName(), task);
-        }
+        intent.putExtra(TASK_TAG, (Serializable) task);
         fragment.startActivityForResult(intent, requestCode);
     }
 
@@ -696,65 +690,38 @@ public final class AndroidUtil {
         return dateFormat.format(date);
     }
 
-    /**
-     * API 11
-     *
-     * @see VERSION_CODES#HONEYCOMB
-     */
     public static boolean hasHoneycomb() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
     }
 
-    /**
-     * API 14
-     *
-     * @see VERSION_CODES#ICE_CREAM_SANDWICH
-     */
     public static boolean hasIceCreamSandwich() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
     }
 
-    /**
-     * API 16
-     *
-     * @see VERSION_CODES#JELLY_BEAN
-     */
+    public static boolean hasIceCreamSandwichMR1() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1;
+    }
+
     public static boolean hasJellyBean() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN;
     }
 
-    /**
-     * API 19
-     *
-     * @see VERSION_CODES#KITKAT
-     */
+    public static boolean hasJellyBeanMR1() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1;
+    }
+
     public static boolean hasKitkat() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
     }
 
-    /**
-     * API 21
-     *
-     * @see VERSION_CODES#LOLLIPOP
-     */
     public static boolean hasLollipop() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
 
-    /**
-     * API 23
-     *
-     * @see VERSION_CODES#M
-     */
     public static boolean hasMarshmallow() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
     }
 
-    /**
-     * API 24
-     *
-     * @see VERSION_CODES#N
-     */
     public static boolean hasNougat() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N;
     }

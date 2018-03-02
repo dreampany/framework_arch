@@ -21,7 +21,10 @@ public enum Priority implements Type {
     public int ordinalValue() {
         return ordinal();
     }
-
+    @Override
+    public String toLowerValue() {
+        return name().toLowerCase();
+    }
     @Override
     public boolean equals(Type type) {
         if (Priority.class.isInstance(type)) {
