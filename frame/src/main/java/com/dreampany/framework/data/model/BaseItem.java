@@ -27,7 +27,7 @@ public abstract class BaseItem<VH extends FlexibleViewHolder> extends AbstractFl
 
     @Override
     public boolean equals(Object inObject) {
-        if (inObject instanceof BaseItem) {
+        if (inObject instanceof BaseItem && this.id != null) {
             BaseItem item = (BaseItem) inObject;
             return this.id.equals(item.id);
         }

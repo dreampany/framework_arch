@@ -110,15 +110,17 @@ public abstract class BaseStateFragment extends BaseMenuFragment {
 
         if (enableTabColor()) {
             Color color = getColor();
-            tabLayout.setBackgroundColor(ColorUtil.getColor(getContext(), color.getPrimaryId()));
-            tabLayout.setSelectedTabIndicatorColor(
-                    ColorUtil.getColor(getContext(), R.color.colorWhite)
-            );
+            if (color != null) {
+                tabLayout.setBackgroundColor(ColorUtil.getColor(getContext(), color.getPrimaryId()));
+                tabLayout.setSelectedTabIndicatorColor(
+                        ColorUtil.getColor(getContext(), R.color.colorWhite)
+                );
 
-            tabLayout.setTabTextColors(
-                    ColorUtil.getColor(context, R.color.colorWhite2),
-                    ColorUtil.getColor(context, R.color.colorWhite)
-            );
+                tabLayout.setTabTextColors(
+                        ColorUtil.getColor(context, R.color.colorWhite2),
+                        ColorUtil.getColor(context, R.color.colorWhite)
+                );
+            }
         }
 
         SmartPagerAdapter<BaseFragment> fragmentAdapter = resolveFragmentAdapter();

@@ -43,6 +43,8 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.karumi.dexter.listener.single.PermissionListener;
 import com.tapadoo.alerter.Alerter;
 
+import org.polaric.colorful.Colorful;
+
 import java.util.List;
 
 import pub.devrel.easypermissions.EasyPermissions;
@@ -124,9 +126,10 @@ public abstract class BaseActivity extends AppCompatActivity implements
             requestWindowFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         }
 
-        if (enableTheme()) {
-            Aesthetic.attach(this);
-        }
+/*        if (enableTheme()) {
+            Colorful.applyTheme(this);
+            //Aesthetic.attach(this);
+        }*/
 
         super.onCreate(savedInstanceState);
 
@@ -351,6 +354,11 @@ public abstract class BaseActivity extends AppCompatActivity implements
             StatusBarUtil.setColor(this, color.getPrimaryId());
         }*/
 
+        if (enableTheme()) {
+            Colorful.applyTheme(this);
+            //Aesthetic.attach(this);
+        }
+
         binding = DataBindingUtil.setContentView(this, layoutId);
 
         if (fullScreen) {
@@ -385,7 +393,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
 
 
         if (enableTheme()) {
-            applyTheme();
+            //applyTheme();
         }
     }
 
@@ -496,7 +504,6 @@ public abstract class BaseActivity extends AppCompatActivity implements
     protected void setColor(Color color) {
         this.color = color;
     }
-
 
     protected void initFullView() {
 

@@ -61,8 +61,6 @@ public abstract class BaseFragment extends PreferenceFragmentCompat implements
         View.OnLongClickListener,
         CompoundButton.OnCheckedChangeListener,
         TabLayout.OnTabSelectedListener,
-        RecyclerClickListener.OnItemClickListener,
-        RecyclerClickListener.OnItemChildClickListener,
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
         FlexibleAdapter.EndlessScrollListener,
@@ -259,6 +257,16 @@ public abstract class BaseFragment extends PreferenceFragmentCompat implements
     }
 
     @Override
+    public boolean onItemClick(View view, int position) {
+        return false;
+    }
+
+    @Override
+    public void onItemLongClick(int position) {
+
+    }
+
+    @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
 
     }
@@ -275,24 +283,6 @@ public abstract class BaseFragment extends PreferenceFragmentCompat implements
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onItemClick(View view, int position) {
-    }
-
-    @Override
-    public void onItemLongClick(View view, int position) {
-    }
-
-    @Override
-    public void onChildItemClick(View view, int position) {
-
-    }
-
-    @Override
-    public void onChildItemLongClick(View view, int position) {
 
     }
 
@@ -316,15 +306,6 @@ public abstract class BaseFragment extends PreferenceFragmentCompat implements
         return false;
     }
 
-    @Override
-    public boolean onItemClick(int position) {
-        return false;
-    }
-
-    @Override
-    public void onItemLongClick(int position) {
-
-    }
 
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

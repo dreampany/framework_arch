@@ -24,6 +24,8 @@ import com.oasisfeng.condom.CondomContext;
 import com.oasisfeng.condom.CondomProcess;
 import com.squareup.leakcanary.LeakCanary;
 
+import org.polaric.colorful.Colorful;
+
 import java.lang.ref.WeakReference;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -54,6 +56,14 @@ public abstract class BaseApp extends MultiDexApplication implements Application
     public abstract boolean enableColor();
 
     public abstract Color getColor();
+
+    public abstract Colorful.ThemeColor getPrimaryColor();
+
+    public abstract Colorful.ThemeColor getAccentColor();
+
+    public abstract boolean isTranslucent();
+
+    public abstract boolean isDark();
 
     protected abstract boolean enableAppIndex();
 
@@ -86,7 +96,12 @@ public abstract class BaseApp extends MultiDexApplication implements Application
         }
 
         if (enableTheme()) {
-            //Colorful.init(context);
+            Colorful.defaults()
+                    .primaryColor(getPrimaryColor())
+                    .accentColor(getAccentColor())
+                    .translucent(isTranslucent())
+                    .dark(isDark());
+            Colorful.init(this);
         }
 
         if (enableAppIndex()) {
@@ -135,7 +150,6 @@ public abstract class BaseApp extends MultiDexApplication implements Application
     public static CondomContext getContext() {
         return context;
     }
-
 
     private void startAppIndex() {
         if (AndroidUtil.isDebug()) return;
@@ -199,6 +213,15 @@ public abstract class BaseApp extends MultiDexApplication implements Application
                 }).build();
 
         ratingDialog.show();
+    }
+
+    public void applyColor(Colorful.ThemeColor primaryColor, Colorful.ThemeColor accentColor, boolean translucent, boolean dark) {
+        Colorful.config(this)
+                .primaryColor(primaryColor)
+                .accentColor(accentColor)
+                .translucent(translucent)
+                .dark(dark)
+                .apply();
     }
 
     protected void setupLeakCanary() {
