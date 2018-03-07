@@ -22,6 +22,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    //implementation 'com.dreampany.framework:frame:0.0.8'
-    implementation project(':frame')
+    //implementation 'com.dreampany.framework:frame:0.0.7'
+    //implementation project(':frame')
 }

@@ -315,7 +315,7 @@ idea {
     }
 }
 
-/*ext {
+ext {
     bintrayRepo = 'framework'
     bintrayName = 'frame'
     publishedGroupId = 'com.dreampany.framework'
@@ -347,4 +347,3 @@ tasks.withType(Javadoc).all {
 apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/installv.gradle'
 apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/bintrayv.gradle'
 
-*/
