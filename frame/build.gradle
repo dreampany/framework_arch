@@ -258,7 +258,7 @@ dependencies {
     api 'com.github.garretyoder:Colorful:1.4'
     api 'com.github.pwittchen.kirai:library:1.4.1'
     api 'com.github.arimorty:floatingsearchview:2.1.1'
-    api 'com.lapism:searchview:5.0.0-alpha7'
+    //api 'com.lapism:searchview:5.0.0-alpha7'
     api 'lt.neworld:spanner:v0.3.1'
     api 'com.jaredrummler:material-spinner:1.2.3'
     api 'com.flipboard:bottomsheet-core:1.5.3'
